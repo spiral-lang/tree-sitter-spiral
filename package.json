@@ -1,0 +1,26 @@
+{
+  "name": "tree-sitter-spiral",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.16.2"
+  },
+  "scripts": {
+    "test": "tree-sitter test"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.spiral",
+      "injection-regex": "spiral",
+      "file-types": [
+        "sp"
+      ]
+    }
+  ]
+}
