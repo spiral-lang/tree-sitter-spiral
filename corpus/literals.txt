@@ -142,34 +142,3 @@ b`foo\nbar`;
   (string_literal (escape_sequence) (escape_sequence))
 
 )
-
-============================================
-Raw string literals
-============================================
-
-r`abc`; r```ok```;
-r%%`foo %`% bar`%%;
-r%%%`foo %%`%% bar`%%%;
-r%%%%%%`foo %%%%% bar`%%%%%%;
-
----
-
-(source_file
-  (raw_string_literal)
-  (raw_string_literal)
-  (raw_string_literal)
-  (raw_string_literal)
-  (raw_string_literal))
-
-============================================
-Raw byte string literals
-============================================
-
-br%`abc`%;
-br%%`abc`%%;
-
----
-
-(source_file
-  (raw_string_literal)
-  (raw_string_literal))

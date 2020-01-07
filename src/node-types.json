@@ -66,7 +66,15 @@
         "named": true
       },
       {
+        "type": "product_expression",
+        "named": true
+      },
+      {
         "type": "range_expression",
+        "named": true
+      },
+      {
+        "type": "self_path",
         "named": true
       },
       {
@@ -75,6 +83,10 @@
       },
       {
         "type": "square_object",
+        "named": true
+      },
+      {
+        "type": "symbol",
         "named": true
       },
       {
@@ -114,18 +126,56 @@
     "named": true,
     "subtypes": [
       {
+        "type": "annotated_ident",
+        "named": true
+      },
+      {
         "type": "braces_object",
+        "named": true
+      },
+      {
+        "type": "bracket_object",
         "named": true
       },
       {
         "type": "square_object",
         "named": true
-      },
-      {
-        "type": "type_annotation",
-        "named": true
       }
     ]
+  },
+  {
+    "type": "annotated_ident",
+    "named": true,
+    "fields": {
+      "tty": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "export_ident",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "assignment_statement",
@@ -198,11 +248,23 @@
             "named": true
           },
           {
+            "type": "product_expression",
+            "named": true
+          },
+          {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -334,11 +396,23 @@
             "named": true
           },
           {
+            "type": "product_expression",
+            "named": true
+          },
+          {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -407,6 +481,10 @@
         },
         {
           "type": "while_let_expression",
+          "named": true
+        },
+        {
+          "type": "yield_statement",
           "named": true
         }
       ]
@@ -525,11 +603,19 @@
             "named": true
           },
           {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -679,11 +765,19 @@
             "named": true
           },
           {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -866,11 +960,19 @@
             "named": true
           },
           {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -1060,11 +1162,19 @@
             "named": true
           },
           {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -1198,45 +1308,66 @@
     "type": "kv_pair",
     "named": true,
     "fields": {
-      "value": {
+      "binding": {
         "multiple": false,
         "required": false,
         "types": [
+          {
+            "type": "const",
+            "named": false
+          },
+          {
+            "type": "let",
+            "named": false
+          }
+        ]
+      },
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "spread",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "_expr",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
           {
             "type": "_expr",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "kv_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "kv_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expr",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1450,11 +1581,19 @@
             "named": true
           },
           {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -1496,15 +1635,54 @@
             "named": true
           },
           {
+            "type": "self_path",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
           {
             "type": "square_object",
             "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
           }
         ]
       }
+    }
+  },
+  {
+    "type": "product_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "group_expression",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "natural_number",
+          "named": true
+        },
+        {
+          "type": "simple_path",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1548,11 +1726,19 @@
           "named": true
         },
         {
+          "type": "self_path",
+          "named": true
+        },
+        {
           "type": "simple_path",
           "named": true
         },
         {
           "type": "square_object",
+          "named": true
+        },
+        {
+          "type": "symbol",
           "named": true
         }
       ]
@@ -1655,6 +1841,25 @@
         {
           "type": "while_let_expression",
           "named": true
+        },
+        {
+          "type": "yield_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "spread",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ident",
+          "named": true
         }
       ]
     }
@@ -1692,6 +1897,21 @@
         },
         {
           "type": "template_substitution",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ident",
           "named": true
         }
       ]
@@ -1750,21 +1970,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "type_annotation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expr",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1876,11 +2081,30 @@
     }
   },
   {
+    "type": "yield_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "!=",
     "named": false
   },
   {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": "$",
     "named": false
   },
   {
@@ -2040,6 +2264,10 @@
     "named": true
   },
   {
+    "type": "block_comment",
+    "named": true
+  },
+  {
     "type": "break",
     "named": false
   },
@@ -2080,6 +2308,10 @@
     "named": true
   },
   {
+    "type": "export_ident",
+    "named": true
+  },
+  {
     "type": "f",
     "named": false
   },
@@ -2116,6 +2348,10 @@
     "named": false
   },
   {
+    "type": "line_comment",
+    "named": true
+  },
+  {
     "type": "m",
     "named": false
   },
@@ -2144,6 +2380,10 @@
     "named": false
   },
   {
+    "type": "self_path",
+    "named": true
+  },
+  {
     "type": "true",
     "named": false
   },
@@ -2153,6 +2393,10 @@
   },
   {
     "type": "y",
+    "named": false
+  },
+  {
+    "type": "yield",
     "named": false
   },
   {

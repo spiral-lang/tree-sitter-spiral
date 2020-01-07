@@ -10,7 +10,7 @@ const PREC = {
     BUILD: 21,
     BRACES_OBJECT: 50,
     STMT_BLOCK: 25,
-    FIELD: 40,
+    DOT: 40,
     DECORATOR: 100,
     RANGE: -1,
     DECIMAL: 80,
@@ -21,9 +21,13 @@ module.exports = grammar({
 
     externals: $ => [
         $._string_content,
+        $.block_comment,
     ],
-
-    extras: $ => [/\s/],
+    conflicts: $ => [
+        [$.natural_number, $.fraction_literal],
+        [$._literal, $.product_expression]
+    ],
+    extras: $ => [/\s/, $.line_comment, $.block_comment],
 
     supertypes: $ => [
         $._expr,
@@ -38,13 +42,21 @@ module.exports = grammar({
     ],
 
     rules: {
+
         source_file: $ => repeat($._statement),
-        ident: $ => token(/[a-zA-Zα-ωΑ-Ωµ_$][a-zA-Zα-ωΑ-Ωµ\d_$]*/),
+
+        ident: $ => token(/[a-zA-Zα-ωΑ-Ωµ_][a-zA-Zα-ωΑ-Ωµ\d_]*/),
+
+        symbol: $ => seq('$', $.ident),
+
         simple_path: $ => seq(
             choice($.ident, $.simple_path),
             '::',
             $.ident
         ),
+
+        self_path: $ => token(seq('::', caseInsensitive('self'))),
+
         _unary_operator: $ => token.immediate(choice(
             "!",
             "-",
@@ -77,6 +89,7 @@ module.exports = grammar({
             "<",
             ">",
         ),
+
         natual_unit_suffix: $ => choice(
             caseInsensitive('yotta'),
             caseInsensitive('zetta'),
@@ -97,7 +110,9 @@ module.exports = grammar({
             "M",
             'K',
             'k'),
+
         exponent: $ => seq('e', choice('+', '-'), $.arabic_natural_number),
+
         fractional_unit_suffix: $ => choice(
             caseInsensitive('deci'),
             caseInsensitive('centi'),
@@ -123,10 +138,15 @@ module.exports = grammar({
             'y',
             $.exponent,
         ),
+
         arabic_natural_number: $ => token(/[0-9][0-9_]*/),
+
         octal_natural_number: $ => token(/0o[0-7_]+/),
+
         hexadecimal_natural_number: $ => token(/0x[0-9a-fA-F_]+/),
+
         binary_natural_number: $ => token(/0b[01_]+/),
+
         natural_number: $ => seq(
             field('value', choice(
                 $.arabic_natural_number,
@@ -137,12 +157,14 @@ module.exports = grammar({
             ),
             optional(field('suffix', seq('\'', $.natual_unit_suffix)))
         ),
-        fraction_literal: $ => prec(PREC.DECIMAL, seq(
+
+        fraction_literal: $ => seq(
             field('numerator', $.arabic_natural_number),
             '.',
             field('denominator', $.arabic_natural_number),
             optional(field('suffix', seq('\'', choice($.natual_unit_suffix, $.fractional_unit_suffix))))
-        )),
+        ),
+
         natural_fraction_literal: $ => seq(
             field('value', choice(
                 $.arabic_natural_number,
@@ -153,9 +175,11 @@ module.exports = grammar({
             ),
             field('suffix', seq('\'', $.fractional_unit_suffix))
         ),
+
         decimal_literal: $ => seq(
             choice($.fraction_literal, $.natural_fraction_literal),
         ),
+
         string_literal: $ => seq(
             /b?`/,
             repeat(choice(
@@ -197,6 +221,7 @@ module.exports = grammar({
             choice($._expr, $.kv_pair),
             '}'
         ),
+
         block: $ => prec(PREC.STMT_BLOCK, seq(
             '{',
             repeat($._statement),
@@ -204,8 +229,19 @@ module.exports = grammar({
             '}'
         )),
 
-        kv_pair: $ => prec(PREC.KV_PAIR, seq($.ident, optional($.kv_type), optional($._optional_value))),
-        kv_type: $ => seq(':', $._expr),
+        spread: $ => seq('...', $.ident),
+
+        kv_pair: $ => prec(PREC.KV_PAIR,
+            seq(
+                field('binding', optional(choice('let', 'const'))),
+                field('key', choice($.ident, $.symbol, $.spread)),
+                field('type', optional($._tty)),
+                field('value', optional($._optional_value))
+            )
+        ),
+
+        _tty: $ => seq(':', $._expr),
+
         _inner_object: $ => seq(
             sepBy1(',', choice(
                 $._expr,
@@ -225,6 +261,11 @@ module.exports = grammar({
             ')'),
         _number: $ => choice($.natural_number, $.decimal_literal),
         boolean_literal: $ => choice('true', 'false'),
+        line_comment: $ => token(seq('//', /.*/)),
+        comment: $ => choice(
+            $.line_comment,
+            $.block_comment,
+        ),
 
         _literal: $ => choice(
             $._number,
@@ -233,7 +274,7 @@ module.exports = grammar({
             $.boolean_literal,
         ),
 
-        dot_expression: $ => prec(PREC.FIELD, seq(
+        dot_expression: $ => seq(
             field('value', $._unary_expr),
             '.',
             field('field', choice(
@@ -242,7 +283,7 @@ module.exports = grammar({
                 $.arabic_natural_number
                 )
             )
-        )),
+        ),
 
         function_call: $ => prec(PREC.CALL, seq(
             field('callee', $._unary_expr),
@@ -255,18 +296,22 @@ module.exports = grammar({
         )),
 
         _unary_expr: $ => prec(PREC.UNARY_EXP, choice(
+            $.self_path,
             $._literal,
-            $.square_object,
-            $.braces_object,
             $.ident,
             $.simple_path,
             $.dot_expression,
             $.function_call,
+            $.symbol,
             //$.unary_operation,
             $.group_expression,
+            $.square_object,
+            $.braces_object,
             $.build_expr,
             $.index_expression,
         )),
+
+        product_expression: $ => seq($._number, choice($.ident, $.simple_path, $.group_expression)),
 
         unary_operation: $ => prec(PREC.UNARY, seq(
             $._unary_operator,
@@ -274,11 +319,11 @@ module.exports = grammar({
         )),
 
         binary_operation: $ => prec.right(PREC.BINARY, seq(
-            field('left', choice($._unary_expr, $.binary_operation)),
+            field('left', choice($._unary_expr, $.binary_operation, $.product_expression)),
             '\s+',
             field('operator', $._binary_operator),
             '\s+',
-            field('right', $._unary_expr),
+            field('right', choice($._unary_expr, $.product_expression)),
         )),
         pipe_operation: $ => prec.right(PREC.PIPE, seq(
             field('left', choice($._unary_expr, $.pipe_operation)),
@@ -315,22 +360,24 @@ module.exports = grammar({
                 $._binary_expr,
                 $.ternary_expression,
                 $.hash_tag_expression,
-                $.range_expression
+                $.range_expression,
+                $.product_expression,
             )
         ),
         range_expression: $ => prec.left(PREC.RANGE, choice(
             seq($._unary_expr, choice('..', '...'), $._unary_expr),
         )),
-        type_annotation: $ => seq(
+        annotated_ident: $ => seq(
+            alias(optional('::'), $.export_ident),
             $.ident,
-            ":",
-            $._expr
+            field('tty', optional($._tty)),
         ),
 
         _pattern: $ => choice(
-            $.type_annotation,
+            $.annotated_ident,
             $.braces_object,
             $.square_object,
+            $.bracket_object,
         ),
 
         _optional_value: $ => seq(
@@ -427,7 +474,7 @@ module.exports = grammar({
         ),
         break_statement: $ => seq('break', optional(choice($.label, $._expr)), ';'),
         continue_statement: $ => seq('continue', optional($.label), ';'),
-        index_expression: $ => prec(PREC.CALL, seq($._expr, '[', $._expr, ']')),
+        index_expression: $ => prec(PREC.CALL, seq($._unary_expr, '[', $._expr, ']')),
         do_statement: $ => seq('do', choice(seq(choice($.label, $._expr), ';'), $.block)),
         if_expression: $ => seq(
             'if',
@@ -459,6 +506,11 @@ module.exports = grammar({
             optional($._expr),
             ';'
         ),
+        yield_statement: $ => seq(
+            'yield',
+            optional($._expr),
+            ';'
+        ),
 
         assignment_statement: $ => seq(
             field('left', $._expr),
@@ -485,11 +537,11 @@ module.exports = grammar({
             $.return_statement,
             $.assignment_statement,
             $.do_statement,
+            $.yield_statement,
         ),
 
     }
-})
-;
+});
 
 function sepBy1(sep, rule) {
     return seq(rule, repeat(seq(sep, rule)))
@@ -509,11 +561,9 @@ function caseInsensitive(keyword) {
 
 //TODO: try/catch
 //TODO: binding pattern
-
 //TODO: Composite assignation
 //TODO: hashtag expression
 //TODO: use
 //TODO: investigate label
 //TODO: module
-//TODO: comments
 //TODO: DOCUMENTATION

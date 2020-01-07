@@ -1,0 +1,20 @@
+============================================
+Product expression
+============================================
+
+30x;
+50.545sf;
+1.35'milimeters;
+85sad::dasd;
+885(21);
+----
+
+(source_file
+ (product_expression  (natural_number (arabic_natural_number)) (ident))
+ (product_expression (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (ident))
+ (product_expression (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number) (fractional_unit_suffix))) (ident))
+ (product_expression (natural_number (arabic_natural_number)) (simple_path (ident) (ident)))
+ (product_expression (natural_number (arabic_natural_number)) (group_expression (natural_number (arabic_natural_number))))
+)
+
+
