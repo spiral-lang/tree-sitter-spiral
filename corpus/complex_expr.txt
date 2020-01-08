@@ -14,7 +14,7 @@ Product expression
  (product_expression (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (ident))
  (product_expression (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number) (fractional_unit_suffix))) (ident))
  (product_expression (natural_number (arabic_natural_number)) (simple_path (ident) (ident)))
- (product_expression (natural_number (arabic_natural_number)) (group_expression (natural_number (arabic_natural_number))))
+ (product_expression (natural_number (arabic_natural_number)) (bracket_object (natural_number (arabic_natural_number))))
 )
 
 

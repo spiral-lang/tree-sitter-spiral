@@ -1,10 +1,10 @@
 {
   "name": "tree-sitter-spiral",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "nan": "^2.14.0"
   },
@@ -19,7 +19,8 @@
       "scope": "source.spiral",
       "injection-regex": "spiral",
       "file-types": [
-        "sp"
+        "sp",
+        "spx"
       ]
     }
   ]

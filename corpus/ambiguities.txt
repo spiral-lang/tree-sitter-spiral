@@ -1,0 +1,46 @@
+============================================
+Braces and Block Ambiguities
+============================================
+
+
+{key=`ljklj`};
+{key=`ljklj`,};
+{key=`ljklj`, 57};
+{5};
+{let y = 5;};
+{@let y = 5};
+{key:13};
+{adasd};
+{adasd:(), ads};
+{$d=4};
+{
+y=5;
+y=52;
+};
+{y=5;};
+{y = {}};
+{}
+{x = 5;}
+{1, 2 , 3 , 5, 4};
+{1; 2; 3; 5; 4}
+
+----
+(source_file
+    (braces_object (key_tty_value (ident) (string_literal)))
+    (braces_object (key_tty_value (ident) (string_literal)))
+    (braces_object (key_tty_value (ident) (string_literal)) (natural_number (arabic_natural_number)))
+    (statements_block (natural_number (arabic_natural_number))) (empty_statement)
+    (statements_block (variable_declaration (annotated_ident (ident)) (natural_number (arabic_natural_number)))) (empty_statement)
+    (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))))
+    (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))))
+    (statements_block (ident)) (empty_statement)
+    (braces_object (key_tty_value (ident) (bracket_object)) (ident))
+    (braces_object (key_tty_value (symbol (ident)) (natural_number (arabic_natural_number))))
+    (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))) (assignment_statement (ident) (natural_number (arabic_natural_number)))) (empty_statement)
+    (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number)))) (empty_statement)
+    (braces_object (key_tty_value (ident) (braces_object)))
+    (statements_block)
+    (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))))
+    (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
+    (statements_block (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
+)
