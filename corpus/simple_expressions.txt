@@ -1,0 +1,169 @@
+============================================
+Ident Expression
+============================================
+
+sdasdJKH_Ψ_;
+___________;
+
+----
+
+(source_file
+  (ident)
+  (ident)
+)
+
+
+
+============================================
+Literal Expression
+============================================
+
+30;
+`hi`;
+
+----
+
+(source_file
+  (natural_number (arabic_natural_number))
+  (string_literal)
+)
+
+
+============================================
+Simple Path
+============================================
+
+Y::AS;
+__::___;
+ujs :: asdd :: ΨΨΨΨΨΨΨΨΨΨΨ;
+
+----
+
+(source_file
+  (simple_path  (ident) (ident))
+  (simple_path  (ident) (ident))
+  (simple_path  (simple_path (ident) (ident))  (ident))
+)
+
+============================================
+Self Path
+============================================
+::self;
+
+----
+
+(source_file
+  (self_path)
+)
+============================================
+bracket object
+============================================
+
+(Y::AS);
+(30);
+(`abc`);
+(`abc`, k=567);
+
+
+----
+
+(source_file
+  (bracket_object (simple_path  (ident) (ident)))
+  (bracket_object (natural_number  (arabic_natural_number)))
+  (bracket_object  (string_literal))
+  (bracket_object (string_literal) (key_tty_value (ident) (natural_number (arabic_natural_number))))
+)
+
+============================================
+Symbol
+============================================
+
+$sdasd;
+$ path;
+----
+
+(source_file
+  (symbol (ident))
+  (symbol (ident))
+)
+
+============================================
+Dot expression
+============================================
+
+
+kkk.usd;
+$asdd.4554;
+::self.`5456`;
+878.jhjjhjj;
+tjd.dasdas.asdasd;
+sadasd::asdasd.0;
+(50).b`sadadasdsadd`;
+8__78'giga.___jhjjhjj;
+{1, 2}.323563;
+`dasd`.685;
+sad(k=5, y=33).asdasdadd;
+sad{k=5, y=33}.asdasdadd;
+dasd[5].5;
+[1, 2, 6, 7].`asdasdas`;
+
+----
+
+(source_file
+ (dot_expression (ident) (ident))
+ (dot_expression (symbol (ident)) (arabic_natural_number))
+ (dot_expression (self_path) (string_literal))
+ (dot_expression (natural_number (arabic_natural_number)) (ident))
+ (dot_expression (dot_expression (ident) (ident)) (ident))
+ (dot_expression (simple_path (ident) (ident)) (arabic_natural_number))
+ (dot_expression (bracket_object (natural_number (arabic_natural_number))) (string_literal))
+ (dot_expression (natural_number (arabic_natural_number) (natual_unit_suffix)) (ident))
+ (dot_expression (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))) (arabic_natural_number))
+ (dot_expression (string_literal) (arabic_natural_number))
+ (dot_expression (call (ident) (bracket_object (key_tty_value (ident) (natural_number (arabic_natural_number))) (key_tty_value (ident) (natural_number (arabic_natural_number))))) (ident))
+ (dot_expression (build (ident) (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))) (key_tty_value (ident) (natural_number (arabic_natural_number))))) (ident))
+ (dot_expression (index_expression (ident) (natural_number (arabic_natural_number))) (arabic_natural_number))
+ (dot_expression (square_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))) (string_literal))
+)
+
+
+============================================
+Index expression
+============================================
+
+
+kkk[30];
+$asdd[1..2];
+()[25];
+32[22];
+::self[`5456`];
+
+----
+(source_file
+    (index_expression (ident) (natural_number (arabic_natural_number)))
+    (index_expression (symbol (ident)) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))
+    (index_expression (bracket_object) (natural_number (arabic_natural_number)))
+    (index_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
+    (index_expression (self_path) (string_literal))
+)
+
+
+============================================
+Unary Operation expression
+============================================
+-1;
+3-;
+x+;
+*(3+1);
+*xdd.xxa;
+xkd.sdasd&;
+
+---
+
+============================================
+Unary DDDSSSSSSSSSSSSSS
+============================================
+
+-30;
+
+---
