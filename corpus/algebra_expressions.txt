@@ -119,13 +119,13 @@ y not in z;
 ====================================================
 IS  operation
 ====================================================
-y is z{@ name:number};
+y is z{let name:number};
 
 ---
-(source_file
-    (algebra_operation (ident) (special_operator) (build (ident) (braces_object (key_tty_value (ident) (ident)))))
-)
 
+(source_file
+    (algebra_operation (ident) (special_operator) (build (ident) (braces_object (key_tty_value (object_key (ident)) (ident)))))
+)
 ====================================================
 IS_NOT operation
 ====================================================
@@ -136,6 +136,62 @@ y is not z;
     (algebra_operation (ident) (special_operator) (ident))
 )
 
+
+====================================================
+AND operation
+====================================================
+y and z;
+
+---
+
+(source_file (algebra_operation (ident) (special_operator) (ident)))
+
+====================================================
+OR operation
+====================================================
+y or z;
+
+---
+
+(source_file (algebra_operation (ident) (special_operator) (ident)))
+
+====================================================
+ON operation
+====================================================
+y on z;
+
+---
+
+(source_file (algebra_operation (ident) (special_operator) (ident)))
+
+====================================================
+BECOMES operation
+====================================================
+y becomes z;
+
+---
+
+(source_file (algebra_operation (ident) (special_operator) (ident)))
+
+====================================================
+ON BECOMES operation
+====================================================
+
+x on Change(_:color, _: color(`green`)) becomes Circle;
+
+---
+
+(source_file
+    (algebra_operation
+        (algebra_operation
+            (ident)
+            (special_operator)
+            (call (ident) (bracket_object (key_tty_value (object_key (ident)) (ident)) (key_tty_value (object_key (ident)) (call (ident) (bracket_object (string_literal))))))
+        )
+        (special_operator)
+      (ident)
+    )
+)
 
 ====================================================
 compact range

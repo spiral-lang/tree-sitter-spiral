@@ -39,8 +39,6 @@ module.exports = grammar({
         [$._simple_expression, $.for_expression],
         [$._simple_expression, $._expression_ending_with_block],
         [$._simple_expression, $.lambda_literal_expression],
-        [$._simple_expression, $.while_let_expression],
-        [$._simple_expression, $.if_let_expression],
         [$._tty, $.algebra_operation],
         [$._simple_expression, $.functor_without_arguments],
         [$._simple_expression, $.functor_literal_signature, $.lambda_literal_expression],
@@ -64,19 +62,28 @@ module.exports = grammar({
         [$.square_object, $.square_object_without_braces],
         [$.algebra_operation_without_braces],
         [$.algebra_operation_without_braces, $._tty_without_braces],
-        [$.natural_number, $._object_key],
-        [$._object_key, $._simple_expression],
-        [$._object_key, $.lambda_literal_expression],
-        [$._object_key, $._literal],
-        [$._object_key, $._simple_expression_without_braces],
+        [$.natural_number, $.object_key],
+        [$.object_key, $._simple_expression],
+        [$.object_key, $.lambda_literal_expression],
+        [$.object_key, $._literal],
+        [$.object_key, $._simple_expression_without_braces],
         [$._simple_expression_without_braces, $.lambda_literal_expression],
         [$._simple_expression, $._simple_expression_without_braces, $.functor_literal_signature, $.lambda_literal_expression],
-        [$._object_key, $.object_key_dot],
-        [$._object_key, $._simple_expression, $._simple_expression_without_braces],
-        [$._object_key, $._simple_expression_without_braces, $.functor_literal_signature],
-        [$._object_key, $._simple_expression, $._simple_expression_without_braces, $.functor_literal_signature, $.lambda_literal_expression],
+        [$.object_key, $.object_key_dot],
+        [$.object_key, $.exportable_type_annotation],
+
+        [$.object_key, $._simple_expression, $._simple_expression_without_braces],
+        [$.object_key, $._simple_expression_without_braces, $.functor_literal_signature],
+        [$.object_key, $._simple_expression, $._simple_expression_without_braces, $.functor_literal_signature, $.lambda_literal_expression],
         [$._simple_expression_without_braces, $.key_tty_value_without_braces],
         [$._simple_expression, $._simple_expression_without_braces, $.key_tty_value_without_braces],
+        [$.key_tty_value_without_braces, $._simple_expression],
+        [$.natural_number, $.fraction_literal, $.object_key],
+        [$.spread_element, $.hash_tag_expression, $.expression_block],
+        [$.spread_element, $.hash_tag_expression],
+        [$.hash_tag_expression_without_braces, $.spread_element_without_braces],
+        [$.spread_element, $.hash_tag_expression, $.hash_tag_expression_without_braces, $.spread_element_without_braces],
+
 
     ],
     extras: $ => [/\s/, $.line_comment, $.block_comment],
@@ -189,6 +196,10 @@ module.exports = grammar({
             seq('not', 'in'),
             'is',
             seq('is', 'not'),
+            'and',
+            'or',
+            'on',
+            'becomes'
         ),
 
         _all_operators: $ => choice(
@@ -332,24 +343,27 @@ module.exports = grammar({
             '}'
         ),
 
-        spread_element: $ => seq('...', $._simple_expression),
+        spread_element: $ => seq(field('decorators', repeat($.decorator)), '...', $._simple_expression),
 
-        _object_key: $ => choice(
+        object_key: $ => prec.left(choice(
             $.ident,
             $.arabic_natural_number,
             $.string_literal,
             $.object_key_index,
             $.object_key_dot,
-        ),
-        object_key_index: $ => prec.left(seq($._object_key, '[', $._expression, ']')),
+        )),
+        object_key_index: $ => prec.left(seq($.object_key, $.square_object_without_braces)),
 
-        object_key_dot: $ => prec.left(
-            seq(
-                $.object_key_dot,
-                '.',
-                $._object_key
+        object_key_dot: $ => prec.left(seq(
+            field('value', $.object_key),
+            '.',
+            field('field', choice(
+                $.ident,
+                $.string_literal,
+                $.arabic_natural_number
+                )
             )
-        ),
+        )),
 
         _ktv_optional_value: $ => seq(
             field('type', $._tty),
@@ -364,8 +378,11 @@ module.exports = grammar({
         _ktv_tail: $ => choice($._ktv_optional_value, $._ktv_optional_type),
         _ktv_head_symbol: $ => field('key', $.symbol),
         _ktv_head_ident: $ => seq(
-            field('binding', optional(choice('@', '@let', '@const'))),
-            field('key', choice($._object_key, $.spread_element))
+            field('binding', optional(seq(
+                choice('let', 'const'),
+                field('rename', optional(seq('@', $.ident))),
+            ))),
+            field('key', choice($.object_key, $.spread_element))
         ),
 
         _ktv_head: $ => choice($._ktv_head_symbol, $._ktv_head_ident),
@@ -381,6 +398,7 @@ module.exports = grammar({
             sepBy1(',', choice(
                 $.key_tty_value,
                 $._expression,
+                seq($._all_operators, optional(seq('.', $.square_object_without_braces))),
             )),
             optional(',')
         ),
@@ -402,7 +420,7 @@ module.exports = grammar({
 
         square_object: $ => seq(
             '[',
-            sepBy(',', $._expression),
+            sepBy(',', choice($._expression, $.spread_element)),
             optional(','),
             ']'
         ),
@@ -554,7 +572,8 @@ module.exports = grammar({
         _spx_child: $ => choice(
             $.spx_text,
             $.spx_expression,
-            $.braces_object
+            $.braces_object,
+            $.statements_block,
         ),
 
 
@@ -589,7 +608,6 @@ module.exports = grammar({
         ),
 
         spx_key_tty_value: $ => prec.left(seq(
-            field('decorators', repeat($.decorator)),
             field('key', choice($.spread_element, $.ident, $.symbol)),
             field('type', optional($._spx_tty)),
             field('value', optional($._spx_optional_value))
@@ -628,9 +646,9 @@ module.exports = grammar({
             field('field', choice(
                 $.ident,
                 $.string_literal,
-                $.arabic_natural_number
+                $.arabic_natural_number,
                 )
-            )
+            ),
         )),
 
         call_without_braces: $ => prec.left(seq(
@@ -638,7 +656,7 @@ module.exports = grammar({
             field('arguments', $.bracket_object_without_braces)
         )),
 
-        index_expression_without_braces: $ => prec.left(seq($._simple_expression_without_braces, '[', $._expression_without_braces, ']')),
+        index_expression_without_braces: $ => prec.left(seq($._simple_expression_without_braces, $.square_object_without_braces)),
 
         _simple_expression_without_braces: $ => choice(
             $.self_path,
@@ -682,19 +700,21 @@ module.exports = grammar({
             field('right', $._expression_without_braces)
         )),
 
-        spread_element_without_braces: $ => seq('...', $._simple_expression_without_braces),
-
+        spread_element_without_braces: $ => seq(field('decorators', repeat($.decorator)), '...', $._simple_expression_without_braces),
+        value_without_braces: $ => prec.left(seq('=', $._expression_without_braces)),
         key_tty_value_without_braces: $ => prec.left(seq(
-            field('key', choice($._object_key, $.symbol, $.spread_element_without_braces)),
+            field('key',
+                choice($.object_key, $.symbol, $.spread_element_without_braces)
+            ),
             field('type', optional($._tty_without_braces)),
-            field('value', optional(prec.left(seq('=', $._expression_without_braces)))),
+            field('value', optional($.value_without_braces)),
         )),
 
         _inner_object_without_braces: $ => prec.left(seq(
             sepBy1(',', choice(
-                prec(1, $.key_tty_value_without_braces),
+                $.key_tty_value_without_braces,
                 $._expression_without_braces,
-                $._all_operators,
+                seq($._all_operators, optional(seq('.', $.square_object_without_braces))),
             )),
             optional(',')
         )),
@@ -707,7 +727,7 @@ module.exports = grammar({
 
         square_object_without_braces: $ => seq(
             '[',
-            sepBy(',', $._expression_without_braces),
+            sepBy(',', choice($._expression_without_braces, $.spread_element_without_braces)),
             optional(','),
             ']'
         ),
@@ -729,23 +749,29 @@ module.exports = grammar({
         )),
 
         _pattern: $ => choice(
-            $.type_annotation,
-            $.braces_object,
+            prec(1, $.type_annotation),
+            $.object_pattern,
             $.square_object,
-            $.bracket_object,
         ),
 
-        exportable_type_annotation: $ => seq(
+        exportable_type_annotation: $ => prec.left(seq(
             optional($.export_sign),
             $.ident,
             field('tty', optional($._tty))
+        )),
+        object_pattern: $ => seq(
+            field('callee', optional(
+                seq(
+                    field('decorators', optional(repeat1($.decorator))),
+                    choice($.ident, $.simple_path)
+                )
+            )),
+            field('object', choice($.braces_object, $.bracket_object)),
         ),
-
         _declarative_pattern: $ => choice(
-            $.exportable_type_annotation,
-            $.braces_object,
+            prec(1, $.exportable_type_annotation),
+            $.object_pattern,
             $.square_object,
-            $.bracket_object,
         ),
 
         _optional_value: $ => seq(
@@ -799,7 +825,7 @@ module.exports = grammar({
 
         label: $ => seq(`'`, $.ident),
 
-        index_expression: $ => prec.left(seq($._simple_expression, '[', $._expression, ']')),
+        index_expression: $ => prec.left(seq($._simple_expression, $.square_object)),
 
 
         assignment_statement: $ => prec.left(seq(
@@ -847,14 +873,6 @@ module.exports = grammar({
             )
         ),
 
-        while_let_expression: $ => prec.left(seq(
-            'while',
-            'let',
-            field('pattern', $._pattern),
-            '=',
-            field('value', $._expression),
-            field('body', $.statements_block)
-        )),
 
         while_expression: $ => prec.left(seq(
             'while',
@@ -887,22 +905,12 @@ module.exports = grammar({
             optional($._else_tail)
         )),
 
-        if_let_expression: $ => prec.left(seq(
-            'if',
-            'let',
-            field('pattern', $._pattern),
-            '=',
-            field('value', $._expression),
-            field('consequence', $.statements_block),
-            optional($._else_tail)
-        )),
 
         _else_tail: $ => prec.left(seq(
             'else',
             field('alternative', choice(
                 $.statements_block,
                 $.if_expression,
-                $.if_let_expression
             ))
         )),
 
@@ -920,16 +928,6 @@ module.exports = grammar({
                 ),
             )
         )),
-
-        try_let_expression: $ => prec.left(seq(
-            'try',
-            'let',
-            field('pattern', $._pattern),
-            '=',
-            field('value', $._expression),
-            field('catch', $.braces_object)
-            )
-        ),
 
         break_expression: $ => prec.left(
             seq('break',
@@ -958,14 +956,11 @@ module.exports = grammar({
         _expression_ending_with_block: $ => choice(
             $.statements_block,
             $.if_expression,
-            $.if_let_expression,
             $.match_expression,
             $.while_expression,
-            $.while_let_expression,
             $.for_expression,
             $.functor_without_arguments,
             $.try_expression,
-            $.try_let_expression,
             $.functor_literal_expression,
         ),
 
