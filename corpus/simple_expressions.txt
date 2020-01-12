@@ -4,15 +4,15 @@ Ident Expression
 
 sdasdJKH_Ψ_;
 ___________;
+3$;
 
 ----
 
 (source_file
-  (ident)
-  (ident)
+    (ident)
+    (ident)
+    (algebra_operation (natural_number (arabic_natural_number)) (ambiguous_unary_binary_operator))
 )
-
-
 
 ============================================
 Literal Expression
@@ -78,13 +78,13 @@ bracket object
 Symbol
 ============================================
 
-$sdasd;
-$ path;
+'sdasd;
+'path;
 ----
 
 (source_file
-  (symbol (ident))
-  (symbol (ident))
+  (symbol)
+  (symbol)
 )
 
 ============================================
@@ -93,7 +93,7 @@ Dot expression
 
 
 kkk.usd;
-$asdd.4554;
+'asdd.4554;
 ::self.`5456`;
 878.jhjjhjj;
 tjd.dasdas.asdasd;
@@ -111,7 +111,7 @@ dasd[5].5;
 
 (source_file
  (dot_expression (ident) (ident))
- (dot_expression (symbol (ident)) (arabic_natural_number))
+ (dot_expression (symbol) (arabic_natural_number) )
  (dot_expression (self_path) (string_literal))
  (dot_expression (natural_number (arabic_natural_number)) (ident))
  (dot_expression (dot_expression (ident) (ident)) (ident))
@@ -133,7 +133,7 @@ Index expression
 
 
 kkk[30];
-$asdd[1..2];
+'asdd[1..2];
 ()[25];
 32[22];
 ::self[`5456`];
@@ -141,29 +141,12 @@ $asdd[1..2];
 ----
 (source_file
     (index_expression (ident) (natural_number (arabic_natural_number)))
-    (index_expression (symbol (ident)) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))
+    (index_expression (symbol) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))
     (index_expression (bracket_object) (natural_number (arabic_natural_number)))
     (index_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
     (index_expression (self_path) (string_literal))
 )
 
 
-============================================
-Unary Operation expression
-============================================
--1;
-3-;
-x+;
-*(3+1);
-*xdd.xxa;
-xkd.sdasd&;
 
----
 
-============================================
-Unary DDDSSSSSSSSSSSSSS
-============================================
-
--30;
-
----

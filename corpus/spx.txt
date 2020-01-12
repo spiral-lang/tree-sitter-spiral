@@ -53,7 +53,7 @@ Self closing element
 <example::adasd::asdasd.sadasdasdasdasd />;
 <example::adasd::asdasd.sadasdasdasdasd.sdasdas.asdasdasd />;
 <example.____SDD_SD_____.sdacxcxxsdas.xxccsadasd />;
-<Table   $d=4 ...$sd/>;
+<Table   'd=4 ...'sd/>;
 
 ---
 
@@ -62,7 +62,7 @@ Self closing element
     (spx_expression (spx_self_closing_element (spx_dot_expression (simple_path (simple_path (ident) (ident)) (ident)) (ident))))
     (spx_expression (spx_self_closing_element (spx_dot_expression (spx_dot_expression (spx_dot_expression (simple_path (simple_path (ident) (ident)) (ident)) (ident)) (ident)) (ident))))
     (spx_expression (spx_self_closing_element (spx_dot_expression (spx_dot_expression (spx_dot_expression (ident) (ident)) (ident)) (ident))))
-    (spx_expression (spx_self_closing_element (ident) (spx_key_tty_value (symbol (ident)) (natural_number (arabic_natural_number))) (spx_key_tty_value (spread_element (symbol (ident))))))
+    (spx_expression (spx_self_closing_element (ident) (spx_key_tty_value (symbol) (natural_number (arabic_natural_number))) (spx_key_tty_value (spread_element (symbol)))))
 )
 
 
@@ -88,9 +88,22 @@ Fragment
 ============================================
 Decorators
 ============================================
+<#(k.k:3)   Table/>;
 
+
+---
+
+
+============================================
+Decorators wait
+============================================
+<#(3x) #(`x`.0:2x=30, y.`sdasd`[4].25.as=50) #(xx.zxasd.asd.sad.asd.asasd=30, y=50, +, ) #x Table/>;
+<#(3x) #(x=30, y=50) #(x=30, y=50, +, ) #x Table/>;
+<#x(...d:5, 25, kdasd, 'sd, 'ds=46) Table/>;
+<#(x|s) Table/>;
+<#`asdasdasdasdasd` Table   #sdsd ...c={1,2,3,5}/>;
+<#x(...d, 25, kdasd, 'sd, 'ds=46) Table/>;
 <#maxRows(35) #color(`blue`) Table/>;
-<#(3x) #{x=30, y=50} Table/>;
 <#`asdasdasdasdasd` Table   #sdsd ...d/>;
 <#`asdasdasdasdasd` Table   #sdsd ...c={1,2,3,5}/>;
 <#enumerated list>
@@ -99,14 +112,6 @@ Decorators
     <li>Cherries</li>
 </ul>;
 
----
 
-(source_file
-    (spx_expression (spx_self_closing_element (decorator (call (ident) (bracket_object (natural_number (arabic_natural_number))))) (decorator (call (ident) (bracket_object (string_literal)))) (ident)))
-    (spx_expression (spx_self_closing_element (decorator (bracket_object (product_expression (natural_number (arabic_natural_number)) (ident)))) (decorator (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))) (key_tty_value (ident) (natural_number (arabic_natural_number))))) (ident)))
-    (spx_expression (spx_self_closing_element (decorator (string_literal)) (ident) (spx_key_tty_value (decorator (ident)) (spread_element (ident)))))
-    (spx_expression (spx_self_closing_element (decorator (string_literal)) (ident) (spx_key_tty_value (decorator (ident)) (spread_element (ident)) (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))))
-    (spx_expression (spx_element (spx_opening_element (decorator (ident)) (ident)) (spx_text) (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (decorator (ident)) (ident) (natural_number (arabic_natural_number))) (spx_key_tty_value (decorator (ident)) (ident) (braces_object (spx_expression (spx_self_closing_element (ident)))))) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_closing_element (ident))))
-)
 
 

@@ -8,6 +8,7 @@ const PREC = {
     BINARY: 10,
     CALL: 20,
     BUILD: 21,
+    FUNCTOR_WITHOUT_ARGUMENTS: -10,
     DOT: 40,
     DECORATOR: 100,
     RANGE: -1,
@@ -27,36 +28,69 @@ module.exports = grammar({
         [$._literal, $.product_expression],
         [$.key_tty_value, $._simple_expression],
         [$.braces_object, $.statements_block],
-        [$.pipe_operation, $.build],
-        [$.decorator, $.build],
-        [$._expr, $.build],
-        [$.range_expression, $.build],
-        [$.binary_operation, $._expr],
-        [$.binary_operation, $.build],
-        [$.decorator, $.call],
-        [$.unary_operation, $.build],
-        [$.unary_operation, $._expr],
-        [$.unary_operator, $._binary_operator],
-        [$.decorator, $.index_expression],
-        [$.ternary_expression, $.unary_operator],
-        [$.ternary_expression, $.build],
-        [$.ternary_expression, $.binary_operation],
-
-        [$.hash_tag_expression, $.functor_declaration],
-        [$.hash_tag_expression, $.ternary_expression],
-
+        [$._expression, $.build],
+        [$._expression, $.index_expression],
+        [$._expression, $.call],
+        [$.comparison_operator, $.spx_opening_element, $.spx_self_closing_element],
+        [$.while_expression, $._simple_expression],
+        [$.match_expression, $._simple_expression],
+        [$.if_expression, $._simple_expression],
+        [$.algebra_operation],
+        [$._simple_expression, $.for_expression],
+        [$._simple_expression, $._expression_ending_with_block],
+        [$._simple_expression, $.lambda_literal_expression],
+        [$._simple_expression, $.while_let_expression],
+        [$._simple_expression, $.if_let_expression],
+        [$._tty, $.algebra_operation],
+        [$._simple_expression, $.functor_without_arguments],
+        [$._simple_expression, $.functor_literal_signature, $.lambda_literal_expression],
+        [$._simple_expression, $.functor_literal_signature],
+        [$._simple_expression, $._expression],
+        [$.hash_tag_expression, $._expression_statement],
+        [$._simple_expression, $.try_call],
+        [$.simple_path, $.functor_without_arguments],
+        [$._simple_expression, $._expression, $.expression_block],
+        [$._simple_expression, $.expression_block],
+        [$.hash_tag_expression, $.expression_block],
+        [$._expression, $.expression_block],
+        [$.key_tty_value, $._simple_expression, $.functor_literal_signature],
+        [$._simple_expression_without_braces, $.functor_literal_signature],
+        [$._simple_expression, $._simple_expression_without_braces],
+        [$.bracket_object, $.bracket_object_without_braces],
+        [$._simple_expression, $._simple_expression_without_braces, $.functor_literal_signature],
+        [$.bracket_object, $._inner_object_without_braces],
+        [$._expression, $._expression_without_braces],
+        [$._tty, $.algebra_operation_without_braces],
+        [$.square_object, $.square_object_without_braces],
+        [$.algebra_operation_without_braces],
+        [$.algebra_operation_without_braces, $._tty_without_braces],
+        [$.natural_number, $._object_key],
+        [$._object_key, $._simple_expression],
+        [$._object_key, $.lambda_literal_expression],
+        [$._object_key, $._literal],
+        [$._object_key, $._simple_expression_without_braces],
+        [$._simple_expression_without_braces, $.lambda_literal_expression],
+        [$._simple_expression, $._simple_expression_without_braces, $.functor_literal_signature, $.lambda_literal_expression],
+        [$._object_key, $.object_key_dot],
+        [$._object_key, $._simple_expression, $._simple_expression_without_braces],
+        [$._object_key, $._simple_expression_without_braces, $.functor_literal_signature],
+        [$._object_key, $._simple_expression, $._simple_expression_without_braces, $.functor_literal_signature, $.lambda_literal_expression],
+        [$._simple_expression_without_braces, $.key_tty_value_without_braces],
+        [$._simple_expression, $._simple_expression_without_braces, $.key_tty_value_without_braces],
 
     ],
     extras: $ => [/\s/, $.line_comment, $.block_comment],
 
     supertypes: $ => [
-        $._expr,
+        $._expression,
         $._literal,
         $._declaration_statement,
         $._pattern,
+        $._declarative_pattern,
     ],
 
     inline: $ => [
+        $._all_operators,
         $._declaration_statement,
         $._inner_object,
         $._expression_ending_with_block,
@@ -69,16 +103,17 @@ module.exports = grammar({
         $._ktv_head,
         $._ktv_head_symbol,
         $._ktv_head_ident,
-        $._binary_expr,
     ],
 
     rules: {
 
         source_file: $ => repeat($._statement),
 
-        ident: $ => token(/[a-zA-Zα-ωΑ-Ωµ_][a-zA-Zα-ωΑ-Ωµ\d_]*/),
+        ident: $ => choice(
+            token(/[a-zA-Zα-ωΑ-Ωµ_][a-zA-Zα-ωΑ-Ωµ\d_]*/),
+        ),
 
-        symbol: $ => seq('$', $.ident),
+        symbol: $ => token(/'[a-zA-Z_][a-zA-Z\d_]*/),
 
         simple_path: $ => seq(
             choice($.ident, $.simple_path),
@@ -88,42 +123,82 @@ module.exports = grammar({
 
         self_path: $ => token(seq('::', caseInsensitive('self'))),
 
-
-        unary_operator: $ => choice(
-            "!",
-            "-",
-            "~",
-            "?",
-            '+',
-            '*',
-            '&',
+        comparison_operator: $ => choice(
+            '≠',
+            '!=',
+            '~=',
+            '==',
+            '≤',
+            '<=',
+            '≥',
+            '>=',
+            '<',
+            '>',
         ),
 
-        _binary_operator: $ => choice(
-            "^",
-            "≠",
-            "!=",
-            "~=",
-            "=>",
-            "==",
-            "%",
-            "&",
-            "∘",
-            "|",
-            "*",
-            "+",
-            "-",
-            "≤",
-            "<=",
-            "≥",
-            ">=",
-            "/",
-            "÷",
-            "<",
-            ">",
+        exclusive_binary_operator: $ => choice(
+            '^',
+            '%',
+            '|',
+            '/',
             '<<',
             '>>',
         ),
+
+        exclusive_unary_operator: $ => choice(
+            '!',
+            '~',
+            '?',
+        ),
+
+        ambiguous_unary_binary_operator: $ => choice(
+            '&',
+            '*',
+            '+',
+            '-',
+            '¦',
+            '§',
+            '¢',
+            '£',
+            '¤',
+            '¥',
+            '$',
+            '€',
+            '฿',
+            'Ƀ',
+            choice('\u{00A9}', '\u{00AB}', '\u{00AC}', '\u{00AE}'),
+            choice('\u{00B0}', '\u{00B1}', '\u{00B6}', '\u{00BB}'),
+            choice('\u{00BF}', '\u{00D7}', '\u{00F7}'),
+            /[\u2016-\u2017]/,
+            /[\u2020-\u2027]/,
+            /[\u2030-\u203E]/,
+            /[\u2041-\u2053]/,
+            /[\u2055-\u205E]/,
+            /[\u2190-\u23FF]/,
+            /[\u2500-\u2775]/,
+            /[\u2794-\u2BFF]/,
+            /[\u2E00-\u2E7F]/,
+            /[\u3001-\u3003]/,
+            /[\u3008-\u3030]/,
+        ),
+
+        special_operator: $ => choice(
+            '->',
+            '|>',
+            'in',
+            seq('not', 'in'),
+            'is',
+            seq('is', 'not'),
+        ),
+
+        _all_operators: $ => choice(
+            $.comparison_operator,
+            $.exclusive_binary_operator,
+            $.exclusive_unary_operator,
+            $.ambiguous_unary_binary_operator,
+            $.special_operator
+        ),
+
 
         natual_unit_suffix: $ => choice(
             caseInsensitive('yotta'),
@@ -142,7 +217,7 @@ module.exports = grammar({
             'P',
             'T',
             'G',
-            "M",
+            'M',
             'K',
             'k'),
 
@@ -168,12 +243,12 @@ module.exports = grammar({
             'n',
             'p',
             'f',
-            "a",
+            'a',
             'z',
             'y',
             $.exponent,
         ),
-
+        export_sign: $ => '.::',
         arabic_natural_number: $ => token(/[0-9][0-9_]*/),
 
         octal_natural_number: $ => token(/0o[0-7_]+/),
@@ -253,11 +328,28 @@ module.exports = grammar({
 
         template_substitution: $ => seq(
             '{',
-            choice($._expr, $.key_tty_value),
+            choice($._expression, $.key_tty_value),
             '}'
         ),
 
         spread_element: $ => seq('...', $._simple_expression),
+
+        _object_key: $ => choice(
+            $.ident,
+            $.arabic_natural_number,
+            $.string_literal,
+            $.object_key_index,
+            $.object_key_dot,
+        ),
+        object_key_index: $ => prec.left(seq($._object_key, '[', $._expression, ']')),
+
+        object_key_dot: $ => prec.left(
+            seq(
+                $.object_key_dot,
+                '.',
+                $._object_key
+            )
+        ),
 
         _ktv_optional_value: $ => seq(
             field('type', $._tty),
@@ -273,7 +365,7 @@ module.exports = grammar({
         _ktv_head_symbol: $ => field('key', $.symbol),
         _ktv_head_ident: $ => seq(
             field('binding', optional(choice('@', '@let', '@const'))),
-            field('key', choice($.ident, $.spread_element))
+            field('key', choice($._object_key, $.spread_element))
         ),
 
         _ktv_head: $ => choice($._ktv_head_symbol, $._ktv_head_ident),
@@ -283,14 +375,22 @@ module.exports = grammar({
             $._ktv_tail,
         ),
 
-        _tty: $ => seq(':', $._expr),
+        _tty: $ => seq(':', $._expression),
 
         _inner_object: $ => seq(
             sepBy1(',', choice(
                 $.key_tty_value,
-                $._expr,
+                $._expression,
             )),
             optional(',')
+        ),
+
+
+        statements_block: $ => seq(
+            '{',
+            repeat($._statement),
+            optional($._expression),
+            '}'
         ),
 
         braces_object: $ => seq(
@@ -299,17 +399,13 @@ module.exports = grammar({
             '}'
         ),
 
-        statements_block: $ => seq(
-            '{',
-            repeat($._statement),
-            optional($._expr),
-            '}'
-        ),
 
-        square_object: $ => seq('[',
-            sepBy(',', $._expr),
+        square_object: $ => seq(
+            '[',
+            sepBy(',', $._expression),
             optional(','),
-            ']'),
+            ']'
+        ),
 
         bracket_object: $ => seq('(',
             optional($._inner_object),
@@ -334,7 +430,7 @@ module.exports = grammar({
             $.boolean_literal,
         ),
 
-        dot_expression: $ => seq(
+        dot_expression: $ => prec.left(seq(
             field('value', $._simple_expression),
             '.',
             field('field', choice(
@@ -343,27 +439,17 @@ module.exports = grammar({
                 $.arabic_natural_number
                 )
             )
-        ),
+        )),
 
-        call: $ => seq(
+        call: $ => prec.left(seq(
             field('callee', $._simple_expression),
             field('arguments', $.bracket_object)
-        ),
+        )),
 
-        build: $ => seq(
+        build: $ => prec.left(PREC.BUILD, seq(
             field('constructor', $._simple_expression),
             field('arguments', $.braces_object)
-        ),
-
-
-        unary_operation: $ => choice(
-            seq(
-                field('left', $.unary_operator),
-                field('right', $._simple_expression)
-            ),
-            seq(field('left', $._simple_expression),
-                field('right', $.unary_operator))
-        ),
+        )),
 
 
         _simple_expression: $ => choice(
@@ -380,40 +466,47 @@ module.exports = grammar({
             $.braces_object,
             $.statements_block,
             $.index_expression,
+            $.try_call,
+            //complex index
         ),
 
-        product_expression: $ => seq($._number, choice($.ident, $.simple_path, $.bracket_object)),
-
-        binary_operation: $ => seq(
-            field('left', choice($._simple_expression, $.binary_operation, $.product_expression, $.unary_operation)),
-            field('operator', $._binary_operator),
-            field('right', choice($._simple_expression, $.product_expression)),
-        ),
-
-        pipe_operation: $ => seq(
-            field('left', choice($._simple_expression, $.pipe_operation)),
-            '|>',
-            field('right', $._simple_expression),
-        ),
-
-        _binary_expr: $ => choice($.binary_operation, $.pipe_operation),
+        product_expression: $ => prec.left(seq($._number, choice($.ident, $.simple_path, $.bracket_object))),
 
 
-        decorator: $ => seq(
+        algebra_operation: $ => prec.left(seq(
+            choice(
+                seq(
+                    field('left', choice($.exclusive_unary_operator, $.ambiguous_unary_binary_operator)),
+                    field('right', $._expression)
+                ),
+                seq(
+                    field('left', $._expression),
+                    field('right', choice($.exclusive_unary_operator, $.ambiguous_unary_binary_operator))
+                ),
+                seq(
+                    field('left', $._expression),
+                    field('center', $._all_operators),
+                    field('right', $._expression),
+                    field('final', optional(choice($.exclusive_unary_operator, $.ambiguous_unary_binary_operator))),
+                ),
+            ),
+        )),
+
+        decorator: $ => prec.left(seq(
             '#',
-            $._simple_expression
-        ),
+            $._simple_expression_without_braces,
+        )),
 
-        hash_tag_expression: $ => seq(
+        hash_tag_expression: $ => prec.left(seq(
             field('left', $.decorator),
-            field('right', $._expr)
-        ),
+            field('right', $._expression)
+        )),
 
-        range_expression: $ => seq(
+        range_expression: $ => prec.left(seq(
             $._simple_expression,
             choice('..', '...'),
             $._simple_expression,
-        ),
+        )),
 
 
         /**
@@ -422,37 +515,37 @@ module.exports = grammar({
          * =============================================================
          */
 
-        spx_opening_element: $ => seq(
+        spx_opening_element: $ => prec.left(seq(
             '<',
             field('decorators', repeat($.decorator)),
             field('name', $._spx_element_name),
             repeat(field('attribute', $._spx_attribute)),
             '>'
-        ),
+        )),
 
-        spx_closing_element: $ => seq(
+        spx_closing_element: $ => prec.left(seq(
             '<',
             '/',
             field('name', $._spx_element_name),
             '>'
-        ),
+        )),
 
-        spx_element: $ => seq(
+        spx_element: $ => prec.left(seq(
             field('open_tag', $.spx_opening_element),
             repeat($._spx_child),
             field('close_tag', $.spx_closing_element)
-        ),
+        )),
 
-        spx_self_closing_element: $ => seq(
+        spx_self_closing_element: $ => prec.left(seq(
             '<',
             field('decorators', repeat($.decorator)),
             field('name', $._spx_element_name),
             repeat(field('attribute', $._spx_attribute)),
             '/',
             '>'
-        ),
+        )),
 
-        spx_fragment: $ => seq('<', '>', repeat($._spx_child), '<', '/', '>'),
+        spx_fragment: $ => prec.left(seq('<', '>', repeat($._spx_child), '<', '/', '>')),
 
         spx_expression: $ => choice($.spx_element, $.spx_self_closing_element, $.spx_fragment),
 
@@ -471,14 +564,14 @@ module.exports = grammar({
             $.spx_dot_expression,
         ),
 
-        spx_dot_expression: $ => seq(
+        spx_dot_expression: $ => prec.left(seq(
             field('value', $._spx_element_name),
             '.',
             field('field', choice(
                 $.ident,
                 )
             )
-        ),
+        )),
 
         _spx_inner_expression: $ => choice(
             $._literal,
@@ -495,37 +588,161 @@ module.exports = grammar({
             field('type', $._spx_inner_expression)
         ),
 
-        spx_key_tty_value: $ => seq(
+        spx_key_tty_value: $ => prec.left(seq(
             field('decorators', repeat($.decorator)),
             field('key', choice($.spread_element, $.ident, $.symbol)),
             field('type', optional($._spx_tty)),
             field('value', optional($._spx_optional_value))
-        ),
+        )),
 
         _spx_attribute: $ => choice(
             $.spx_key_tty_value,
         ),
 
-        _expr: $ => choice(
+        _expression: $ => prec.left(choice(
             $._simple_expression,
-            $._binary_expr,
-            $.ternary_expression,
             $.hash_tag_expression,
             $.range_expression,
             $.product_expression,
             $.spx_expression,
-            $.unary_operation
-        ),
+            $.algebra_operation,
+            $.lambda_literal_expression,
+            $.functor_literal_signature,
+            $.break_expression,
+            $.continue_expression,
+            $.return_expression,
+            $.yield_expression,
+            $.do_expression,
+            $._expression_ending_with_block,
+        )),
 
+        /**
+         * =============================================================
+         *          expression without braces
+         * =============================================================
+         */
 
-        annotated_ident: $ => seq(
-            alias(optional('::'), $.export_ident),
+        dot_expression_without_braces: $ => prec.left(seq(
+            field('value', $._simple_expression_without_braces),
+            '.',
+            field('field', choice(
+                $.ident,
+                $.string_literal,
+                $.arabic_natural_number
+                )
+            )
+        )),
+
+        call_without_braces: $ => prec.left(seq(
+            field('callee', $._simple_expression_without_braces),
+            field('arguments', $.bracket_object_without_braces)
+        )),
+
+        index_expression_without_braces: $ => prec.left(seq($._simple_expression_without_braces, '[', $._expression_without_braces, ']')),
+
+        _simple_expression_without_braces: $ => choice(
+            $.self_path,
+            $._literal,
             $.ident,
-            field('tty', optional($._tty)),
+            $.simple_path,
+            $.dot_expression_without_braces,
+            $.call_without_braces,
+            $.symbol,
+            $.bracket_object_without_braces,
+            $.square_object_without_braces,
+            $.index_expression_without_braces,
         ),
+
+        range_expression_without_braces: $ => prec.left(seq(
+            $._simple_expression_without_braces,
+            choice('..', '...'),
+            $._simple_expression_without_braces,
+        )),
+
+        algebra_operation_without_braces: $ => prec.left(seq(
+            choice(
+                seq(
+                    field('left', choice($.exclusive_unary_operator, $.ambiguous_unary_binary_operator)),
+                    field('right', $._expression_without_braces)
+                ),
+                seq(
+                    field('left', $._expression_without_braces),
+                    field('right', choice($.exclusive_unary_operator, $.ambiguous_unary_binary_operator))
+                ),
+                seq(
+                    field('left', $._expression_without_braces),
+                    field('center', $._all_operators),
+                    field('right', $._expression_without_braces),
+                    field('final', optional(choice($.exclusive_unary_operator, $.ambiguous_unary_binary_operator))),
+                ),
+            ),
+        )),
+        hash_tag_expression_without_braces: $ => prec.left(seq(
+            field('left', $.decorator),
+            field('right', $._expression_without_braces)
+        )),
+
+        spread_element_without_braces: $ => seq('...', $._simple_expression_without_braces),
+
+        key_tty_value_without_braces: $ => prec.left(seq(
+            field('key', choice($._object_key, $.symbol, $.spread_element_without_braces)),
+            field('type', optional($._tty_without_braces)),
+            field('value', optional(prec.left(seq('=', $._expression_without_braces)))),
+        )),
+
+        _inner_object_without_braces: $ => prec.left(seq(
+            sepBy1(',', choice(
+                prec(1, $.key_tty_value_without_braces),
+                $._expression_without_braces,
+                $._all_operators,
+            )),
+            optional(',')
+        )),
+
+        bracket_object_without_braces: $ => seq(
+            '(',
+            optional($._inner_object_without_braces),
+            ')'
+        ),
+
+        square_object_without_braces: $ => seq(
+            '[',
+            sepBy(',', $._expression_without_braces),
+            optional(','),
+            ']'
+        ),
+
+        _tty_without_braces: $ => prec.left(seq(':', $._expression_without_braces)),
+
+        _expression_without_braces: $ => prec.left(choice(
+            $._simple_expression_without_braces,
+            $.hash_tag_expression_without_braces,
+            $.range_expression_without_braces,
+            $.product_expression,
+            $.algebra_operation_without_braces,
+            $.functor_literal_signature,
+        )),
+
+        type_annotation: $ => prec.left(seq(
+            $.ident,
+            field('tty', optional($._tty))
+        )),
 
         _pattern: $ => choice(
-            $.annotated_ident,
+            $.type_annotation,
+            $.braces_object,
+            $.square_object,
+            $.bracket_object,
+        ),
+
+        exportable_type_annotation: $ => seq(
+            optional($.export_sign),
+            $.ident,
+            field('tty', optional($._tty))
+        ),
+
+        _declarative_pattern: $ => choice(
+            $.exportable_type_annotation,
             $.braces_object,
             $.square_object,
             $.bracket_object,
@@ -533,166 +750,209 @@ module.exports = grammar({
 
         _optional_value: $ => seq(
             '=',
-            field('value', $._expr)
+            field('value', $._expression)
         ),
 
-
-        ternary_expression: $ => seq(
-            field('condition', choice(
-                $._simple_expression,
-                $._binary_expr,
-                $.product_expression,
-                $.unary_operation)
-            ),
-            '?',
-            field('consequence', choice(
-                $._simple_expression,
-                $._binary_expr,
-                $.product_expression,
-                $.unary_operation,
-                $.spx_expression
-            )),
-            ':',
-            field('alternative', choice(
-                $._simple_expression,
-                $._binary_expr,
-                $.product_expression,
-                $.unary_operation,
-                $.spx_expression
-                )
-            )
-        ),
 
         variable_declaration: $ => seq(
             choice('let', 'const'),
-            field('pattern', $._pattern),
+            field('pattern', $._declarative_pattern),
             optional($._optional_value),
             ';'
         ),
 
-        functor_declaration: $ => prec(PREC.EXP, seq(
-            repeat($.decorator),
-            choice($.ident, $.simple_path),
-            choice($.ident, $.simple_path),
-            $.functor_literal)
-        ),
-
         empty_statement: $ => ';',
 
-        functor_literal_signature: $ => seq(
-            field('domain', $.functor_domain),
-            optional(seq(':', field('codomain', $._expr))),
-            ';'
-        ),
 
-        functor_literal_item: $ => seq(
-            field('domain', $.functor_domain),
-            optional(seq(':', field('codomain', $._expr))),
+        functor_literal_expression: $ => prec.left(seq(
+            field('header',
+                seq(
+                    field('tty', choice($.ident, $.simple_path)),
+                    field('name', choice(seq(optional($.export_sign), $.ident), $.simple_path))
+                )
+            ),
+            field('domain', $.bracket_object),
+            field('codomain', optional($._tty_without_braces)),
             field('body', $.statements_block),
+        )),
+
+
+        functor_literal_signature: $ => prec.left(
+            seq(
+                field('header', field('tty', choice($.ident, $.simple_path))),
+                field('domain', $.bracket_object),
+                field('codomain', $._tty_without_braces),
+            ),
         ),
 
-        lambda_literal_item: $ => seq(
-            field('domain', $.functor_domain),
-            optional(seq(':', field('codomain', $._expr))),
+        lambda_literal_expression: $ => prec.left(seq(
+            field('name', optional($.ident)),
+            field('domain', choice($.ident, $.symbol, $.bracket_object)),
+            field('codomain', optional($._tty_without_braces)),
             '=>',
-            field('return', $._expr),
-            ';',
-        ),
-
-        functor_literal: $ => choice($.functor_literal_signature, $.functor_literal_item, $.lambda_literal_item),
-
-        functor_domain: $ => seq('(', sepBy(',', $.key_tty_value), ')'),
+            field('body', $._expression),
+        )),
 
         _declaration_statement: $ => choice(
             $.variable_declaration,
-            $.functor_declaration,
         ),
 
         label: $ => seq(`'`, $.ident),
 
-        for_expression: $ => seq(
-            optional(seq($.label, ':')),
+        index_expression: $ => prec.left(seq($._simple_expression, '[', $._expression, ']')),
+
+
+        assignment_statement: $ => prec.left(seq(
+            field('left', $._expression),
+            '=',
+            field('right', $._expression),
+            ';'
+        )),
+
+        expression_block: $ => prec.left(seq(
+            field('label', optional($.label)),
+            field('decorators', repeat($.decorator)),
+            $._expression_ending_with_block,
+        )),
+
+        _expression_statement: $ => choice(
+            seq($._expression, ';'),
+            prec(1,
+                $.expression_block,
+            ),
+        ),
+
+        /**
+         * =============================================================
+         *           Statements
+         * =============================================================
+         */
+
+        try_call: $ => prec.left(
+            seq(
+                choice(
+                    'try',
+                ),
+                $.bracket_object,
+            )
+        ),
+
+        match_expression: $ => prec.left(
+            seq(
+                'match',
+                seq(
+                    field('value', $._expression),
+                    field('body', $.braces_object)
+                )
+            )
+        ),
+
+        while_let_expression: $ => prec.left(seq(
+            'while',
+            'let',
+            field('pattern', $._pattern),
+            '=',
+            field('value', $._expression),
+            field('body', $.statements_block)
+        )),
+
+        while_expression: $ => prec.left(seq(
+            'while',
+            field('condition', $._expression),
+            field('body', $.statements_block)
+        )),
+
+        functor_without_arguments: $ => prec.left(PREC.FUNCTOR_WITHOUT_ARGUMENTS, seq(
+            field('header',
+                seq(
+                    choice($.ident, $.simple_path),
+                    optional(seq(optional($.export_sign), $.ident))
+                )
+            ),
+            field('body', $.statements_block)
+        )),
+
+        for_expression: $ => prec.left(seq(
             'for',
             field('pattern', $._pattern),
-            'in',
-            field('value', $._expr),
+            'of',
+            field('value', $._expression),
             field('body', $.statements_block)
-        ),
+        )),
 
-        while_expression: $ => seq(
-            optional(seq($.label, ':')),
-            'while',
-            field('condition', $._expr),
-            field('body', $.statements_block)
-        ),
-
-        while_let_expression: $ => seq(
-            optional(seq($.label, ':')),
-            'while',
-            'let',
-            field('pattern', $._pattern),
-            '=',
-            field('value', $._expr),
-            field('body', $.statements_block)
-        ),
-        match_expression: $ => seq(
-            'match',
-            field('value', $._expr),
-            field('body', $.braces_object)
-        ),
-        break_statement: $ => seq('break', optional(choice($.label, $._expr)), ';'),
-
-        continue_statement: $ => seq('continue', optional($.label), ';'),
-
-        index_expression: $ => seq($._simple_expression, '[', $._expr, ']'),
-
-        do_statement: $ => prec(PREC.DO_STATEMENT, seq('do', choice(seq(choice($.label, $._expr), ';'), $.statements_block))),
-
-        if_expression: $ => seq(
+        if_expression: $ => prec.left(seq(
             'if',
-            field('condition', $._expr),
+            field('condition', $._expression),
             field('consequence', $.statements_block),
             optional($._else_tail)
-        ),
+        )),
 
-        if_let_expression: $ => seq(
+        if_let_expression: $ => prec.left(seq(
             'if',
             'let',
             field('pattern', $._pattern),
             '=',
-            field('value', $._expr),
+            field('value', $._expression),
             field('consequence', $.statements_block),
             optional($._else_tail)
-        ),
+        )),
 
-        _else_tail: $ => seq(
+        _else_tail: $ => prec.left(seq(
             'else',
             field('alternative', choice(
                 $.statements_block,
                 $.if_expression,
                 $.if_let_expression
             ))
-        ),
-        return_statement: $ => seq(
-            'return',
-            optional($._expr),
-            ';'
-        ),
-        yield_statement: $ => seq(
-            'yield',
-            optional($._expr),
-            ';'
+        )),
+
+        try_expression: $ => prec.left(seq(
+            'try',
+            choice(
+                seq(
+                    field('expr', $._expression),
+                    field('catch', $.braces_object)
+                ),
+                seq(
+                    field('expr', $.statements_block),
+                    'catch',
+                    field('catch', $.braces_object)
+                ),
+            )
+        )),
+
+        try_let_expression: $ => prec.left(seq(
+            'try',
+            'let',
+            field('pattern', $._pattern),
+            '=',
+            field('value', $._expression),
+            field('catch', $.braces_object)
+            )
         ),
 
-        assignment_statement: $ => seq(
-            field('left', $._expr),
-            '=',
-            field('right', $._expr),
-            ';'
+        break_expression: $ => prec.left(
+            seq('break',
+                optional(choice($.label, $._expression))
+            )
         ),
-        _expression_statement: $ => choice(
-            seq($._expr, ';'),
-            prec(1, $._expression_ending_with_block)
+
+        continue_expression: $ => prec.left(seq('continue', optional($.label))),
+
+        return_expression: $ => prec.left(seq(
+            'return',
+            optional($._expression),
+        )),
+
+        yield_expression: $ => prec.left(seq(
+            'yield',
+            optional($._expression),
+        )),
+
+        do_expression: $ => prec.left(
+            seq('do',
+                choice($.label, $._expression),
+            )
         ),
 
         _expression_ending_with_block: $ => choice(
@@ -702,19 +962,18 @@ module.exports = grammar({
             $.match_expression,
             $.while_expression,
             $.while_let_expression,
-            $.for_expression
+            $.for_expression,
+            $.functor_without_arguments,
+            $.try_expression,
+            $.try_let_expression,
+            $.functor_literal_expression,
         ),
 
         _statement: $ => choice(
             $.empty_statement,
             $._expression_statement,
             $._declaration_statement,
-            $.break_statement,
-            $.continue_statement,
-            $.return_statement,
-            $.yield_statement,
             $.assignment_statement,
-            $.do_statement,
         ),
 
     }
@@ -737,10 +996,12 @@ function caseInsensitive(keyword) {
 }
 
 //TODO: try/catch
-//TODO: binding pattern
+//TODO: binding pattern text spx, object support number string and a.c.d.c.d, binding custom name
 //TODO: Composite assignation
-//TODO: hashtag expression
 //TODO: use
-//TODO: investigate label
-//TODO: module
 //TODO: DOCUMENTATION
+
+// TODO SPX binding, asd.asdas.asd  ::sadasd, asd[]
+// TODO .+(), .+.(-> Number, .[*-{x, y}] )
+// if x ==.(->Short, .[size]) y {
+// }
