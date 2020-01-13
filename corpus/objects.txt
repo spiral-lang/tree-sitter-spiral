@@ -172,7 +172,7 @@ o.0 = `jkljlk`,
         (key_tty_value (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (ident))) (natural_number (arabic_natural_number)))
         (key_tty_value (object_key (object_key_dot (object_key (arabic_natural_number)) (arabic_natural_number))) (ident))
         (key_tty_value (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (string_literal))
-        (key_tty_value (object_key (object_key_dot (object_key (string_literal)) (string_literal))) (algebra_operation (ident) (ambiguous_unary_binary_operator) (natural_number (arabic_natural_number))))
+        (key_tty_value (object_key (object_key_dot (object_key (string_literal)) (string_literal))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))
      )
 )
 
@@ -191,10 +191,10 @@ o.0[`dfdfg`].0 = `jkljlk`,
 
 (source_file
     (braces_object
-        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (ident))) (natural_number (arabic_natural_number)))
-        (key_tty_value (object_key (object_key_index (object_key (arabic_natural_number)) (natural_number (arabic_natural_number)))) (ident))
-        (key_tty_value (object_key (object_key_dot (object_key (object_key_index (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (string_literal))) (arabic_natural_number))) (string_literal))
-        (key_tty_value (object_key (object_key_index (object_key (string_literal)) (string_literal))) (algebra_operation (ident) (ambiguous_unary_binary_operator) (natural_number (arabic_natural_number))))
+        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (square_object_without_braces (ident)))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (object_key_index (object_key (arabic_natural_number)) (square_object_without_braces (natural_number (arabic_natural_number))))) (ident))
+        (key_tty_value (object_key (object_key_dot (object_key (object_key_index (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (square_object_without_braces (string_literal)))) (arabic_natural_number))) (string_literal))
+        (key_tty_value (object_key (object_key_index (object_key (string_literal)) (square_object_without_braces (string_literal)))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))
     )
 )
 
@@ -209,6 +209,16 @@ symbol key
     (braces_object (key_tty_value (symbol) (natural_number (arabic_natural_number))))
 )
 
+====================================
+path key
+====================================
+{
+ m::lkl=25,
+ pp::LK::Ki=12,
+ l.p::k.l.0.`454`[2112] = 5,
+ let @ g lpl::kkj = 3,
+};
+---
 
 ====================================
 symbol should not support biding
@@ -231,13 +241,14 @@ object support single operator
 };
 
 ---
+
 (source_file
     (braces_object
-        (ambiguous_unary_binary_operator)
-        (ambiguous_unary_binary_operator)
-        (comparison_operator)
-        (exclusive_unary_operator)
-        (exclusive_unary_operator)
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    (symbolic_operator (comparison_operator))
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    (symbolic_operator (ambiguous_unary_binary_operator))
     )
 )
 
@@ -248,4 +259,14 @@ binary operator prepare
 { +.[_ ->  ABC, _ - {x, y, z}]};
 
 ---
+
+(source_file
+    (braces_object
+        (symbolic_operator (ambiguous_unary_binary_operator)
+        (square_object
+            (algebra_operation (binary_operation (ident) (special_operator) (ident)))
+            (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (braces_object (ident) (ident) (ident)))))
+         )
+     )
+)
 

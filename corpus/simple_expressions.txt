@@ -4,14 +4,17 @@ Ident Expression
 
 sdasdJKH_Ψ_;
 ___________;
-3$;
+$;
+$gfg;
 
 ----
 
 (source_file
     (ident)
     (ident)
-    (algebra_operation (natural_number (arabic_natural_number)) (ambiguous_unary_binary_operator))
+    (ident)
+    (ident)
+    (ERROR (ident))
 )
 
 ============================================

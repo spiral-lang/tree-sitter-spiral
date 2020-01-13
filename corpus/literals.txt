@@ -21,9 +21,9 @@ Natural number literals
   (natural_number (hexadecimal_natural_number))
   (natural_number (octal_natural_number))
   (natural_number (binary_natural_number))
-  (natural_number (arabic_natural_number) (natual_unit_suffix))
-  (natural_number (binary_natural_number) (natual_unit_suffix))
-  (natural_number (arabic_natural_number) (natual_unit_suffix))
+  (natural_number (arabic_natural_number) (natural_unit_suffix))
+  (natural_number (binary_natural_number) (natural_unit_suffix))
+  (natural_number (arabic_natural_number) (natural_unit_suffix))
 )
 
 ============================================
@@ -48,8 +48,8 @@ Decimal number literals
   (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number)))
   (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number)))
   (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number)))
-  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (natual_unit_suffix)))
-  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (natual_unit_suffix)))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (natural_unit_suffix)))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (natural_unit_suffix)))
   (decimal_literal  (natural_fraction_literal (hexadecimal_natural_number) (fractional_unit_suffix)))
   (decimal_literal  (natural_fraction_literal (octal_natural_number) (fractional_unit_suffix)))
   (decimal_literal  (natural_fraction_literal (binary_natural_number) (fractional_unit_suffix)))

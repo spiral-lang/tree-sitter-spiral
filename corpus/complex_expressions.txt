@@ -29,17 +29,31 @@ x .. 2;
     (range_expression (ident) (natural_number (arabic_natural_number)))
     (range_expression (braces_object (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number)))
     (algebra_operation
-        (algebra_operation
+        (binary_operation
             (algebra_operation
-                (algebra_operation (exclusive_unary_operator) (range_expression (braces_object (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number))))
-                (ambiguous_unary_binary_operator)
-                (natural_number (arabic_natural_number))
-            )
-            (ambiguous_unary_binary_operator)
-            )
-            (ambiguous_unary_binary_operator)
-            (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
+                (unary_operation_prefix
+                    (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))
+                    (range_expression (braces_object (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number)))
+                    )
+             )
+             (symbolic_operator (ambiguous_unary_binary_operator))
+             (algebra_operation
+                   (binary_operation
+                       (natural_number (arabic_natural_number))
+                       (symbolic_operator (ambiguous_unary_binary_operator))
+                       (algebra_operation
+                            (unary_operation_prefix
+                                (symbolic_operator_without_comparison
+                                 (ambiguous_unary_binary_operator)
+                                 )
+                                 (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
+
+                             )
+                        )
+                    )
+              )
     )
+ )
 )
 
 
@@ -52,116 +66,59 @@ Hashtag expression
 #sda #asds asd{};
 #sda dasd.asdsad;
 #sadsd `asdasd`;
-#asds + #545;
+#asds ff + #545 ff;
 #asdd 5 + #sad 15;
 !#asa ?45+;
 #asds x < d < s;
-#sad;
+#sad f;
 
 ---
 
+
 (source_file
     (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number))))
-    (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (build  (ident)  (braces_object) )))
+    (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (build (ident) (braces_object))))
     (hash_tag_expression (decorator (ident)) (dot_expression (ident) (ident)))
     (hash_tag_expression (decorator (ident)) (string_literal))
-    (algebra_operation (hash_tag_expression (decorator (ident)) (algebra_operation (ambiguous_unary_binary_operator) (hash_tag_expression (decorator (natural_number (arabic_natural_number))) (ERROR) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number)))))) (ambiguous_unary_binary_operator) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number))))
-    (algebra_operation (algebra_operation (exclusive_unary_operator) (hash_tag_expression (decorator (ident)) (algebra_operation (exclusive_unary_operator) (natural_number (arabic_natural_number))))) (ambiguous_unary_binary_operator))
-    (algebra_operation (algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (comparison_operator) (ident)) (comparison_operator) (ident))
-    (ERROR (decorator (ident))) (empty_statement)
+    (hash_tag_expression (decorator (ident)) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (hash_tag_expression (decorator (natural_number (arabic_natural_number))) (ident)))))
+    (hash_tag_expression (decorator (ident)) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number))))))
+    (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (hash_tag_expression (decorator (ident)) (algebra_operation (unary_operation_postfix (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))
+    (hash_tag_expression (decorator (ident)) (algebra_operation (binary_operation (algebra_operation (binary_operation (ident) (symbolic_operator (comparison_operator)) (ident))) (symbolic_operator (comparison_operator)) (ident))))
+    (hash_tag_expression (decorator (ident)) (ident))
 )
 
+============================================
+LLL
+============================================
+{
+_: Person{let age:young}=>{},
+_: Person{let age:new_born}=>{},
+};
 
+---
 ============================================
 Lambda literal expression
 ============================================
 
 ()=>5;
-():number=>5
+():number=>5;
 _=>8;
 _:asa=>266;
 $: Option::Some=>{30};
-(x:30<number<50=30)=> {x};
+(x:30<number<50 = 30)=> {x};
 {
-_: Person{@age:old}=>{},
-_: Person{@age:young}=>{},
-_: Person{@age:new_born}=>{},
+Person(let age:old):565=>{},
+_: Person{let age:young}=>{},
+_: Person{let age:new_born}=>{},
 };
 ()=>5();
 3 + (()=>5)();
-3'centimeters + ()=>45*e+i^w;
+3'centimeters + ()=>45*e+i^w---***vhf++;
 3'centimeters + (()=>45*e) + i^w;
 3'centimeters + (()=>45*e)() + i^w;
 asdsd()=>45;
 
 ---
-(source_file
-    (lambda_literal_expression (bracket_object) (natural_number (arabic_natural_number)))
-    (lambda_literal_expression (bracket_object) (lambda_literal_expression (ident) (product_expression (natural_number (arabic_natural_number)) (ident))) (natural_number (arabic_natural_number)))
-    (lambda_literal_expression (ident) (ident) (natural_number (arabic_natural_number)))
-    (lambda_literal_expression (symbol (MISSING ident)) (simple_path (ident) (ident)) (braces_object (natural_number (arabic_natural_number))))
-    (lambda_literal_expression (bracket_object (key_tty_value (ident) (algebra_operation (algebra_operation (natural_number (arabic_natural_number)) (comparison_operator) (ident)) (comparison_operator) (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number)))) (braces_object (ident)))
-    (braces_object
-        (lambda_literal_expression (ident) (build (ident) (braces_object (key_tty_value (ident) (ident)))) (braces_object))
-        (lambda_literal_expression (ident) (build (ident) (braces_object (key_tty_value (ident) (ident)))) (braces_object))
-        (lambda_literal_expression (ident) (build (ident) (braces_object (key_tty_value (ident) (ident)))) (braces_object))
-     )
-     (lambda_literal_expression (bracket_object) (product_expression (natural_number (arabic_natural_number)) (bracket_object)))
-     (algebra_operation
-        (natural_number (arabic_natural_number))
-        (ambiguous_unary_binary_operator)
-        (call (bracket_object (lambda_literal_expression (bracket_object) (natural_number (arabic_natural_number)))) (bracket_object))
-     )
-    (algebra_operation
-        (algebra_operation
-            (algebra_operation
-                (algebra_operation
-                    (product_expression (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix))) (ident))
-                    (ambiguous_unary_binary_operator)
-                    (lambda_literal_expression (bracket_object) (natural_number (arabic_natural_number))))
-                (ambiguous_unary_binary_operator)
-                (ident)
-            )
-            (ambiguous_unary_binary_operator)
-            (ident)
-        )
-        (exclusive_binary_operator)
-        (ident)
-     )
-     (algebra_operation
-        (algebra_operation
-            (algebra_operation
-                (product_expression (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix))) (ident))
-                (ambiguous_unary_binary_operator)
-                (bracket_object (algebra_operation (lambda_literal_expression (bracket_object) (natural_number (arabic_natural_number))) (ambiguous_unary_binary_operator) (ident)))
-            )
-            (ambiguous_unary_binary_operator)
-            (ident)
-         )
-        (exclusive_binary_operator)
-        (ident)
-     )
-     (algebra_operation
-        (algebra_operation
-            (algebra_operation
-                (product_expression (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix))) (ident))
-                (ambiguous_unary_binary_operator)
-                (call (bracket_object (algebra_operation
-                                        (lambda_literal_expression (bracket_object) (natural_number (arabic_natural_number)))
-                                        (ambiguous_unary_binary_operator)
-                                        (ident))
-                                       )
-                      (bracket_object)
-                 )
-             )
-            (ambiguous_unary_binary_operator)
-            (ident)
-        )
-        (exclusive_binary_operator)
-        (ident)
-     )
-     (lambda_literal_expression (ident) (bracket_object) (natural_number (arabic_natural_number)))
- )
 
 
 ============================================
@@ -201,23 +158,28 @@ fn Move(x, y){x = 50, 45};
 Functor literal expression 2
 ============================================
 {
- fn():4{30},
+ fn ():4 {30},
  fn()=>50,
  action fn(){},
  action Move(x, y){x = 50; y=30;},
  functor(),
  functor lxy(){},
  fn Move(x, y): 5{x = 50; 45},
+ fn Move(x, y): asd | sdada {
+     x = 50; 45;
+ },
 };
 ---
 
-
-
-===================
-DDDDDDDDDDDDDDDDDD
-=====================
-
-fn Move(x, y): asd | sdada {
-    x = 50; 45;
-}
----
+(source_file
+    (braces_object
+        (functor_literal_expression (ident) (bracket_object) (natural_number (arabic_natural_number)) (statements_block (natural_number (arabic_natural_number))))
+        (lambda_literal_expression (ident) (bracket_object) (natural_number (arabic_natural_number)))
+        (functor_literal_expression (ident) (ident) (bracket_object) (statements_block))
+        (functor_literal_expression (ident) (ident) (bracket_object (ident) (ident)) (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))) (assignment_statement (ident) (natural_number (arabic_natural_number)))))
+        (call (ident) (bracket_object))
+        (functor_literal_expression (ident) (ident) (bracket_object) (statements_block))
+        (functor_literal_expression (ident) (ident) (bracket_object (ident) (ident)) (natural_number (arabic_natural_number)) (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number))))
+        (functor_literal_expression (ident) (ident) (bracket_object (ident) (ident)) (algebra_operation_without_braces (binary_operation_without_braces (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (ident))) (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number))))
+    )
+)
