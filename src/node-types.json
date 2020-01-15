@@ -112,6 +112,10 @@
         "named": true
       },
       {
+        "type": "object_declaration",
+        "named": true
+      },
+      {
         "type": "product_expression",
         "named": true
       },
@@ -125,6 +129,10 @@
       },
       {
         "type": "self_path",
+        "named": true
+      },
+      {
+        "type": "show_expression",
         "named": true
       },
       {
@@ -145,6 +153,10 @@
       },
       {
         "type": "symbol",
+        "named": true
+      },
+      {
+        "type": "throw_expression",
         "named": true
       },
       {
@@ -233,29 +245,6 @@
     }
   },
   {
-    "type": "algebra_operation_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "unary_operation_postfix_without_braces",
-          "named": true
-        },
-        {
-          "type": "unary_operation_prefix_without_braces",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "ambiguous_unary_binary_operator",
     "named": true,
     "fields": {}
@@ -300,85 +289,6 @@
         },
         {
           "type": "special_operator",
-          "named": true
-        },
-        {
-          "type": "symbolic_operator",
-          "named": true
-        },
-        {
-          "type": "symbolic_operator_without_comparison",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "binary_operation_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "special_operator",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
           "named": true
         },
         {
@@ -444,81 +354,6 @@
     }
   },
   {
-    "type": "bracket_object_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "key_tty_value_without_braces",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "symbolic_operator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "break_expression",
     "named": true,
     "fields": {},
@@ -528,10 +363,6 @@
       "types": [
         {
           "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -556,59 +387,11 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "braces_object",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "build",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
             "type": "ident",
             "named": true
           },
           {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
             "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
             "named": true
           }
         ]
@@ -694,68 +477,6 @@
     }
   },
   {
-    "type": "call_without_braces",
-    "named": true,
-    "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          }
-        ]
-      },
-      "callee": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "call_without_braces",
-            "named": true
-          },
-          {
-            "type": "dot_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "comparison_operator",
     "named": true,
     "fields": {}
@@ -807,15 +528,23 @@
           "named": true
         },
         {
-          "type": "bracket_object_without_braces",
+          "type": "braces_object",
           "named": true
         },
         {
-          "type": "call_without_braces",
+          "type": "bracket_object",
           "named": true
         },
         {
-          "type": "dot_expression_without_braces",
+          "type": "build",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "dot_expression",
           "named": true
         },
         {
@@ -823,7 +552,7 @@
           "named": true
         },
         {
-          "type": "index_expression_without_braces",
+          "type": "index_expression",
           "named": true
         },
         {
@@ -835,11 +564,19 @@
           "named": true
         },
         {
-          "type": "square_object_without_braces",
+          "type": "square_object",
+          "named": true
+        },
+        {
+          "type": "statements_block",
           "named": true
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "try_call",
           "named": true
         }
       ]
@@ -855,10 +592,6 @@
       "types": [
         {
           "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -959,84 +692,6 @@
     }
   },
   {
-    "type": "dot_expression_without_braces",
-    "named": true,
-    "fields": {
-      "field": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "arabic_natural_number",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "symbolic_operator",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "call_without_braces",
-            "named": true
-          },
-          {
-            "type": "dot_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "empty_statement",
     "named": true,
     "fields": {}
@@ -1070,10 +725,6 @@
           },
           {
             "type": "_expression",
-            "named": true
-          },
-          {
-            "type": "decorator",
             "named": true
           }
         ]
@@ -1109,9 +760,13 @@
         ]
       },
       "label": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "[:]",
+            "named": false
+          },
           {
             "type": "label",
             "named": true
@@ -1141,6 +796,10 @@
         },
         {
           "type": "match_expression",
+          "named": true
+        },
+        {
+          "type": "object_declaration",
           "named": true
         },
         {
@@ -1276,63 +935,7 @@
             "named": false
           },
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_without_braces",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "call_without_braces",
-            "named": true
-          },
-          {
-            "type": "decorator",
-            "named": true
-          },
-          {
-            "type": "dot_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -1347,7 +950,21 @@
           }
         ]
       },
-      "name": {
+      "header_1": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          }
+        ]
+      },
+      "header_2": {
         "multiple": true,
         "required": false,
         "types": [
@@ -1365,16 +982,12 @@
           }
         ]
       },
-      "tty": {
+      "wheres": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "simple_path",
+            "type": "where_expression",
             "named": true
           }
         ]
@@ -1387,70 +1000,14 @@
     "fields": {
       "codomain": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": ":",
             "named": false
           },
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_without_braces",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "call_without_braces",
-            "named": true
-          },
-          {
-            "type": "decorator",
-            "named": true
-          },
-          {
-            "type": "dot_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -1475,6 +1032,16 @@
           },
           {
             "type": "simple_path",
+            "named": true
+          }
+        ]
+      },
+      "wheres": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "where_expression",
             "named": true
           }
         ]
@@ -1535,84 +1102,6 @@
         "types": [
           {
             "type": "_expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "hash_tag_expression_without_braces",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "decorator",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_without_braces",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "call_without_braces",
-            "named": true
-          },
-          {
-            "type": "dot_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
             "named": true
           }
         ]
@@ -1732,57 +1221,6 @@
     }
   },
   {
-    "type": "index_expression_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "key_tty_value",
     "named": true,
     "fields": {
@@ -1843,10 +1281,6 @@
           {
             "type": "_expression",
             "named": true
-          },
-          {
-            "type": "decorator",
-            "named": true
           }
         ]
       },
@@ -1867,114 +1301,6 @@
     }
   },
   {
-    "type": "key_tty_value_without_braces",
-    "named": true,
-    "fields": {
-      "key": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "object_key",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "spread_element_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_without_braces",
-            "named": true
-          },
-          {
-            "type": "bracket_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "call_without_braces",
-            "named": true
-          },
-          {
-            "type": "decorator",
-            "named": true
-          },
-          {
-            "type": "dot_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression_without_braces",
-            "named": true
-          },
-          {
-            "type": "self_path",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object_without_braces",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "value_without_braces",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "label",
     "named": true,
     "fields": {},
@@ -1983,7 +1309,7 @@
       "required": true,
       "types": [
         {
-          "type": "ident",
+          "type": "symbol",
           "named": true
         }
       ]
@@ -2014,10 +1340,6 @@
           {
             "type": "_expression",
             "named": true
-          },
-          {
-            "type": "decorator",
-            "named": true
           }
         ]
       },
@@ -2031,10 +1353,6 @@
           },
           {
             "type": "ident",
-            "named": true
-          },
-          {
-            "type": "symbol",
             "named": true
           }
         ]
@@ -2165,6 +1483,50 @@
     "type": "natural_unit_suffix",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "object_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "braces_object",
+            "named": true
+          }
+        ]
+      },
+      "header": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "export_sign",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          }
+        ]
+      },
+      "wheres": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "where_expression",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "object_key",
@@ -2397,63 +1759,27 @@
     }
   },
   {
-    "type": "range_expression_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "return_expression",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
       "required": false,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "show_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "_expression",
@@ -2507,6 +1833,10 @@
         },
         {
           "type": "expression_block",
+          "named": true
+        },
+        {
+          "type": "use_declaration",
           "named": true
         }
       ]
@@ -2590,68 +1920,6 @@
         },
         {
           "type": "try_call",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "spread_element_without_braces",
-    "named": true,
-    "fields": {
-      "decorators": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "decorator",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
           "named": true
         }
       ]
@@ -2981,77 +2249,6 @@
     }
   },
   {
-    "type": "square_object_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "spread_element_without_braces",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "statements_block",
     "named": true,
     "fields": {},
@@ -3077,6 +2274,10 @@
         },
         {
           "type": "expression_block",
+          "named": true
+        },
+        {
+          "type": "use_declaration",
           "named": true
         }
       ]
@@ -3163,6 +2364,21 @@
     }
   },
   {
+    "type": "throw_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "try_call",
     "named": true,
     "fields": {},
@@ -3218,10 +2434,6 @@
           {
             "type": "_expression",
             "named": true
-          },
-          {
-            "type": "decorator",
-            "named": true
           }
         ]
       }
@@ -3257,77 +2469,6 @@
     }
   },
   {
-    "type": "unary_operation_postfix_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "symbolic_operator_without_comparison",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "unary_operation_prefix",
     "named": true,
     "fields": {},
@@ -3347,7 +2488,41 @@
     }
   },
   {
-    "type": "unary_operation_prefix_without_braces",
+    "type": "use_declaration",
+    "named": true,
+    "fields": {
+      "decorators": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "decorator",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "bracket_object",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "use_tree",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "use_tree",
     "named": true,
     "fields": {},
     "children": {
@@ -3355,47 +2530,7 @@
       "required": true,
       "types": [
         {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_without_braces",
-          "named": true
-        },
-        {
           "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
           "named": true
         },
         {
@@ -3403,82 +2538,7 @@
           "named": true
         },
         {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "symbolic_operator_without_comparison",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "value_without_braces",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_without_braces",
-          "named": true
-        },
-        {
-          "type": "bracket_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "call_without_braces",
-          "named": true
-        },
-        {
-          "type": "dot_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression_without_braces",
-          "named": true
-        },
-        {
-          "type": "self_path",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object_without_braces",
-          "named": true
-        },
-        {
-          "type": "symbol",
+          "type": "use_tree",
           "named": true
         }
       ]
@@ -3508,6 +2568,71 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "braces_object",
+          "named": true
+        },
+        {
+          "type": "build",
+          "named": true
+        },
+        {
+          "type": "for_expression",
+          "named": true
+        },
+        {
+          "type": "functor_literal_expression",
+          "named": true
+        },
+        {
+          "type": "functor_without_arguments",
+          "named": true
+        },
+        {
+          "type": "if_expression",
+          "named": true
+        },
+        {
+          "type": "match_expression",
+          "named": true
+        },
+        {
+          "type": "object_declaration",
+          "named": true
+        },
+        {
+          "type": "statements_block",
+          "named": true
+        },
+        {
+          "type": "try_expression",
+          "named": true
+        },
+        {
+          "type": "while_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "where_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3656,10 +2781,6 @@
     "named": false
   },
   {
-    "type": "=>",
-    "named": false
-  },
-  {
     "type": ">",
     "named": false
   },
@@ -3716,6 +2837,10 @@
     "named": false
   },
   {
+    "type": "[:]",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -3738,6 +2863,10 @@
   {
     "type": "arabic_natural_number",
     "named": true
+  },
+  {
+    "type": "as",
+    "named": false
   },
   {
     "type": "becomes",
@@ -3884,6 +3013,10 @@
     "named": true
   },
   {
+    "type": "show",
+    "named": false
+  },
+  {
     "type": "spx_text",
     "named": true
   },
@@ -3892,11 +3025,23 @@
     "named": true
   },
   {
+    "type": "throw",
+    "named": false
+  },
+  {
     "type": "true",
     "named": false
   },
   {
     "type": "try",
+    "named": false
+  },
+  {
+    "type": "use",
+    "named": false
+  },
+  {
+    "type": "where",
     "named": false
   },
   {

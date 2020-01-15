@@ -130,15 +130,13 @@ b`foo\nbar`;
 ---
 
 (source_file
-  (string_literal)
-  (string_literal)
-  (string_literal (escape_sequence))
-  (string_literal (escape_sequence))
-  (string_literal (escape_sequence) (escape_sequence))
-  (string_literal)
-  (string_literal (escape_sequence) (escape_sequence))
-  (string_literal (escape_sequence) (escape_sequence))
-  (string_literal (template_substitution (natural_number (arabic_natural_number)) ))
-  (string_literal (escape_sequence) (escape_sequence))
-
+    (string_literal)
+    (string_literal)
+    (string_literal (escape_sequence))
+    (string_literal (escape_sequence))
+    (string_literal (escape_sequence) (escape_sequence)) (string_literal)
+    (string_literal (escape_sequence) (escape_sequence))
+    (string_literal (escape_sequence) (escape_sequence))
+    (string_literal (template_substitution (key_tty_value (object_key (arabic_natural_number)))))
+    (string_literal (escape_sequence) (escape_sequence))
 )

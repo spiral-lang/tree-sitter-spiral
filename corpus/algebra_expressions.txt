@@ -1,4 +1,3 @@
-
 ============================================
 UnaryTest operation
 ============================================
@@ -19,32 +18,18 @@ kjkj::ghfhf!;
 --------------------
 
 (source_file
-    (algebra_operation
-        (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))
-    )
+    (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))
     (algebra_operation (unary_operation_postfix (natural_number (arabic_natural_number)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
     (algebra_operation (unary_operation_postfix (product_expression (natural_number (arabic_natural_number)) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
     (algebra_operation (unary_operation_postfix (build (ident) (braces_object)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
     (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (call (call (ident) (bracket_object)) (bracket_object))))
     (algebra_operation (unary_operation_postfix (ident) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
-    (algebra_operation
-        (unary_operation_prefix
-            (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))
-            (bracket_object
-                (algebra_operation
-                    (binary_operation
-                        (natural_number (arabic_natural_number))
-                        (symbolic_operator (ambiguous_unary_binary_operator))
-                        (natural_number (arabic_natural_number)))
-                )
-            )
-        )
-    )
+    (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))))
     (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (dot_expression (ident) (ident))))
     (algebra_operation (unary_operation_postfix (dot_expression (ident) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
     (algebra_operation (unary_operation_postfix (simple_path (ident) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
     (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (self_path)))))))))))))
-    (algebra_operation (binary_operation (bracket_object (ident) (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
+    (algebra_operation (binary_operation (bracket_object (key_tty_value (object_key (ident))) (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
     (algebra_operation (unary_operation_postfix (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
 )
 
@@ -65,105 +50,36 @@ UnaryTest operation: Decorator
 #(&s!) a;
 
 ---
-(source_file
-    (hash_tag_expression
-        (decorator
-            (bracket_object_without_braces
-                (algebra_operation_without_braces
-                    (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))
-                )
-            )
-        )
-        (ident)
-     )
-    (hash_tag_expression
-        (decorator
-            (bracket_object_without_braces
-                (algebra_operation_without_braces
-                    (unary_operation_postfix_without_braces (natural_number (arabic_natural_number)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))
-                )
-            )
-         )
-        (ident)
-    )
-    (hash_tag_expression
-        (decorator
-            (bracket_object_without_braces
-                (algebra_operation_without_braces
-                    (unary_operation_postfix_without_braces
-                        (product_expression (natural_number (arabic_natural_number)) (ident))
-                        (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))
-                    )
-                )
-            )
-        )
-        (ident)
-    )
-    (hash_tag_expression
-        (decorator
-            (bracket_object_without_braces
-                (algebra_operation_without_braces
-                    (unary_operation_prefix_without_braces
-                        (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))
-                        (call_without_braces (call_without_braces (ident) (bracket_object_without_braces)) (bracket_object_without_braces)))
-                ))
-        )
-        (ident)
-    )
-    (hash_tag_expression
-        (decorator
-            (bracket_object_without_braces
-                (algebra_operation_without_braces
-                    (unary_operation_postfix_without_braces (ident) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
-            )
-        )
-        (ident)
-    )
 
-    (hash_tag_expression
-        (decorator
-            (bracket_object_without_braces
-                (algebra_operation_without_braces
-                    (unary_operation_prefix_without_braces
-                        (symbolic_operator_without_comparison
-                            (ambiguous_unary_binary_operator)
-                        )
-                        (bracket_object_without_braces
-                            (algebra_operation_without_braces
-                                (binary_operation_without_braces
-                                    (natural_number (arabic_natural_number))
-                                    (symbolic_operator (ambiguous_unary_binary_operator))
-                                    (natural_number (arabic_natural_number))
-                                )
-                            )
-                        )
-                    )
-                )
-            )
-        )
-        (ident)
-    )
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (dot_expression_without_braces (ident) (ident)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (unary_operation_postfix_without_braces (dot_expression_without_braces (ident) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (unary_operation_postfix_without_braces (simple_path (ident) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (self_path))))))))))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (bracket_object_without_braces (key_tty_value_without_braces (object_key (ident))) (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (unary_operation_postfix_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+(source_file
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_postfix (natural_number (arabic_natural_number)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_postfix (product_expression (natural_number (arabic_natural_number)) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (call (call (ident) (bracket_object)) (bracket_object)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_postfix (ident) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (dot_expression (ident) (ident)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_postfix (dot_expression (ident) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_postfix (simple_path (ident) (ident)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (self_path))))))))))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (bracket_object (key_tty_value (object_key (ident))) (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (unary_operation_postfix (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))) (ident))
 )
 
 ===================================================
-UnaryTest operation: Decorator should fail with braces
+UnaryTest operation: braces valid
 ===================================================
-#(hghg{}!) 5;
+#(hghg{}!) #sdfsdf{} 5;
 ---
 
 (source_file
-    (hash_tag_expression (decorator (bracket_object_without_braces (ident) (MISSING ")")))
-    (algebra_operation (unary_operation_postfix (braces_object) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))
-    )
-    (ERROR (arabic_natural_number))
+    (hash_tag_expression
+        (decorator (bracket_object (algebra_operation (unary_operation_postfix (build (ident) (braces_object)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))))
+        (hash_tag_expression
+            (decorator (build (ident) (braces_object)))
+                (natural_number (arabic_natural_number)))
+           )
 )
-
 
 
 ============================================
@@ -199,16 +115,16 @@ Binary operation: Decorator
 #(kkj|kkjkj|jhjhj) lklk;
 
 ---
-(source_file
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number))))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_postfix_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))))) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number))))) (symbolic_operator (ambiguous_unary_binary_operator)) (product_expression (natural_number (arabic_natural_number)) (ident)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (product_expression (natural_number (arabic_natural_number)) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (call_without_braces (ident) (bracket_object_without_braces)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (binary_operation_without_braces (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (binary_operation_without_braces (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (binary_operation_without_braces (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (binary_operation_without_braces (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (bracket_object_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))))))))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (dot_expression_without_braces (simple_path (ident) (ident)) (string_literal)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (binary_operation_without_braces (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (ident))))))) (ident))
-)
 
+(source_file
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number))))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_postfix (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))))) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (decimal_literal (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number))))) (symbolic_operator (ambiguous_unary_binary_operator)) (product_expression (natural_number (arabic_natural_number)) (ident)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (product_expression (natural_number (arabic_natural_number)) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (call (ident) (bracket_object)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (bracket_object (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))))))))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (dot_expression (simple_path (ident) (ident)) (string_literal)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (ident))))))) (ident))
+)
 ============================================
 Ambiguity operations
 ============================================
@@ -224,7 +140,7 @@ path::aasd? + *(3++5);
     (algebra_operation (binary_operation (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))
     (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (product_expression (natural_number (arabic_natural_number)) (ident)))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))
     (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_postfix (ident) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))))
-    (algebra_operation (binary_operation (bracket_object (ident) (ident) (natural_number (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))))))))
+    (algebra_operation (binary_operation (bracket_object (key_tty_value (object_key (ident))) (ident) (key_tty_value (object_key (arabic_natural_number)))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number)))))))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))))))))))))
     (algebra_operation (binary_operation (simple_path (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))))))))))
     (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_postfix (natural_number (arabic_natural_number)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator))))))
 )
@@ -241,12 +157,12 @@ Ambiguity operations: Decorators
 ---
 
 (source_file
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (product_expression (natural_number (arabic_natural_number)) (ident)))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_postfix_without_braces (ident) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (bracket_object_without_braces (key_tty_value_without_braces (object_key (ident))) (ident) (key_tty_value_without_braces (object_key (arabic_natural_number)))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (binary_operation_without_braces (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object_without_braces (key_tty_value_without_braces (object_key (arabic_natural_number))) (key_tty_value_without_braces (object_key (arabic_natural_number))) (key_tty_value_without_braces (object_key (arabic_natural_number)))))))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object_without_braces (key_tty_value_without_braces (object_key (arabic_natural_number))) (key_tty_value_without_braces (object_key (arabic_natural_number))) (key_tty_value_without_braces (object_key (arabic_natural_number)))))))))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (simple_path (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_prefix_without_braces (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))))))))))) (ident))
-    (hash_tag_expression (decorator (bracket_object_without_braces (algebra_operation_without_braces (binary_operation_without_braces (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation_without_braces (unary_operation_postfix_without_braces (natural_number (arabic_natural_number)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (product_expression (natural_number (arabic_natural_number)) (ident)))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (ident))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_postfix (ident) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (bracket_object (key_tty_value (object_key (ident))) (ident) (key_tty_value (object_key (arabic_natural_number)))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (binary_operation (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number)))))))) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number)))))))))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (simple_path (ident) (ident)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (bracket_object (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_prefix (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))))))))))))) (ident))
+    (hash_tag_expression (decorator (bracket_object (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (algebra_operation (unary_operation_postfix (natural_number (arabic_natural_number)) (symbolic_operator_without_comparison (ambiguous_unary_binary_operator)))))))) (ident))
 )
 
 ====================================================
@@ -354,15 +270,22 @@ x on Change(_:color, _: color(`green`)) becomes Circle;
     (algebra_operation
         (binary_operation
             (algebra_operation
-                (binary_operation (ident) (special_operator)
-                    (call (ident)
-                    (bracket_object
-                        (key_tty_value (object_key (ident)) (ident))
-                        (key_tty_value (object_key (ident)) (call (ident) (bracket_object (string_literal)))))
+                (binary_operation
+                    (ident)
+                    (special_operator)
+                    (call
+                        (ident)
+                        (bracket_object
+                            (key_tty_value (object_key (ident)) (ident))
+                            (key_tty_value
+                                (object_key (ident))
+                                (call (ident) (bracket_object (key_tty_value (object_key (string_literal)))))
+                            )
+                        )
                     ))
             )
-            (special_operator)
-            (ident)
+         (special_operator)
+         (ident)
         )
     )
 )

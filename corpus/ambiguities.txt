@@ -8,11 +8,11 @@ Braces and Block Ambiguities
 {key=`ljklj`, 57};
 {5};
 {let y = 5;};
-{@let y = 5};
+{let y = 5};
 {key:13};
 {adasd};
 {adasd:(), ads};
-{$d=4};
+{'d=4};
 {
 y=5;
 y=52;
@@ -27,23 +27,20 @@ y=52;
 ----
 
 (source_file
-    (braces_object (key_tty_value (ident) (string_literal)))
-    (braces_object (key_tty_value (ident) (string_literal)))
-    (braces_object (key_tty_value (ident) (string_literal)) (natural_number (arabic_natural_number)))
-    (expression_block (statements_block (natural_number (arabic_natural_number)))) (empty_statement)
+    (braces_object (key_tty_value (object_key (ident)) (string_literal)))
+    (braces_object (key_tty_value (object_key (ident)) (string_literal)))
+    (braces_object (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (arabic_natural_number))))
+    (braces_object (key_tty_value (object_key (arabic_natural_number))))
     (expression_block (statements_block (variable_declaration (exportable_type_annotation (ident)) (natural_number (arabic_natural_number))))) (empty_statement)
-    (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))))
-    (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))))
-    (expression_block (statements_block (ident))) (empty_statement)
-    (braces_object (key_tty_value (ident) (bracket_object)) (ident))
+    (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))
+    (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number)))) (braces_object (ident))
+    (braces_object (key_tty_value (object_key (ident)) (bracket_object)) (ident))
     (braces_object (key_tty_value (symbol) (natural_number (arabic_natural_number))))
     (expression_block (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))) (assignment_statement (ident) (natural_number (arabic_natural_number))))) (empty_statement)
     (expression_block (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))))) (empty_statement)
-    (braces_object (key_tty_value (ident) (statements_block)))
-    (expression_block (statements_block)) (empty_statement)
+    (braces_object (key_tty_value (object_key (ident)) (braces_object)))
+    (braces_object)
     (expression_block (statements_block (assignment_statement (ident) (natural_number (arabic_natural_number))))) (empty_statement)
-    (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
+    (braces_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))))
     (expression_block (statements_block (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))
-)
-
-
+ )

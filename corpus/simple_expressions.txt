@@ -71,10 +71,10 @@ bracket object
 ----
 
 (source_file
-  (bracket_object (simple_path  (ident) (ident)))
-  (bracket_object (natural_number  (arabic_natural_number)))
-  (bracket_object  (string_literal))
-  (bracket_object (string_literal) (key_tty_value (ident) (natural_number (arabic_natural_number))))
+    (bracket_object (key_tty_value (object_key (simple_path (ident) (ident)))))
+    (bracket_object (key_tty_value (object_key (arabic_natural_number))))
+    (bracket_object (key_tty_value (object_key (string_literal))))
+    (bracket_object (key_tty_value (object_key (string_literal))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))
 )
 
 ============================================
@@ -111,24 +111,22 @@ dasd[5].5;
 [1, 2, 6, 7].`asdasdas`;
 
 ----
-
 (source_file
- (dot_expression (ident) (ident))
- (dot_expression (symbol) (arabic_natural_number) )
- (dot_expression (self_path) (string_literal))
- (dot_expression (natural_number (arabic_natural_number)) (ident))
- (dot_expression (dot_expression (ident) (ident)) (ident))
- (dot_expression (simple_path (ident) (ident)) (arabic_natural_number))
- (dot_expression (bracket_object (natural_number (arabic_natural_number))) (string_literal))
- (dot_expression (natural_number (arabic_natural_number) (natual_unit_suffix)) (ident))
- (dot_expression (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))) (arabic_natural_number))
- (dot_expression (string_literal) (arabic_natural_number))
- (dot_expression (call (ident) (bracket_object (key_tty_value (ident) (natural_number (arabic_natural_number))) (key_tty_value (ident) (natural_number (arabic_natural_number))))) (ident))
- (dot_expression (build (ident) (braces_object (key_tty_value (ident) (natural_number (arabic_natural_number))) (key_tty_value (ident) (natural_number (arabic_natural_number))))) (ident))
- (dot_expression (index_expression (ident) (natural_number (arabic_natural_number))) (arabic_natural_number))
- (dot_expression (square_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))) (string_literal))
+    (dot_expression (ident) (ident))
+    (dot_expression (symbol) (arabic_natural_number))
+    (dot_expression (self_path) (string_literal))
+    (dot_expression (natural_number (arabic_natural_number)) (ident))
+    (dot_expression (dot_expression (ident) (ident)) (ident))
+    (dot_expression (simple_path (ident) (ident)) (arabic_natural_number))
+    (dot_expression (bracket_object (key_tty_value (object_key (arabic_natural_number)))) (string_literal))
+    (dot_expression (natural_number (arabic_natural_number) (natural_unit_suffix)) (ident))
+    (dot_expression (braces_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number)))) (arabic_natural_number))
+    (dot_expression (string_literal) (arabic_natural_number))
+    (dot_expression (call (ident) (bracket_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))) (ident))
+    (dot_expression (build (ident) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))) (ident))
+    (dot_expression (index_expression (ident) (square_object (natural_number (arabic_natural_number)))) (arabic_natural_number))
+    (dot_expression (square_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))) (string_literal))
 )
-
 
 ============================================
 Index expression
@@ -142,14 +140,15 @@ kkk[30];
 ::self[`5456`];
 
 ----
-(source_file
-    (index_expression (ident) (natural_number (arabic_natural_number)))
-    (index_expression (symbol) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))
-    (index_expression (bracket_object) (natural_number (arabic_natural_number)))
-    (index_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))
-    (index_expression (self_path) (string_literal))
-)
 
+
+(source_file
+    (index_expression (ident) (square_object (natural_number (arabic_natural_number))))
+    (index_expression (symbol) (square_object (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))
+    (index_expression (bracket_object) (square_object (natural_number (arabic_natural_number))))
+    (index_expression (natural_number (arabic_natural_number)) (square_object (natural_number (arabic_natural_number))))
+    (index_expression (self_path) (square_object (string_literal)))
+)
 
 
 

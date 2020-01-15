@@ -191,10 +191,10 @@ o.0[`dfdfg`].0 = `jkljlk`,
 
 (source_file
     (braces_object
-        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (square_object_without_braces (ident)))) (natural_number (arabic_natural_number)))
-        (key_tty_value (object_key (object_key_index (object_key (arabic_natural_number)) (square_object_without_braces (natural_number (arabic_natural_number))))) (ident))
-        (key_tty_value (object_key (object_key_dot (object_key (object_key_index (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (square_object_without_braces (string_literal)))) (arabic_natural_number))) (string_literal))
-        (key_tty_value (object_key (object_key_index (object_key (string_literal)) (square_object_without_braces (string_literal)))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))
+        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (square_object (ident)))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (object_key_index (object_key (arabic_natural_number)) (square_object (natural_number (arabic_natural_number))))) (ident))
+        (key_tty_value (object_key (object_key_dot (object_key (object_key_index (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (square_object (string_literal)))) (arabic_natural_number))) (string_literal))
+        (key_tty_value (object_key (object_key_index (object_key (string_literal)) (square_object (string_literal)))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))
     )
 )
 
