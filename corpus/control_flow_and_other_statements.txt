@@ -83,14 +83,14 @@ let x = loop {
 }
 
 ---
+
 (source_file
     (expression_block (functor_without_arguments (ident) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (key_tty_value (object_key (string_literal))))))))
     (variable_declaration (exportable_type_annotation (ident)) (functor_without_arguments (ident) (statements_block (return_expression (natural_number (arabic_natural_number))))))
     (empty_statement)
     (variable_declaration (exportable_type_annotation (ident)) (algebra_operation (binary_operation (bracket_object (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number))))) (symbolic_operator (ambiguous_unary_binary_operator)) (bracket_object (build (ident) (braces_object (key_tty_value (object_key (arabic_natural_number)))))))))
-    (variable_declaration (exportable_type_annotation (ident)) (functor_without_arguments (ident) (statements_block (natural_number (arabic_natural_number)))))
+    (variable_declaration (exportable_type_annotation (ident)) (build (ident) (braces_object (key_tty_value (object_key (arabic_natural_number))))))
 )
-
 ===============================================
 declare functor statement
 ===============================================

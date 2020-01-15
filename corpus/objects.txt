@@ -31,20 +31,14 @@ ident keys
   }
 };
 ---
+
 (source_file
-    (braces_object (key_tty_value (object_key (ident)) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))))
-    (braces_object (key_tty_value (object_key (ident)) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))))
-    (braces_object
-        (key_tty_value (object_key (ident)) (string_literal))
-        (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number)))
-        (key_tty_value (object_key (ident)) (braces_object
-                                                            (key_tty_value (object_key (ident)) (string_literal))
-                                                            (key_tty_value (object_key (ident)) (string_literal))
-                                                            (key_tty_value (object_key (ident)) (string_literal))
-                                            )
-        )
-    )
+    (statements_block (variable_declaration (exportable_type_annotation (ident)) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))))
+    (expression_block (statements_block (variable_declaration (exportable_type_annotation (ident)) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number)))))))
+    (empty_statement)
+    (braces_object (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (braces_object (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (ident)) (string_literal)))))
 )
+
 
 ====================================
 string keys
@@ -220,6 +214,15 @@ path key
 };
 ---
 
+(source_file
+    (braces_object
+        (key_tty_value (object_key (simple_path (ident) (ident))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (simple_path (simple_path (ident) (ident)) (ident))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (simple_path (ident) (ident)))) (ident))) (arabic_natural_number))) (string_literal))) (square_object (natural_number (arabic_natural_number))))) (natural_number (arabic_natural_number)))
+        (key_tty_value (ident) (object_key (simple_path (ident) (ident))) (natural_number (arabic_natural_number)))
+    )
+)
+
 ====================================
 symbol should not support biding
 ====================================
@@ -260,13 +263,7 @@ binary operator prepare
 
 ---
 
-(source_file
-    (braces_object
-        (symbolic_operator (ambiguous_unary_binary_operator)
-        (square_object
-            (algebra_operation (binary_operation (ident) (special_operator) (ident)))
-            (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (braces_object (ident) (ident) (ident)))))
-         )
-     )
-)
 
+(source_file
+    (braces_object (symbolic_operator (ambiguous_unary_binary_operator) (square_object (algebra_operation (binary_operation (ident) (special_operator) (ident))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (braces_object (key_tty_value (object_key (ident))) (ident) (ident)))))))
+)

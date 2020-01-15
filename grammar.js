@@ -422,7 +422,12 @@ module.exports = grammar({
             $.object_key_dot,
         )),
 
-        object_key_index: $ => prec.left(seq($.object_key, $.square_object)),
+        object_key_index: $ => prec.left(
+            seq(
+                $.object_key,
+                $.square_object
+            )
+        ),
 
         object_key_dot: $ => prec.left(seq(
             field('value', $.object_key),
@@ -430,7 +435,8 @@ module.exports = grammar({
             field('field', choice(
                 $.ident,
                 $.string_literal,
-                $.arabic_natural_number
+                $.arabic_natural_number,
+                $.simple_path,
                 )
             )
         )),

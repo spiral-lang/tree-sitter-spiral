@@ -20,7 +20,6 @@ Element
 </ul>;
 
 ---
-
 (source_file
     (spx_expression (spx_element (spx_opening_element (ident)) (spx_closing_element (ident))))
     (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (ident) (natural_number (arabic_natural_number))) (spx_key_tty_value (ident) (string_literal))) (spx_closing_element (ident))))
@@ -29,21 +28,11 @@ Element
     (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)))) (spx_closing_element (ident))))
     (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)) (natural_number (arabic_natural_number)))) (spx_closing_element (ident))))
     (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))) (spx_closing_element (ident))))
-    (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)) (braces_object (natural_number (arabic_natural_number))) (braces_object (product_expression (natural_number (arabic_natural_number)) (ident))))) (spx_closing_element (ident))))
-    (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)) (braces_object (natural_number (arabic_natural_number))) (braces_object (product_expression (natural_number (arabic_natural_number)) (ident))))) (braces_object (call (dot_expression (ident) (ident)) (bracket_object (natural_number (arabic_natural_number))))) (spx_closing_element (ident))))
-    (spx_expression
-        (spx_element (spx_opening_element (ident)) (spx_text)
-            (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident))))
-            (spx_text)
-            (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident))))
-            (spx_text)
-            (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident))))
-            (spx_text)
-            (braces_object (natural_number (arabic_natural_number)))
-            (spx_text)
-            (spx_closing_element (ident)))
-    )
+    (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)) (braces_object (key_tty_value (object_key (arabic_natural_number)))) (braces_object (product_expression (natural_number (arabic_natural_number)) (ident))))) (spx_closing_element (ident))))
+    (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (spread_element (ident)) (braces_object (key_tty_value (object_key (arabic_natural_number)))) (braces_object (product_expression (natural_number (arabic_natural_number)) (ident))))) (braces_object (call (dot_expression (ident) (ident)) (bracket_object (key_tty_value (object_key (arabic_natural_number)))))) (spx_closing_element (ident))))
+    (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (braces_object (key_tty_value (object_key (arabic_natural_number)))) (spx_text) (spx_closing_element (ident))))
 )
+
 
 ============================================
 Self closing element
@@ -80,9 +69,8 @@ Fragment
 
 ---
 
-(source_file
-    (spx_expression (spx_fragment (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (braces_object (natural_number (arabic_natural_number))) (spx_text)))
-)
+
+(source_file (spx_expression (spx_fragment (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (braces_object (key_tty_value (object_key (arabic_natural_number)))) (spx_text))))
 
 
 ============================================
@@ -98,7 +86,7 @@ Decorators
 <#`asdasdasdasdasd` Table   #sdsd ...d/>;
 <#`asdasdasdasdasd` Table   #sdsd ...c={1,2,3,5}/>;
 <#enumerated list>
-    <li #y x=50 #sdd z={<as/>}>Apples</li>
+    <li x=50 z={<as/>}>Apples</li>
     <li>Bananas</li>
     <li>Cherries</li>
 </ul>;
@@ -106,9 +94,18 @@ Decorators
 ---
 
 
-============================================
-Decorators wait
-============================================
+(source_file
+    (spx_expression (spx_self_closing_element (decorator (bracket_object (product_expression (natural_number (arabic_natural_number)) (ident)))) (decorator (bracket_object (key_tty_value (object_key (object_key_dot (object_key (string_literal)) (arabic_natural_number))) (product_expression (natural_number (arabic_natural_number)) (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_index (object_key (object_key_dot (object_key (ident)) (string_literal))) (square_object (natural_number (arabic_natural_number))))) (arabic_natural_number))) (ident))) (natural_number (arabic_natural_number))))) (decorator (bracket_object (key_tty_value (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (ident))) (ident))) (ident))) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)))) (decorator (ident)) (ident)))
+    (spx_expression (spx_self_closing_element (decorator (bracket_object (product_expression (natural_number (arabic_natural_number)) (ident)))) (decorator (bracket_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))) (decorator (bracket_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (symbolic_operator (ambiguous_unary_binary_operator)))) (decorator (ident)) (ident)))
+    (spx_expression (spx_self_closing_element (decorator (call (ident) (bracket_object (key_tty_value (spread_element (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (ident) (symbol) (key_tty_value (symbol) (natural_number (arabic_natural_number)))))) (ident)))
+    (spx_expression (spx_self_closing_element (decorator (bracket_object (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (ident))))) (ident)))
+    (spx_expression (spx_self_closing_element (decorator (string_literal)) (ident) (spx_key_tty_value (spread_element (decorator (ident)) (ident)) (braces_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number)))))))
+    (spx_expression (spx_self_closing_element (decorator (call (ident) (bracket_object (key_tty_value (spread_element (ident))) (key_tty_value (object_key (arabic_natural_number))) (ident) (symbol) (key_tty_value (symbol) (natural_number (arabic_natural_number)))))) (ident)))
+    (spx_expression (spx_self_closing_element (decorator (call (ident) (bracket_object (key_tty_value (object_key (arabic_natural_number)))))) (decorator (call (ident) (bracket_object (key_tty_value (object_key (string_literal)))))) (ident)))
+    (spx_expression (spx_self_closing_element (decorator (string_literal)) (ident) (spx_key_tty_value (spread_element (decorator (ident)) (ident)))))
+    (spx_expression (spx_self_closing_element (decorator (string_literal)) (ident) (spx_key_tty_value (spread_element (decorator (ident)) (ident)) (braces_object (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number))) (key_tty_value (object_key (arabic_natural_number)))))))
+    (spx_expression (spx_element (spx_opening_element (decorator (ident)) (ident)) (spx_text) (spx_expression (spx_element (spx_opening_element (ident) (spx_key_tty_value (ident) (natural_number (arabic_natural_number))) (spx_key_tty_value (ident) (braces_object (spx_expression (spx_self_closing_element (ident)))))) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_expression (spx_element (spx_opening_element (ident)) (spx_text) (spx_closing_element (ident)))) (spx_text) (spx_closing_element (ident))))
+)
 
 
 

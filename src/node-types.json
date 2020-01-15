@@ -1580,6 +1580,10 @@
             "named": true
           },
           {
+            "type": "simple_path",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           }

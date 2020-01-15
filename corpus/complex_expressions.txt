@@ -133,7 +133,7 @@ Functor needs an statement block
 fn Move(x, y){x = 50, 45};
 ---
 
-(source_file (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key (ident))) (ident)) (statements_block (ident) (ERROR (ERROR (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number))))))
+(source_file (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key (ident))) (ident)) (statements_block (assignment_statement (ident) (ERROR (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number)) (MISSING ";")))))
 ============================================
 Functor literal expression 2
 ============================================
