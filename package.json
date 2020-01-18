@@ -17,10 +17,11 @@
   "tree-sitter": [
     {
       "scope": "source.spiral",
-      "injection-regex": "spiral",
       "file-types": [
-        "sp",
-        "spx"
+        "sp"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
       ]
     }
   ]

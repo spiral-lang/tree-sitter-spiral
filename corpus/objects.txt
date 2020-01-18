@@ -10,10 +10,11 @@ Bind key
 
 (source_file
     (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))
-    (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))
+    (expression_block (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))) (empty_statement)
+    (expression_block (braces_object (key_tty_value (ident) (object_key (ident)) (natural_number (arabic_natural_number))))) (empty_statement)
     (braces_object (key_tty_value (ident) (object_key (ident)) (natural_number (arabic_natural_number))))
-    (braces_object (key_tty_value (ident) (object_key (ident)) (natural_number (arabic_natural_number))))
-)
+ )
+
 
 
 ====================================
