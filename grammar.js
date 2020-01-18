@@ -1,22 +1,85 @@
 const PREC = {
+    PREFIX_EXPRESSION: -400,
     PIPE_OPERATOR: -200,
+    SPECIAL_OPERATOR: -150,
     RANGE: -100,
     FUNCTOR_WITHOUT_ARGUMENTS: -10,
     TRY_EXPRESSION: -5,
     OBJECT_DECLARATION: -9,
-    BRACE_OBJECT: -1,
-    STATEMENT_BLOCK: 1,
-    KEY_TTY_VALUE: 120,
+    BRACE_OBJECT: -5,
+    STATEMENT_BLOCK: -4,
+    KEY_TTY_VALUE: -2,
     BUILD: 550,
-    TRY_CALL: 555,
+    FUNCTOR_BINARY: 581,
+    FUNCTOR_COMPOSITION: 582,
+    FUNCTOR_AND: 583,
+    FUNCTOR_OR: 584,
     BINARY: 600,
-    PREFIX: 700,
-    POSTFIX: 800,
     AMBIGUOUS_BINARY: 900,
     AMBIGUOUS_UNARY_PREFIX: 1000,
     AMBIGUOUS_UNARY_POSTFIX: 1100,
+    PREFIX: 700,
+    POSTFIX: 800,
     HASH_TAG: 1200,
     DECORATOR: 1300,
+    TRY_CALL: 1400,
+    SPX: 2000,
+    FRACTIONAL: 3000,
+};
+
+ambiguous_unary_binary_operator_list = [
+    '^',
+    '%',
+    '/',
+    '<<',
+    '>>',
+    '!',
+    '*',
+    '+',
+    '-',
+    '¦',
+    '§',
+    choice('\u{00A9}', '\u{00AC}', '\u{00AE}'),
+    choice('\u{00B1}', '\u{00B6}'),
+    choice('\u{00BF}', '\u{00D7}', '\u{00F7}'),
+    /[\u2016-\u2017]/,
+    /[\u2020-\u2027]/,
+    /[\u2030-\u203E]/,
+    /[\u2041-\u2053]/,
+    /[\u2055-\u205E]/,
+    /[\u2190-\u2217]/,
+    /[\u2219-\u23FF]/,
+    /[\u2219-\u221D]/,
+    /[\u221F-\u23FF]/,
+    /[\u2500-\u2775]/,
+    /[\u2794-\u2BFF]/,
+    /[\u2E00-\u2E7F]/,
+    /[\u3001-\u3003]/,
+    /[\u3008-\u3030]/,
+];
+
+functor_binary = ['&', '|', '∘'];
+compound_assigment_symbol = functor_binary.concat(ambiguous_unary_binary_operator_list).map((x) => `${x}=`);
+
+const make_raw_template_substitution = ($) => (input) => {
+    let [left, right] = [input[0], input[1]];
+    return seq(
+        '#',
+        input,
+        repeat(
+            choice(
+                alias(
+                    seq(
+                        left,
+                        choice($._expression, $.key_tty_value),
+                        right
+                    ),
+                    $.template_substitution
+                ),
+                alias(new RegExp(`[^\`${left}]`), $.string_content),
+            )
+        )
+    )
 };
 
 module.exports = grammar({
@@ -85,6 +148,31 @@ module.exports = grammar({
         [$._simple_expression, $._expression, $.variable_declaration],
         [$._simple_expression, $.variable_declaration],
         [$._expression, $.variable_declaration],
+        [$.binding, $.variable_declaration],
+        [$.all_operators_preprocesor, $.algebra_operation],
+        [$.ambiguous_unary_operation_prefix,
+            $.ambiguous_unary_operation_postfix,
+            $.ambiguous_binary_operation,
+            $.unary_operation_postfix
+        ],
+        [$.ambiguous_unary_operation_prefix, $.ambiguous_unary_operation_postfix, $.ambiguous_binary_operation],
+        [$.simple_path, $._simple_expression],
+        [$.natural_number, $.dot_expression],
+        [$.dot_expression, $._simple_expression],
+        [$.dot_expression, $._simple_expression, $.functor_literal_expression, $.functor_literal_signature, $.lambda_literal_expression],
+        [$.dot_expression, $._simple_expression, $.functor_literal_expression, $.functor_literal_signature],
+        [$.all_operators_preprocesor, $.operator_preprocessor],
+        [$.all_operators_preprocesor],
+        [$.all_operators_preprocesor, $.ambiguous_operator_preprocessor],
+        [$._literal, $.dot_expression],
+        [$.binary_operation, $.functor_binary_operation, $.on_statement],
+        [$.ambiguous_unary_operation_postfix, $.ambiguous_binary_operation, $.unary_operation_postfix],
+        [$.dot_expression, $.build, $.functor_without_arguments],
+        [$._simple_expression, $._expression, $._assign_left],
+        [$._simple_expression, $._assign_left],
+        [$._expression, $._assign_left],
+        [$.operator_preprocessor],
+        [$.ambiguous_operator_preprocessor],
 
 
     ],
@@ -212,50 +300,27 @@ module.exports = grammar({
         ),
         unary_symbol_prefix: $ => prec(PREC.PREFIX, choice('!', '~')),
         unary_symbol_postfix: $ => prec(PREC.POSTFIX, choice('!', '?')),
-        functor_binary_operator: $ => choice('&', '|', '∘', 'or', 'and'),
+        functor_binary_operator: $ => choice(
+            prec(PREC.FUNCTOR_AND, '&'),
+            prec(PREC.FUNCTOR_OR, '|'),
+            prec(PREC.FUNCTOR_COMPOSITION, '∘'),
+            prec(PREC.FUNCTOR_OR, 'or'),
+            prec(PREC.FUNCTOR_AND, 'and')
+        ),
         special_operator: $ => choice(
             prec(PREC.PIPE_OPERATOR, '|>'),
-            '->',
-            'morphs',
-            'becomes',
-            'in',
-            seq('not', 'in'),
-            'is',
-            seq('is', 'not'),
-            'on',
+            prec(PREC.SPECIAL_OPERATOR, '->'),
+            prec(PREC.SPECIAL_OPERATOR, 'morphs'),
+            prec(PREC.SPECIAL_OPERATOR, 'becomes'),
+            prec(PREC.SPECIAL_OPERATOR, 'in'),
+            prec(PREC.SPECIAL_OPERATOR, seq('not', 'in')),
+            prec(PREC.SPECIAL_OPERATOR, 'is'),
+            prec(PREC.SPECIAL_OPERATOR, seq('is', 'not')),
+            prec(PREC.SPECIAL_OPERATOR, 'on'),
         ),
 
 
-        ambiguous_unary_binary_operator: $ => choice(
-            '^',
-            '%',
-            '/',
-            '<<',
-            '>>',
-            '!',
-            '*',
-            '+',
-            '-',
-            '¦',
-            '§',
-            choice('\u{00A9}', '\u{00AB}', '\u{00AC}', '\u{00AE}'),
-            choice('\u{00B1}', '\u{00B6}', '\u{00BB}'),
-            choice('\u{00BF}', '\u{00D7}', '\u{00F7}'),
-            /[\u2016-\u2017]/,
-            /[\u2020-\u2027]/,
-            /[\u2030-\u203E]/,
-            /[\u2041-\u2053]/,
-            /[\u2055-\u205E]/,
-            /[\u2190-\u2217]/,
-            /[\u2219-\u23FF]/,
-            /[\u2219-\u221D]/,
-            /[\u221F-\u23FF]/,
-            /[\u2500-\u2775]/,
-            /[\u2794-\u2BFF]/,
-            /[\u2E00-\u2E7F]/,
-            /[\u3001-\u3003]/,
-            /[\u3008-\u3030]/,
-        ),
+        ambiguous_unary_binary_operator: $ => choice(...ambiguous_unary_binary_operator_list),
 
 
         _all_operators: $ => choice(
@@ -359,12 +424,12 @@ module.exports = grammar({
             optional(field('suffix', $.natural_unit_suffix))
         ),
 
-        fraction_literal: $ => seq(
+        fraction_literal: $ => prec.left(PREC.FRACTIONAL, seq(
             field('numerator', $.arabic_natural_number),
             '.',
             field('denominator', $.arabic_natural_number),
             optional(field('suffix', choice($.natural_unit_suffix, $.fractional_unit_suffix)))
-        ),
+        )),
 
         natural_fraction_literal: $ => seq(
             field('value', choice(
@@ -381,13 +446,36 @@ module.exports = grammar({
             choice($.fraction_literal, $.natural_fraction_literal),
         ),
 
-        string_literal: $ => seq(
+        string_literal: $ => choice($.escaped_string_literal, $.raw_string_literal),
+
+        escaped_string_literal: $ => seq(
             alias(/b?`/, $.string_limitier),
             repeat(choice(
                 $.escape_sequence,
                 $.template_substitution,
                 $.string_content
             )),
+            alias('`', $.string_limitier),
+        ),
+
+        raw_string_literal: $ => seq(
+            alias(/rb?`/, $.string_limitier),
+            choice(
+                ...(
+                    [
+                        '{}',
+                        '()',
+                        '‹›',
+                        '«»',
+                        '｢｣',
+                        '⸢⸣',
+                        '⸢⸥',
+                        '⸤⸥',
+                        '⸤⸣',
+                        '⦃⦄'
+                    ].map(make_raw_template_substitution($))),
+                alias(/[^`]/, $.string_content),
+            ),
             alias('`', $.string_limitier),
         ),
 
@@ -490,7 +578,7 @@ module.exports = grammar({
             sepBy1(',', choice(
                 $.key_tty_value,
                 $.all_operators_preprocesor,
-                $.inline_expression
+                $._expression
             )),
             optional(',')
         )),
@@ -498,7 +586,7 @@ module.exports = grammar({
         statements_block: $ => prec.left(PREC.STATEMENT_BLOCK, seq(
             '{',
             repeat($._statement),
-            optional($.inline_expression),
+            optional($._expression),
             '}'
         )),
 
@@ -508,21 +596,21 @@ module.exports = grammar({
             '}'
         )),
 
-        bracket_object: $ => seq('(',
+        bracket_object: $ => prec.left(PREC.BRACE_OBJECT, seq('(',
             optional($._inner_object),
             ')'
-        ),
-        angle_object: $ => seq(
+        )),
+        angle_object: $ => prec.left(PREC.BRACE_OBJECT, seq(
             '<',
             optional($._inner_object),
             '>'
-        ),
-        square_object: $ => seq(
+        )),
+        square_object: $ => prec.left(PREC.BRACE_OBJECT, seq(
             '[',
             sepBy(',', choice($._expression, $.spread_element)),
             optional(','),
             ']'
-        ),
+        )),
 
         _number: $ => choice($.natural_number, $.decimal_literal),
 
@@ -633,7 +721,6 @@ module.exports = grammar({
         )),
         operator_preprocessor: $ => seq(
             field('symbol', choice(
-                $.functor_binary_operator,
                 $.special_operator,
                 $.comparison_operator
                 )
@@ -655,10 +742,30 @@ module.exports = grammar({
             )
         ),
 
+        functor_operator_preprocessor: $ => seq(
+            field('symbol', $.functor_binary_operator),
+            field('preprocessor',
+                optional(seq(
+                    '.',
+                    $.square_object,
+                ))
+            )
+        ),
+        functor_binary_operation: $ => prec.left(PREC.FUNCTOR_BINARY,
+            seq(
+                field('left', choice($._expression, $.ambiguous_operator_preprocessor, $.operator_preprocessor)),
+                field('operator', $.functor_operator_preprocessor),
+                field('right',
+                    choice($._expression, $.ambiguous_operator_preprocessor, $.operator_preprocessor),
+                ),
+            )
+        ),
+
         algebra_operation: $ => choice(
             $.unary_operation_prefix,
             $.unary_operation_postfix,
             $.binary_operation,
+            $.functor_binary_operation,
         ),
 
         decorator: $ => prec.left(PREC.DECORATOR, seq(
@@ -672,8 +779,10 @@ module.exports = grammar({
         )),
 
         hash_tag_expression: $ => prec.left(PREC.HASH_TAG,
-            field('left', $.decorator),
-            field('right', optional($._expression)),
+            seq(
+                field('left', $.decorator),
+                field('right', optional($._expression))
+            ),
         ),
 
         range_expression: $ => prec.left(PREC.RANGE, seq(
@@ -705,13 +814,13 @@ module.exports = grammar({
             '>',
         )),
 
-        spx_element: $ => prec.left(seq(
+        spx_element: $ => prec.left(PREC.SPX, seq(
             field('open_tag', $.spx_opening_element),
             repeat($._spx_child),
             field('close_tag', $.spx_closing_element)
         )),
 
-        spx_self_closing_element: $ => prec.left(seq(
+        spx_self_closing_element: $ => prec.left(PREC.SPX, seq(
             field("open", '<'),
             field('binding', optional($.binding)),
             field('decorators', repeat($.decorator)),
@@ -725,7 +834,7 @@ module.exports = grammar({
             )
         )),
 
-        spx_fragment: $ => prec.left(
+        spx_fragment: $ => prec.left(PREC.SPX,
             seq(
                 '<',
                 field('binding', optional($.binding)),
@@ -783,17 +892,18 @@ module.exports = grammar({
             $.lambda_literal_expression,
             $.hash_tag_expression,
             $._expression_ending_with_block,
+            $.prefix_expression,
         )),
 
-        inline_expression: $ => prec.left(choice(
-            $._expression,
-            $.break_expression,
-            $.continue_expression,
-            $.return_expression,
-            $.throw_expression,
-            $.yield_expression,
-            $.do_expression,
-            $.show_expression,
+        prefix_expression: $ => prec.right(PREC.PREFIX_EXPRESSION,
+            choice(
+                $.break_expression,
+                $.continue_expression,
+                $.return_expression,
+                $.throw_expression,
+                $.yield_expression,
+                $.do_expression,
+                $.show_expression,
             )
         ),
 
@@ -838,16 +948,18 @@ module.exports = grammar({
             field('value', $._expression)
         ),
 
+        _assign_left: $ => choice(
+            seq(
+                field('inline_value', optional($._optional_value)),
+                ';'
+            ),
+            seq($.assign, choice($._expression_ending_with_block)),
+        ),
+
         variable_declaration: $ => seq(
             choice('let', 'const'),
             field('pattern', $._declarative_pattern),
-            choice(
-                seq(
-                    field('inline_value', optional($._optional_value)),
-                    ';'
-                ),
-                seq($.assign, choice($._expression_ending_with_block)),
-            ),
+            field('right', $._assign_left),
         ),
 
         empty_statement: $ => ';',
@@ -904,12 +1016,18 @@ module.exports = grammar({
 
         index_expression: $ => prec.left(seq($._simple_expression, $.square_object)),
 
+        compound_assigment_operator: $ => choice(...compound_assigment_symbol),
 
         assignment_statement: $ => prec.left(seq(
             field('left', $._expression),
             $.assign,
-            field('right', $._expression),
-            ';'
+            field('right', $._assign_left),
+        )),
+
+        compound_assigment: $ => prec.left(seq(
+            field('left', $._expression),
+            $.compound_assigment_operator,
+            field('right', $._assign_left),
         )),
 
         expression_block: $ => prec.left(seq(
@@ -947,7 +1065,6 @@ module.exports = grammar({
                 )
             )
         ),
-
 
         while_expression: $ => prec.left(seq(
             'while',
@@ -1098,9 +1215,10 @@ module.exports = grammar({
             $._expression_statement,
             $._declaration_statement,
             $.assignment_statement,
+            $.compound_assigment,
             $.use_declaration,
         ),
-        doc_fragment: $ => prec.left(
+        doc_fragment: $ => prec.left(PREC.SPX,
             seq(
                 '<',
                 field('binding', optional($.binding)),
@@ -1135,11 +1253,5 @@ function caseInsensitive(keyword) {
         .join('')
     )
 }
-
-//TODO: binding pattern text spx, object support number string and a.c.d.c.d, binding custom name
-//TODO: Composite assignation
-//TODO: DOCUMENTATION
-
-// TODO SPX binding, asd.asdas.asd  ::sadasd, asd[]
 
 
