@@ -1,21 +1,109 @@
+s [::] while true { return 5; }
+//454'e+125;
+#sadasd;
+
+err::wqweqwe;
+
+#delegate yield #fre 30;
+#delegate return #fre 30;
+
+//curry
+const x  = (x)=>(y)=>(z)=>(w)=> x + y  + z + w;
+
+for x of y {
+   return  <element>
+   	<ul>
+    <li s=125>sasasasdasdasd</li>
+    </ul>
+   </element>;
+
+}
+
+for x of y {x}
+for x of {x; x} {
+	d;
+}
+for x of s{x; x} {
+	d;
+}
+for x of {x, x}=>y {
+	d;
+}
+x -> y;
+
+x += 1;
+y = (5389878.45431'Gigabytes/s^2);
+
+//named functo
+//named functor
+functor graph(){
+	::self;
+	return graph(x):u32{x};
+}
+
+sd():u32{};
+graph(x)=>u32;
+[x]=>u32;
+{x}=>u32;
+x=>u32;
+x=> x >  10 then 50
+	   | x > 5 then 30
+       | 59;
+
+//or is not, == -> in == &&
+aasdas is not 4 | sdasds is 25;
+sads -> sdasd  == sdasd -> asdasd;
+mm -> as | y -> dasd;
+mm == as | y != dasd & y > 5;
+3 + 5 | 4 + 8 | 5 * 5;
+3 & 5 | 4 & 8 | 5 & 5;
+3 ∘ 5 | 4 ∘ 8 | 5 & 5 ∘ 6;
+3 and 5 | 4 and 8 | 5 and 5;
+3 or 5 | 4 or 8 | 5 or 5 & 30;
+3 + 5 & 4 * 8 | 4 or 8 | 5 & 45 or 5 + 32?;
+!5 | !N;
+5 | 32?;
+5 | !N;
+5 + 32?;
+5! + 32?;
+!5 + 32?;
+!5 + !N;
+!!!!5 + !N!!!???;
+
+
+sadsds::sdasdasd::<s=50, k, dssdg::sada=55, 'asd={c:45, y:35}, dadas::asdas={x; y},  'asad=ss::sasd::<>,'asad=ss::sasd::<x=5>, dasdasd::sdasd=[1,2,3,5]>;
+sadsds::sdasdasd::<asd::sdsd=5445.54545'e+87>;
+sadsds::sdasdasd::<asd::sdsd=`sdsadasd`>;
+sadsds::sdasdasd::<asd::sdsd={2 | 5}>;
+sadsds::sdasdasd::<'asd={2 + 5}>;
+//#sdasd sadsds::sdasdasd::<asd::sdsd=`sdsadasd`>;
+
 let x = some::sadasd::asd;
 let wqqwewewq = sad;
+let w = lasas.(-> | is | + );
+let y = 90.ll;
 
 
+use sdasd::asdsa::{dsa, 'sad};
+#_ use tree;
 #~~!ambient?? #sadasdasd? use sdasd::asdsa::{dsa, 'sad};
-#~~!ambient{5,4}?? #sadasdasd? use sdasd::asdsa::{dsa, 'sad};
+#~~!ambient{x, 5,4}?? #sadasdasd? use sdasd::asdsa::{dsa, 'sad};
 #!ambient.aasdsa::sadasd.asd.as.asd!?? use sdasd::asdsa::{dsa, 'sad};
-#!ambient.aasdsa::sadasd.8887.99.asd!?? use sdasd::asdsa::{dsa, 'sad};
-#!ambient.`asdasdsadas`::sadasd.8887.99.asd!?? use sdasd::asdsa::{dsa, 'sad};
-#!ambient.`asdasdsadas`[45]::sadasd.8887.99.asd!?? use sdasd::asdsa::{dsa, 'sad};
-
+#!ambient.aasdsa::sadasd.8887.99.asd!?? #ambient.asd.asd.as.asd!?? use sdasd::asdsa::{dsa, 'sad};
 #!ambient.asd.asd.as.asd!?? use sdasd::asdsa::{dsa, 'sad};
+#(ambient | rule) #(sdsd{ddfddf{};})? #dasdasd{} use sdasd::asdsa::{dsa, 'sad};
 #!!ambient(k, y, u:30)?? use sdasd::asdsa::{dsa, 'sad};
+#!90.90.hyff::sadasd.8887.99.asd!?? #ambient.asd.asd.as.asd!?? use sdasd::asdsa::{dsa, 'sad};
+#!ambient.`asdasdsadas`.sadasd.8887.99.asd::asd!?? use sdasd::asdsa::{dsa, 'sad};
+#!ambient.`asdasdsadas`[45].hjk::sadasd.8887.99.asd!?? use sdasd::asdsa::{dsa, 'sad};
+#!90.ll::sadasd.8887.99.asd!?? #ambient.asd.asd.as.asd!?? use sdasd::asdsa::{dsa, 'sad};
+
+
 
 
 x;
 
-<*>
+<let @[::] dff *>
 dasdasdasd
 asdasd
 
@@ -24,17 +112,13 @@ asdasd
 
 ```
 <*/>
+
 <element>
 	<ul>
    <li s=125>sasasasdasdasd</li>
    </ul>
 </element>
 
-//named functor
-functor graph(){
-	::self;
-	return graph(x):u32;
-}
 
 //named functor
 functor graph(){
@@ -45,7 +129,7 @@ functor graph(){
 //named functor
 functor graph(){
 	::self;
-	return graph(x):u32(x);
+	graph(x):u32(x);
 }
 
 
@@ -81,6 +165,8 @@ sads::none;
 
   }
 };
+
+
 
 
 {
@@ -142,18 +228,9 @@ let y = str;
 /*
 asdasdasdasds
 */
-for x of y {
-   return  <element>
-   	<ul>
-    <li s=125>sasasasdasdasd</li>
-    </ul>
-   </element>;
-}
+
 
 let x = `asd\u{454}dasd {ds = s + 5}`;
-
-
 let hjhkhjhdf_adasdasdjx = '\u{125}';
 let y = 'ss * 5 == 5;
-x -> y;
-y = (5389878.45431'Gbytes/s^2);
+
