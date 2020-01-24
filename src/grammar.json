@@ -597,8 +597,8 @@
                 "value": "[\\u2020-\\u2027]"
               },
               {
-                "type": "PATTERN",
-                "value": "[\\u2030-\\u203E]"
+                "type": "STRING",
+                "value": "※"
               },
               {
                 "type": "PATTERN",
@@ -3268,8 +3268,8 @@
                     "content": {
                       "type": "ALIAS",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[\\u2030-\\u203E]"
+                        "type": "STRING",
+                        "value": "※"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -4113,8 +4113,8 @@
                     "content": {
                       "type": "ALIAS",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[\\u2030-\\u203E]"
+                        "type": "STRING",
+                        "value": "※"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -5796,8 +5796,8 @@
                           "content": {
                             "type": "ALIAS",
                             "content": {
-                              "type": "PATTERN",
-                              "value": "[\\u2030-\\u203E]"
+                              "type": "STRING",
+                              "value": "※"
                             },
                             "named": true,
                             "value": "ambiguous_operator"
@@ -7132,8 +7132,8 @@
                     "content": {
                       "type": "ALIAS",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[\\u2030-\\u203E]"
+                        "type": "STRING",
+                        "value": "※"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -8823,8 +8823,8 @@
                           "content": {
                             "type": "ALIAS",
                             "content": {
-                              "type": "PATTERN",
-                              "value": "[\\u2030-\\u203E]"
+                              "type": "STRING",
+                              "value": "※"
                             },
                             "named": true,
                             "value": "ambiguous_operator"
@@ -10159,8 +10159,8 @@
                     "content": {
                       "type": "ALIAS",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[\\u2030-\\u203E]"
+                        "type": "STRING",
+                        "value": "※"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -11004,8 +11004,8 @@
                     "content": {
                       "type": "ALIAS",
                       "content": {
-                        "type": "PATTERN",
-                        "value": "[\\u2030-\\u203E]"
+                        "type": "STRING",
+                        "value": "※"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -12687,8 +12687,8 @@
                           "content": {
                             "type": "ALIAS",
                             "content": {
-                              "type": "PATTERN",
-                              "value": "[\\u2030-\\u203E]"
+                              "type": "STRING",
+                              "value": "※"
                             },
                             "named": true,
                             "value": "ambiguous_operator"
@@ -16959,8 +16959,8 @@
                 "value": "[\\u2020-\\u2027]"
               },
               {
-                "type": "PATTERN",
-                "value": "[\\u2030-\\u203E]"
+                "type": "STRING",
+                "value": "※"
               },
               {
                 "type": "PATTERN",
@@ -19621,8 +19621,8 @@
           "value": "[\\u2020-\\u2027]="
         },
         {
-          "type": "PATTERN",
-          "value": "[\\u2030-\\u203E]="
+          "type": "STRING",
+          "value": "※="
         },
         {
           "type": "PATTERN",

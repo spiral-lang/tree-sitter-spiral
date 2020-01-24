@@ -1,0 +1,270 @@
+====================================
+Bind key
+===================================
+{let x=5};
+{const x=5};
+{const@sdas x=5};
+{let@sdas x=5};
+
+---
+
+(source_file
+    (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))
+    (expression_block (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))) (empty_statement)
+    (expression_block (braces_object (key_tty_value (ident) (object_key (ident)) (natural_number (arabic_natural_number))))) (empty_statement)
+    (braces_object (key_tty_value (ident) (object_key (ident)) (natural_number (arabic_natural_number))))
+ )
+
+
+
+====================================
+ident keys
+====================================
+{let x={y=2,n=6}};
+{let x={y=2,const n=6}};
+{
+  name = `John`,
+  age=30,
+  cars= {
+    car1: `Ford`,
+    car2: `BMW`,
+    car3: `Fiat`
+  }
+};
+---
+
+(source_file
+    (statements_block (variable_declaration (exportable_type_annotation (ident)) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))))))
+    (expression_block (statements_block (variable_declaration (exportable_type_annotation (ident)) (braces_object (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number)))))))
+    (empty_statement)
+    (braces_object (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (ident)) (natural_number (arabic_natural_number))) (key_tty_value (object_key (ident)) (braces_object (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (ident)) (string_literal)) (key_tty_value (object_key (ident)) (string_literal)))))
+)
+
+
+====================================
+string keys
+====================================
+{
+    `_id`: `5e1b453aef5a8175d3d8c61e`,
+    `index`: 4,
+    `guid`: `98f1bd0f-bab3-4aec-bb66-51ed273c2a00`,
+    `isActive`: true,
+    `balance`: `$1,578.25`,
+    `picture`: `http://placehold.it/32x32`,
+    `age`: 37,
+    `eyeColor`: `blue`,
+    `name`: `Lindsey Alford`,
+    `gender`: `male`,
+    `company`: `HOTCAKES`,
+    `email`: `lindseyalford@hotcakes.com`,
+    `phone`: `+1 (983) 544-3583`,
+    `address`: `347 Fiske Place, Ada, Oklahoma, 4748`,
+    `about`: `Tempor qui velit incididunt do occaecat sint quis fugiat. Qui ex fugiat amet qui eu culpa pariatur reprehenderit cupidatat cupidatat est eiusmod esse. Sunt officia cillum Lorem minim irure. Enim aute anim enim sit. Ad elit est ad id velit eu proident. Cillum occaecat ea nisi eiusmod ad.\r\n`,
+    `registered`: `2016-02-13T01:37:30 +05:00`,
+    `latitude`: 67.314338,
+    `longitude`: 118.98787,
+    `tags`: [
+      `in`,
+      `dolor`,
+      `proident`,
+      `sint`,
+      `est`,
+      `sit`,
+      `dolor`
+    ],
+    `friends`: [
+      {
+        `id`: 0,
+        `name`: `Tonia Brennan`
+      },
+      {
+        `id`: 1,
+        `name`: `Jennifer Gibson`
+      },
+      {
+        `id`: 2,
+        `name`: `Berger Gonzales`
+      }
+    ],
+    `greeting`: `Hello, Lindsey Alford! You have 8 unread messages.`,
+    `favoriteFruit`: `banana`
+ };
+
+---
+
+(source_file
+    (braces_object
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (boolean_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal (escape_sequence) (escape_sequence)))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))))
+        (key_tty_value (object_key (string_literal)) (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number))))
+        (key_tty_value (object_key (string_literal)) (square_object (string_literal) (string_literal) (string_literal) (string_literal) (string_literal) (string_literal) (string_literal)))
+        (key_tty_value (object_key (string_literal)) (square_object (braces_object
+                                                                            (key_tty_value (object_key (string_literal)) (natural_number (arabic_natural_number)))
+                                                                            (key_tty_value (object_key (string_literal)) (string_literal))
+                                                                     )
+                                                                     (braces_object
+                                                                            (key_tty_value (object_key (string_literal)) (natural_number (arabic_natural_number)))
+                                                                            (key_tty_value (object_key (string_literal)) (string_literal))
+                                                                     )
+                                                                     (braces_object
+                                                                        (key_tty_value (object_key (string_literal)) (natural_number (arabic_natural_number)))
+                                                                        (key_tty_value (object_key (string_literal)) (string_literal))
+                                                                     )
+                                                      )
+        )
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        (key_tty_value (object_key (string_literal)) (string_literal))
+        )
+)
+====================================
+number keys
+====================================
+
+{0=4,
+ 1=2,
+ 2=3,
+ 3=5
+};
+
+---
+(source_file
+    (braces_object
+        (key_tty_value (object_key (arabic_natural_number)) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (arabic_natural_number)) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (arabic_natural_number)) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (arabic_natural_number)) (natural_number (arabic_natural_number)))
+    )
+)
+
+====================================
+dot keys
+====================================
+{
+m.k.l.lo = 5,
+0.0 = i,
+o.0 = `jkljlk`,
+`lkkjl`.`ghghghg` = ihhilh+75,
+};
+
+---
+(source_file
+    (braces_object
+        (key_tty_value (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (ident))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (object_key_dot (object_key (arabic_natural_number)) (arabic_natural_number))) (ident))
+        (key_tty_value (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (string_literal))
+        (key_tty_value (object_key (object_key_dot (object_key (string_literal)) (string_literal))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))
+     )
+)
+
+====================================
+index key
+====================================
+
+{
+m.k.l[lo] = 5,
+0[0] = i,
+o.0[`dfdfg`].0 = `jkljlk`,
+`lkkjl`[`ghghghg`] = ihhilh+75,
+};
+
+---
+
+(source_file
+    (braces_object
+        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (ident))) (ident))) (square_object (ident)))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (object_key_index (object_key (arabic_natural_number)) (square_object (natural_number (arabic_natural_number))))) (ident))
+        (key_tty_value (object_key (object_key_dot (object_key (object_key_index (object_key (object_key_dot (object_key (ident)) (arabic_natural_number))) (square_object (string_literal)))) (arabic_natural_number))) (string_literal))
+        (key_tty_value (object_key (object_key_index (object_key (string_literal)) (square_object (string_literal)))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (natural_number (arabic_natural_number)))))
+    )
+)
+
+====================================
+symbol key
+====================================
+{
+'m=25,
+};
+---
+(source_file
+    (braces_object (key_tty_value (symbol) (natural_number (arabic_natural_number))))
+)
+
+====================================
+path key
+====================================
+{
+ m::lkl = 25,
+ pp::LK::Ki=12,
+ l.p::k.l.0.`454`[2112] = 5,
+ let @ g lpl::kkj = 3,
+};
+---
+
+(source_file
+    (braces_object
+        (key_tty_value (object_key (simple_path (ident) (ident))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (simple_path (simple_path (ident) (ident)) (ident))) (natural_number (arabic_natural_number)))
+        (key_tty_value (object_key (object_key_index (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (object_key_dot (object_key (ident)) (simple_path (ident) (ident)))) (ident))) (arabic_natural_number))) (string_literal))) (square_object (natural_number (arabic_natural_number))))) (natural_number (arabic_natural_number)))
+        (key_tty_value (ident) (object_key (simple_path (ident) (ident))) (natural_number (arabic_natural_number)))
+    )
+)
+
+====================================
+symbol should not support biding
+====================================
+{
+let 'm=25,
+};
+
+---
+(source_file (braces_object (ERROR) (key_tty_value (symbol) (natural_number (arabic_natural_number)))))
+
+====================================
+object support single operator
+====================================
+{ +,
+  -,
+  ==,
+  !,
+  ?,
+};
+
+---
+
+(source_file
+    (braces_object
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    (symbolic_operator (comparison_operator))
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    (symbolic_operator (ambiguous_unary_binary_operator))
+    )
+)
+
+
+====================================
+binary operator prepare
+====================================
+{ +.[_ ->  ABC, _ - {x, y, z}]};
+
+---
+
+
+(source_file
+    (braces_object (symbolic_operator (ambiguous_unary_binary_operator) (square_object (algebra_operation (binary_operation (ident) (special_operator) (ident))) (algebra_operation (binary_operation (ident) (symbolic_operator (ambiguous_unary_binary_operator)) (braces_object (key_tty_value (object_key (ident))) (ident) (ident)))))))
+)
