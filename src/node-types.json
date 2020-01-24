@@ -3243,7 +3243,21 @@
         ]
       },
       "header": {
-        "multiple": true,
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
         "required": true,
         "types": [
           {

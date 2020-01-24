@@ -19919,37 +19919,36 @@
             "type": "FIELD",
             "name": "header",
             "content": {
-              "type": "SEQ",
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "ident"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "simple_path"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "ident"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "ident"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "simple_path"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "only_export_label"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "simple_path"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "ident"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "simple_path"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "only_export_label"
                 }
               ]
             }

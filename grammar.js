@@ -1698,12 +1698,8 @@ module.exports = grammar({
             functor_without_arguments: $ => prec.left(
                 PREC.MODULE,
                 seq(
-                    field('header',
-                        seq(
-                            choice($.ident, $.simple_path),
-                            choice($.ident, $.simple_path, $.only_export_label),
-                        )
-                    ),
+                    field('header', choice($.ident, $.simple_path)),
+                    field('name', choice($.ident, $.simple_path, $.only_export_label)),
                     field('body', $.statements_block)
                 )
             ),
