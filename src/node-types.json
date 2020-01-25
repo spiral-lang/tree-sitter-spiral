@@ -26,15 +26,7 @@
         "named": true
       },
       {
-        "type": "algebra_operation_ending_with_block",
-        "named": true
-      },
-      {
         "type": "ambiguous_algebra_operation",
-        "named": true
-      },
-      {
-        "type": "ambiguous_algebra_operation_ending_with_block",
         "named": true
       },
       {
@@ -178,10 +170,6 @@
         "named": true
       },
       {
-        "type": "unary_operation_prefix_ending_with_block",
-        "named": true
-      },
-      {
         "type": "use_expression",
         "named": true
       },
@@ -195,6 +183,122 @@
       },
       {
         "type": "yield_expression",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_expression_ending_with_ident",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "algebra_operation_ending_with_ident",
+        "named": true
+      },
+      {
+        "type": "ambiguous_algebra_operation_ending_with_ident",
+        "named": true
+      },
+      {
+        "type": "hash_tag_expression_ending_with_ident",
+        "named": true
+      },
+      {
+        "type": "ident",
+        "named": true
+      },
+      {
+        "type": "product_expression_ending_with_ident",
+        "named": true
+      },
+      {
+        "type": "range_expression_ending_with_ident",
+        "named": true
+      },
+      {
+        "type": "simple_path",
+        "named": true
+      },
+      {
+        "type": "unary_operation_prefix_ending_with_ident",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_expression_not_ending_with_block",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_literal",
+        "named": true
+      },
+      {
+        "type": "algebra_operation_not_ending_with_block",
+        "named": true
+      },
+      {
+        "type": "ambiguous_algebra_operation_NOT_ending_with_block",
+        "named": true
+      },
+      {
+        "type": "bracket_object",
+        "named": true
+      },
+      {
+        "type": "call",
+        "named": true
+      },
+      {
+        "type": "dot_expression",
+        "named": true
+      },
+      {
+        "type": "functor_literal_signature",
+        "named": true
+      },
+      {
+        "type": "hash_tag_expression_not_ending_with_block",
+        "named": true
+      },
+      {
+        "type": "ident",
+        "named": true
+      },
+      {
+        "type": "index_expression",
+        "named": true
+      },
+      {
+        "type": "product_expression",
+        "named": true
+      },
+      {
+        "type": "range_expression",
+        "named": true
+      },
+      {
+        "type": "simple_path",
+        "named": true
+      },
+      {
+        "type": "square_object",
+        "named": true
+      },
+      {
+        "type": "symbol",
+        "named": true
+      },
+      {
+        "type": "try_call",
+        "named": true
+      },
+      {
+        "type": "unary_operation_postfix",
+        "named": true
+      },
+      {
+        "type": "unary_operation_prefix",
         "named": true
       }
     ]
@@ -259,7 +363,7 @@
     }
   },
   {
-    "type": "algebra_operation_ending_with_block",
+    "type": "algebra_operation_ending_with_ident",
     "named": true,
     "fields": {},
     "children": {
@@ -267,11 +371,11 @@
       "required": true,
       "types": [
         {
-          "type": "binary_operation_ending_with_block",
+          "type": "binary_operation_ending_with_ident",
           "named": true
         },
         {
-          "type": "functor_binary_operation_ending_with_block",
+          "type": "functor_binary_operation_ending_with_ident",
           "named": true
         }
       ]
@@ -579,15 +683,7 @@
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -621,71 +717,7 @@
         "required": false,
         "types": [
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -703,7 +735,7 @@
     }
   },
   {
-    "type": "ambiguous_algebra_operation_ending_with_block",
+    "type": "ambiguous_algebra_operation_ending_with_ident",
     "named": true,
     "fields": {
       "expression": {
@@ -711,75 +743,7 @@
         "required": false,
         "types": [
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "braces_object",
-            "named": true
-          },
-          {
-            "type": "build",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "for_expression",
-            "named": true
-          },
-          {
-            "type": "functor_literal_expression",
-            "named": true
-          },
-          {
-            "type": "functor_without_arguments",
-            "named": true
-          },
-          {
-            "type": "hash_tag_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "object_declaration",
-            "named": true
-          },
-          {
-            "type": "spx_expression",
-            "named": true
-          },
-          {
-            "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "use_expression_block",
-            "named": true
-          },
-          {
-            "type": "while_expression",
+            "type": "_expression_ending_with_ident",
             "named": true
           }
         ]
@@ -813,75 +777,7 @@
         "required": false,
         "types": [
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "braces_object",
-            "named": true
-          },
-          {
-            "type": "build",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "for_expression",
-            "named": true
-          },
-          {
-            "type": "functor_literal_expression",
-            "named": true
-          },
-          {
-            "type": "functor_without_arguments",
-            "named": true
-          },
-          {
-            "type": "hash_tag_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "object_declaration",
-            "named": true
-          },
-          {
-            "type": "spx_expression",
-            "named": true
-          },
-          {
-            "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "use_expression_block",
-            "named": true
-          },
-          {
-            "type": "while_expression",
+            "type": "_expression_ending_with_ident",
             "named": true
           }
         ]
@@ -1014,14 +910,6 @@
             "named": false
           },
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
             "type": "assign",
             "named": true
           },
@@ -1075,10 +963,6 @@
           },
           {
             "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
             "named": true
           },
           {
@@ -1258,71 +1142,7 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -1412,7 +1232,7 @@
     }
   },
   {
-    "type": "binary_operation_ending_with_block",
+    "type": "binary_operation_ending_with_ident",
     "named": true,
     "fields": {
       "left": {
@@ -1444,75 +1264,7 @@
         "required": true,
         "types": [
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "braces_object",
-            "named": true
-          },
-          {
-            "type": "build",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "for_expression",
-            "named": true
-          },
-          {
-            "type": "functor_literal_expression",
-            "named": true
-          },
-          {
-            "type": "functor_without_arguments",
-            "named": true
-          },
-          {
-            "type": "hash_tag_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "object_declaration",
-            "named": true
-          },
-          {
-            "type": "spx_expression",
-            "named": true
-          },
-          {
-            "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "use_expression_block",
-            "named": true
-          },
-          {
-            "type": "while_expression",
+            "type": "_expression_ending_with_ident",
             "named": true
           }
         ]
@@ -1850,14 +1602,6 @@
             "named": false
           },
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
             "type": "braces_object",
             "named": true
           },
@@ -1907,10 +1651,6 @@
           },
           {
             "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
             "named": true
           },
           {
@@ -2389,14 +2129,6 @@
       "required": true,
       "types": [
         {
-          "type": "algebra_operation_ending_with_block",
-          "named": true
-        },
-        {
-          "type": "ambiguous_algebra_operation_ending_with_block",
-          "named": true
-        },
-        {
           "type": "braces_object",
           "named": true
         },
@@ -2449,10 +2181,6 @@
           "named": true
         },
         {
-          "type": "unary_operation_prefix_ending_with_block",
-          "named": true
-        },
-        {
           "type": "use_expression_block",
           "named": true
         },
@@ -2492,71 +2220,11 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -2729,71 +2397,7 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -2827,7 +2431,7 @@
     }
   },
   {
-    "type": "functor_binary_operation_ending_with_block",
+    "type": "functor_binary_operation_ending_with_ident",
     "named": true,
     "fields": {
       "left": {
@@ -2863,75 +2467,7 @@
         "required": true,
         "types": [
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "braces_object",
-            "named": true
-          },
-          {
-            "type": "build",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "for_expression",
-            "named": true
-          },
-          {
-            "type": "functor_literal_expression",
-            "named": true
-          },
-          {
-            "type": "functor_without_arguments",
-            "named": true
-          },
-          {
-            "type": "hash_tag_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "object_declaration",
-            "named": true
-          },
-          {
-            "type": "spx_expression",
-            "named": true
-          },
-          {
-            "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "use_expression_block",
-            "named": true
-          },
-          {
-            "type": "while_expression",
+            "type": "_expression_ending_with_ident",
             "named": true
           }
         ]
@@ -2987,71 +2523,11 @@
             "named": false
           },
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -3103,8 +2579,12 @@
         "required": false,
         "types": [
           {
-            "type": "where_expression",
+            "type": "_expression_not_ending_with_block",
             "named": true
+          },
+          {
+            "type": "where",
+            "named": false
           }
         ]
       }
@@ -3123,71 +2603,11 @@
             "named": false
           },
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -3221,8 +2641,12 @@
         "required": false,
         "types": [
           {
-            "type": "where_expression",
+            "type": "_expression_not_ending_with_block",
             "named": true
+          },
+          {
+            "type": "where",
+            "named": false
           }
         ]
       }
@@ -3295,14 +2719,6 @@
         "required": true,
         "types": [
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
             "type": "braces_object",
             "named": true
           },
@@ -3355,10 +2771,6 @@
             "named": true
           },
           {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
             "type": "use_expression_block",
             "named": true
           },
@@ -3397,6 +2809,36 @@
     }
   },
   {
+    "type": "hash_tag_expression_ending_with_ident",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "decorator",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "hash_tag_expression_not_ending_with_block",
     "named": true,
     "fields": {
@@ -3415,71 +2857,7 @@
         "required": false,
         "types": [
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -3528,71 +2906,11 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -3792,71 +3110,11 @@
             "named": false
           },
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -3919,76 +3177,26 @@
           }
         ]
       },
+      "pattern": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_pattern",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]
@@ -4127,8 +3335,12 @@
         "required": false,
         "types": [
           {
-            "type": "where_expression",
+            "type": "_expression_not_ending_with_block",
             "named": true
+          },
+          {
+            "type": "where",
+            "named": false
           }
         ]
       }
@@ -4140,7 +3352,7 @@
     "fields": {
       "left": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "ident",
@@ -4154,7 +3366,7 @@
       },
       "path_sep": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "::",
@@ -4164,7 +3376,7 @@
       },
       "right": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "angle_object",
@@ -4182,92 +3394,11 @@
       "required": false,
       "types": [
         {
-          "type": "arabic_natural_number",
-          "named": true
-        },
-        {
           "type": "currency",
           "named": true
         },
         {
-          "type": "ident",
-          "named": true
-        },
-        {
           "type": "infinite",
-          "named": true
-        },
-        {
-          "type": "object_key_dot",
-          "named": true
-        },
-        {
-          "type": "object_key_index",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "object_key_dot",
-    "named": true,
-    "fields": {
-      "field": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "arabic_natural_number",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "string_literal",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "object_key",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "object_key_index",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "object_key",
-          "named": true
-        },
-        {
-          "type": "square_object",
           "named": true
         }
       ]
@@ -4542,6 +3673,33 @@
     }
   },
   {
+    "type": "product_expression_ending_with_ident",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "natural_number",
+          "named": true
+        },
+        {
+          "type": "simple_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "range_expression",
     "named": true,
     "fields": {
@@ -4550,7 +3708,55 @@
         "required": true,
         "types": [
           {
-            "type": "_expression",
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "bracket_object",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "product_expression",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          },
+          {
+            "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          },
+          {
+            "type": "try_call",
+            "named": true
+          },
+          {
+            "type": "unary_operation_postfix",
+            "named": true
+          },
+          {
+            "type": "unary_operation_prefix",
             "named": true
           }
         ]
@@ -4574,7 +3780,147 @@
         "required": true,
         "types": [
           {
-            "type": "_expression",
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "bracket_object",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "product_expression",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          },
+          {
+            "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          },
+          {
+            "type": "try_call",
+            "named": true
+          },
+          {
+            "type": "unary_operation_postfix",
+            "named": true
+          },
+          {
+            "type": "unary_operation_prefix",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "range_expression_ending_with_ident",
+    "named": true,
+    "fields": {
+      "from": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "bracket_object",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "product_expression",
+            "named": true
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          },
+          {
+            "type": "square_object",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          },
+          {
+            "type": "try_call",
+            "named": true
+          },
+          {
+            "type": "unary_operation_postfix",
+            "named": true
+          },
+          {
+            "type": "unary_operation_prefix",
+            "named": true
+          }
+        ]
+      },
+      "include": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "..",
+            "named": false
+          },
+          {
+            "type": "...",
+            "named": false
+          }
+        ]
+      },
+      "to": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "simple_path",
             "named": true
           }
         ]
@@ -5038,6 +4384,10 @@
           {
             "type": "object_key",
             "named": true
+          },
+          {
+            "type": "spread_element",
+            "named": true
           }
         ]
       },
@@ -5360,75 +4710,15 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
+            "type": "_expression_not_ending_with_block",
             "named": true
           },
           {
             "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
             "named": true
           }
         ]
@@ -5606,7 +4896,7 @@
     }
   },
   {
-    "type": "unary_operation_prefix_ending_with_block",
+    "type": "unary_operation_prefix_ending_with_ident",
     "named": true,
     "fields": {
       "expression": {
@@ -5614,75 +4904,11 @@
         "required": true,
         "types": [
           {
-            "type": "algebra_operation_ending_with_block",
+            "type": "ident",
             "named": true
           },
           {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "braces_object",
-            "named": true
-          },
-          {
-            "type": "build",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "for_expression",
-            "named": true
-          },
-          {
-            "type": "functor_literal_expression",
-            "named": true
-          },
-          {
-            "type": "functor_without_arguments",
-            "named": true
-          },
-          {
-            "type": "hash_tag_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "object_declaration",
-            "named": true
-          },
-          {
-            "type": "spx_expression",
-            "named": true
-          },
-          {
-            "type": "statements_block",
-            "named": true
-          },
-          {
-            "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "use_expression_block",
-            "named": true
-          },
-          {
-            "type": "while_expression",
+            "type": "simple_path",
             "named": true
           }
         ]
@@ -5899,14 +5125,6 @@
             "named": false
           },
           {
-            "type": "algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_ending_with_block",
-            "named": true
-          },
-          {
             "type": "assign",
             "named": true
           },
@@ -5963,10 +5181,6 @@
             "named": true
           },
           {
-            "type": "unary_operation_prefix_ending_with_block",
-            "named": true
-          },
-          {
             "type": "use_expression_block",
             "named": true
           },
@@ -5989,85 +5203,6 @@
     }
   },
   {
-    "type": "where_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "algebra_operation_not_ending_with_block",
-          "named": true
-        },
-        {
-          "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-          "named": true
-        },
-        {
-          "type": "bracket_object",
-          "named": true
-        },
-        {
-          "type": "call",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
-          "named": true
-        },
-        {
-          "type": "hash_tag_expression_not_ending_with_block",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "product_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "try_call",
-          "named": true
-        },
-        {
-          "type": "unary_operation_postfix",
-          "named": true
-        },
-        {
-          "type": "unary_operation_prefix",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "while_expression",
     "named": true,
     "fields": {
@@ -6086,71 +5221,11 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
+            "type": "_expression_ending_with_ident",
             "named": true
           },
           {
-            "type": "algebra_operation_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ambiguous_algebra_operation_NOT_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "hash_tag_expression_not_ending_with_block",
-            "named": true
-          },
-          {
-            "type": "ident",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "product_expression",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          },
-          {
-            "type": "square_object",
-            "named": true
-          },
-          {
-            "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "try_call",
-            "named": true
-          },
-          {
-            "type": "unary_operation_postfix",
-            "named": true
-          },
-          {
-            "type": "unary_operation_prefix",
+            "type": "_expression_not_ending_with_block",
             "named": true
           }
         ]

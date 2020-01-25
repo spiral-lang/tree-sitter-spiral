@@ -93,38 +93,40 @@
 (object_declaration header:(*) @hof)
 (functor_literal_expression header:(*) @hof)
 (functor_literal_signature header:(*) @hof)
+(functor_without_arguments header:(*) @hof)
 
-"{" @delimitier
-"}" @delimitier
-";" @delimitier
-"," @delimitier
-"(" @delimitier
-")" @delimitier
-"[" @delimitier
-"]" @delimitier
-":" @delimitier
-"." @delimitier
+"{" @delimiter
+"}" @delimiter
+";" @delimiter
+"," @delimiter
+"(" @delimiter
+")" @delimiter
+"[" @delimiter
+"]" @delimiter
+":" @delimiter
+"." @delimiter
 (template_substitution)
-(document (doc_fragment "<" @delimitier))
-(document (doc_fragment "/" @delimitier))
-(document (doc_fragment ">" @delimitier))
-(spx_opening_element "<" @delimitier)
-(spx_opening_element ">" @delimitier)
-(spx_closing_element "<" @delimitier)
-(spx_closing_element ">" @delimitier)
-(spx_closing_element "/" @delimitier)
-(spx_self_closing_element "/" @delimitier)
-(spx_self_closing_element "<" @delimitier)
-(spx_self_closing_element "<" @delimitier)
-(spx_fragment "<" @delimitier)
-(spx_fragment ">" @delimitier)
-(spx_fragment "/" @delimitier)
-(angle_object "<" @delimitier)
-(angle_object ">" @delimitier)
-(assign) @delimitier
-(simple_path "::" @delimitier)
-(only_export_label "::" @delimitier)
-(only_export_label ":" @delimitier)
-(label "::" @delimitier)
-(label ":" @delimitier)
-(arrow) @delimitier.special
+(document (doc_fragment "<" @delimiter))
+(document (doc_fragment "/" @delimiter))
+(document (doc_fragment ">" @delimiter))
+(spx_opening_element "<" @delimiter)
+(spx_opening_element ">" @delimiter)
+(spx_closing_element "<" @delimiter)
+(spx_closing_element ">" @delimiter)
+(spx_closing_element "/" @delimiter)
+(spx_self_closing_element "/" @delimiter)
+(spx_self_closing_element "<" @delimiter)
+(spx_self_closing_element "<" @delimiter)
+(spx_fragment "<" @delimiter)
+(spx_fragment ">" @delimiter)
+(spx_fragment "/" @delimiter)
+(angle_object "<" @delimiter)
+(angle_object ">" @delimiter)
+(assign) @delimiter
+(simple_path "::" @delimiter)
+(only_export_label "::" @delimiter)
+(only_export_label ":" @delimiter)
+(label "::" @delimiter)
+(label ":" @delimiter)
+(arrow) @delimiter.special
+(currency) @currency

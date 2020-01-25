@@ -30,13 +30,11 @@
 (for_expression
   pattern: (object_pattern (* (ident) @local.definition) ) )
 (for_expression
-  pattern: (object_pattern (* (key_tty_value (object_key (ident)  @local.definition)))))
+  pattern: (object_pattern (* (key_tty_value (object_key)  @local.definition))))
 
-(key_tty_value (binding type: "let") key:(object_key (ident)@local.definition))
-(key_tty_value (binding type: "const") key:(object_key (ident)@local.definition))
-(key_tty_value (binding rename: "@") key:(object_key (ident)@local.definition))
-
+(key_tty_value (binding type: "let") key:(object_key) @local.definition)
+(key_tty_value (binding type: "const") key:(object_key) @local.definition)
+(key_tty_value (binding rename: "@") key:(object_key) @local.definition)
 ; References
 ;------------
 
-(ident) @local.reference

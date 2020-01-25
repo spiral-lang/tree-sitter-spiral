@@ -36,14 +36,10 @@ const POSITIVE_PREC = [
     'AMBIGUOUS_UNARY_POSTFIX',
     'PREFIX',
     'POSTFIX',
-    'PRODUCT',
-    'FUNCTOR_WITHOUT_ARGUMENTS',
-    'FUNCTOR_DEFINITION',
     'INDEX',
     'BUILD',
     'STATEMENT_BLOCK',
     'CALL',
-    'EXPRESSION_NOT_ENDING_WITH_BLOCK',
     'TRY_CALL',
     'SIMPLE_PATH',
     'DOT_EXPRESSION',
@@ -51,6 +47,11 @@ const POSITIVE_PREC = [
     'STRING',
     'FRACTIONAL',
     'EXPORT_SIGN',
+    'FUNCTOR_DECLARATION',
+    'PRODUCT',
+
+
+
 ];
 
 PREC = {
@@ -83,15 +84,15 @@ PREC = {
     BINARY: 0,
     AMBIGUOUS_BINARY_NOT_BLOCK: 0,
     AMBIGUOUS_BINARY: 0,
+    EXPRESSION_NOT_ENDING_WITH_BLOCK: 0,
     HASH_TAG: 0,
     AMBIGUOUS_UNARY_PREFIX: 0,
     AMBIGUOUS_UNARY_POSTFIX: 0,
     PREFIX: 0,
     POSTFIX: 0,
-    FUNCTOR_WITHOUT_ARGUMENTS: 0,
-    FUNCTOR_DEFINITION: 0,
     RANGE: 0,
     BUILD: 0,
+    FUNCTOR_DECLARATION: 0,
     CALL: 0,
     TRY_CALL: 0,
     SPX: 0,
@@ -102,7 +103,7 @@ PREC = {
     SIMPLE_PATH: 0,
     INDEX: 0,
     PRODUCT: 0,
-    EXPRESSION_NOT_ENDING_WITH_BLOCK: 0,
+    SIGNATURE: 0,
 };
 
 NEGATIVE_PREC.reverse();
@@ -113,6 +114,8 @@ NEGATIVE_PREC.map((x, index) => {
 POSITIVE_PREC.map((x, index) => {
     PREC[x] = index * 10;
 });
+
+PREC.FUNCTOR_DECLARATION = PREC.CALL;
 
 ambiguous_unary_binary_operator_list = [
     '^',
@@ -280,12 +283,6 @@ module.exports = grammar({
             [$.try_expression, $.try_call],
             [$.hash_tag_expression, $.expression_block],
             [$._expression, $.expression_block],
-            [$.natural_number, $.object_key],
-            [$.object_key, $.lambda_literal_expression],
-            [$.object_key, $._literal],
-            [$.object_key, $.object_key_dot],
-            [$.object_key, $.exportable_type_annotation],
-            [$.natural_number, $.fraction_literal, $.object_key],
             [$.spread_element, $.hash_tag_expression, $.expression_block],
             [$.spread_element, $.hash_tag_expression],
             [$.unary_operation_postfix, $.unary_operation_prefix, $.binary_operation],
@@ -300,7 +297,6 @@ module.exports = grammar({
             [$._expression, $.variable_declaration],
             [$.binding, $.variable_declaration],
             [$.fraction_literal, $.dot_expression],
-            [$.object_key_dot, $.dot_expression],
             [$.decorator, $.index_expression],
             [$._functor_binary_item, $.lambda_literal_expression],
             [$.all_operators_preprocessor],
@@ -308,55 +304,64 @@ module.exports = grammar({
             [$.functor_binary_operation],
             [$.binary_operation],
             [$.decorator],
-            [$._expression, $._functor_declaration, $.expression_block],
-            [$._expression, $._functor_declaration],
             [$._expression, $.assignment_statement],
-            [$._expression, $._functor_declaration, $.assignment_statement],
             [$.use_expression, $.use_expression_block],
             [$.hash_tag_expression, $.hash_tag_ending_with_block],
             [$._expression, $.compound_assigment],
-            [$._expression, $._functor_declaration, $.compound_assigment],
             [$.call, $.variable_declaration],
-            [$._expression, $.variable_declaration, $._functor_declaration],
-            [$.binary_operation_ending_with_block, $._expression, $._functor_declaration],
-            [$.functor_binary_operation_ending_with_block],
-            [$.functor_binary_operation_ending_with_block, $._expression],
-            [$.functor_binary_operation_ending_with_block, $._expression, $._functor_declaration],
             [$.binding],
             [$.simple_path, $.binding],
             [$.call, $.functor_literal_expression, $.functor_literal_signature, $.lambda_literal_expression, $.label],
             [$.key_tty_value, $._expression],
-            [$.object_key, $._expression],
             [$._expression, $.do_statement],
             [$.unary_operation_prefix, $.unary_operation_prefix_ending_with_block, $._expression],
             [$.unary_operation_prefix, $.unary_operation_prefix_ending_with_block],
             [$.key_tty_value, $._expression, $.use_tree],
-            [$.object_key, $._expression, $.use_tree],
             [$.variable_declaration, $.index_expression],
             [$.simple_path, $.use_tree],
             [$.use_expression, $.use_expression_block],
             [$.use_tree, $.use_expression, $.use_expression_block],
             [$.build, $._expression],
             [$._expression, $.lambda_literal_expression],
-            [$.binary_operation_ending_with_block, $._expression, $.lambda_literal_expression],
             [$.call, $.expression_block],
             [$.index_expression, $.expression_block],
             [$.key_tty_value],
             [$._expression, $.use_tree],
-            [$.binary_operation_ending_with_block, $._expression],
             [$.unary_operation_prefix, $.functor_literal_expression, $.functor_literal_signature, $.lambda_literal_expression],
             [$.call, $.unary_operation_prefix, $.functor_literal_expression, $.functor_literal_signature, $.lambda_literal_expression],
             [$.call, $.unary_operation_prefix, $.functor_literal_expression, $.functor_literal_signature],
-            [$._tty_not_ending_with_block, $.lambda_literal_expression],
-            [$._expression, $._tty_not_ending_with_block],
             [$.ambiguous_algebra_operation, $.ambiguous_algebra_operation_NOT_ending_with_block],
             [$.hash_tag_expression, $.hash_tag_expression_not_ending_with_block],
-            [$._expression, $.where_expression],
             [$.hash_tag_expression, $.hash_tag_expression_not_ending_with_block, $.hash_tag_ending_with_block],
             [$.binary_operation_NOT_ending_with_block, $._expression],
             [$.functor_binary_operation_NOT_ending_with_block],
             [$.functor_binary_operation_NOT_ending_with_block, $._expression],
             [$.operator_as_expression],
+            [$._optional_value_ktv, $.lambda_literal_expression],
+            [$.call, $.unary_operation_prefix, $.functor_literal_signature, $.lambda_literal_expression],
+            [$.call, $.unary_operation_prefix, $.functor_literal_signature],
+            [$.object_pattern, $.match_expression],
+            [$.functor_literal_signature, $.algebra_operation],
+            [$.lambda_literal_expression],
+            [$.build, $.hash_tag_expression_not_ending_with_block, $.object_pattern],
+            [$.build, $._expression_not_ending_with_block, $.object_pattern],
+            [$._expression, $._expression_not_ending_with_block],
+            [$._expression, $.try_call],
+            [$._expression_not_ending_with_block, $.try_call],
+            [$._expression_not_ending_with_block, $._expression_ending_with_ident],
+            [$._expression_not_ending_with_block, $.hash_tag_expression_ending_with_ident, $.object_pattern],
+            [$.build, $._expression_not_ending_with_block, $.hash_tag_expression_ending_with_ident, $.object_pattern],
+            [$.unary_operation_prefix, $.unary_operation_prefix_ending_with_ident],
+            [$._expression_not_ending_with_block, $.binary_operation_ending_with_ident],
+            [$.unary_operation_prefix, $._expression, $.unary_operation_prefix_ending_with_ident],
+            [$._expression, $._expression_not_ending_with_block, $.binary_operation_ending_with_ident],
+            [$._expression_not_ending_with_block, $._tty_not_ending_with_block],
+            [$._expression, $._expression_not_ending_with_block, $._tty_not_ending_with_block],
+            [$.product_expression, $._tty_not_ending_with_block],
+            [$.range_expression, $._tty_not_ending_with_block],
+            [$.product_expression, $.product_expression_ending_with_ident],
+            [$._expression, $._expression_not_ending_with_block, $._expression_ending_with_ident],
+            [ $.range_expression, $.range_expression_ending_with_ident],
 
 
         ],
@@ -365,12 +370,16 @@ module.exports = grammar({
 
         supertypes: $ => [
             $._expression,
+            $._expression_not_ending_with_block,
             $._literal,
             $._pattern,
             $._declarative_pattern,
+            $._expression_ending_with_ident,
+
         ],
 
         inline: $ => [
+            $._functor_declaration,
             $._inner_object,
             $._expression_ending_with_block,
             $._spx_attribute,
@@ -381,7 +390,7 @@ module.exports = grammar({
             $._functor_binary_item,
             $._simple_expression,
             $._expression_with_braces,
-            $._expression_not_ending_with_block,
+            $._where_expression,
         ],
 
         rules: {
@@ -715,36 +724,6 @@ module.exports = grammar({
                 choice($._expression_with_braces, $._simple_expression)
             ),
 
-            object_key: $ => prec.left(
-                choice(
-                    $.ident,
-                    $.simple_path,
-                    $.arabic_natural_number,
-                    $.string_literal,
-                    $.object_key_index,
-                    $.object_key_dot,
-                )
-            ),
-
-            object_key_index: $ => prec.left(
-                seq(
-                    $.object_key,
-                    $.square_object
-                )
-            ),
-
-            object_key_dot: $ => prec.left(seq(
-                field('value', $.object_key),
-                '.',
-                field('field', choice(
-                    $.ident,
-                    $.string_literal,
-                    $.arabic_natural_number,
-                    $.simple_path,
-                    )
-                )
-            )),
-
 
             _ktv_head_symbol: $ => field('key', $.symbol),
 
@@ -758,7 +737,7 @@ module.exports = grammar({
 
             _ktv_head_ident: $ => seq(
                 optional($.binding),
-                field('key', choice($.object_key, $.spread_element))
+                field('key', choice(alias($._simple_expression, $.object_key), $.spread_element))
             ),
 
             _ktv_head: $ => choice($._ktv_head_symbol, $._ktv_head_ident),
@@ -783,7 +762,7 @@ module.exports = grammar({
                         choice(
                             seq(
                                 $.binding,
-                                field('key', choice($.object_key, $.spread_element))
+                                field('key', choice(alias($._simple_expression, $.object_key), $.spread_element))
                             ),
                             $.spread_element
                         ),
@@ -929,7 +908,7 @@ module.exports = grammar({
             ),
 
 
-            product_expression: $ => prec(PREC.PRODUCT,
+            product_expression: $ => prec.left(PREC.PRODUCT,
                 seq(
                     $._number,
                     choice(
@@ -985,40 +964,6 @@ module.exports = grammar({
                 )
             ),
 
-            ambiguous_algebra_operation_ending_with_block: $ => prec.left(
-                PREC.AMBIGUOUS_BINARY, choice(
-                    //prefix
-                    choice(...ambiguous_unary_binary_operator_list
-                        .map(operator =>
-                            seq(
-                                field('symbol', alias(operator, $.ambiguous_operator)),
-                                field('expression', $._expression_ending_with_block),
-                            )
-                        )
-                    ),
-                    choice(...ambiguous_unary_binary_operator_list
-                        .map(operator =>
-                            seq(
-                                field('left', $._expression),
-                                field('operator',
-                                    seq(
-                                        field('symbol', alias(operator, $.ambiguous_operator)),
-                                        field('preprocessor',
-                                            optional(
-                                                seq(
-                                                    '.',
-                                                    $.square_object,
-                                                )
-                                            )
-                                        )
-                                    )
-                                ),
-                                field('right', $._expression_ending_with_block),
-                            )
-                        )
-                    ),
-                )
-            ),
 
             ambiguous_algebra_operation_NOT_ending_with_block: $ => prec.left(
                 PREC.AMBIGUOUS_BINARY - 1, choice(
@@ -1139,54 +1084,6 @@ module.exports = grammar({
                 );
             },
 
-            binary_operation_ending_with_block: $ => {
-                const operators =
-                    pipe_operator_table
-                        .concat(morph_operator_table)
-                        .concat(on_operator_table)
-                        .concat(comparison_operator_table)
-                        .concat(other_binary_operators_table);
-
-
-                return choice(
-                    ...operators.map(
-                        ([precedence, operator, has_preprocessor, associativity]) => {
-                            let operator_field;
-                            if (has_preprocessor) {
-                                operator_field = seq(
-                                    field('symbol', operator),
-                                    field('preprocessor',
-                                        optional(
-                                            seq(
-                                                '.',
-                                                $.square_object,
-                                            )
-                                        )
-                                    )
-                                )
-                            } else {
-                                operator_field = field('symbol', operator);
-                            }
-                            let inner = seq(
-                                field('left', $._expression),
-                                operator_field,
-                                field('right', $._expression_ending_with_block),
-                            );
-                            if (associativity === 'right') {
-                                return prec.right(
-                                    precedence,
-                                    inner
-                                )
-                            }
-                            return prec.left(
-                                precedence,
-                                inner
-                            )
-                        }
-                    )
-                );
-            },
-
             binary_operation_NOT_ending_with_block: $ => {
                 const operators =
                     pipe_operator_table
@@ -1267,33 +1164,7 @@ module.exports = grammar({
                     )
                 );
             },
-            functor_binary_operation_ending_with_block: $ => {
 
-                return choice(...functor_binary_table.map(
-                    ([precedence, operator, has_preprocessor]) =>
-                        prec.left(
-                            precedence,
-                            seq(
-                                field('left', $._functor_binary_item),
-                                field('operator',
-                                    seq(
-                                        field('symbol', operator),
-                                        field('preprocessor',
-                                            optional(
-                                                seq(
-                                                    '.',
-                                                    $.square_object,
-                                                )
-                                            )
-                                        )
-                                    )
-                                ),
-                                field('right', $._expression_ending_with_block),
-                            )
-                        )
-                    )
-                );
-            },
             functor_binary_operation_NOT_ending_with_block: $ => {
 
                 return choice(...functor_binary_table.map(
@@ -1327,10 +1198,6 @@ module.exports = grammar({
                 $.functor_binary_operation,
             ),
 
-            algebra_operation_ending_with_block: $ => choice(
-                $.binary_operation_ending_with_block,
-                $.functor_binary_operation_ending_with_block,
-            ),
 
 
             algebra_operation_not_ending_with_block: $ => choice(
@@ -1358,9 +1225,9 @@ module.exports = grammar({
 
             range_expression: $ => prec.left(
                 PREC.RANGE, seq(
-                    field('from', $._expression),
+                    field('from', choice($.product_expression, $._simple_expression)),
                     field('include', choice('..', '...')),
-                    field('to', $._expression),
+                    field('to', choice($.product_expression, $._simple_expression)),
                 )
             ),
 
@@ -1429,7 +1296,7 @@ module.exports = grammar({
             ),
 
 
-            spx_element_name: $ => seq(optional('::'), $.object_key),
+            spx_element_name: $ => seq(optional('::'), alias($._simple_expression, $.object_key)),
 
 
             _spx_inner_expression: $ => choice(
@@ -1448,7 +1315,7 @@ module.exports = grammar({
             ),
 
             spx_key_tty_value: $ => prec.left(seq(
-                field('key', $.object_key),
+                field('key', choice(alias($._simple_expression, $.object_key), $.spread_element)),
                 field('type', optional($._spx_tty)),
                 field('value', optional($._spx_optional_value))
             )),
@@ -1461,7 +1328,7 @@ module.exports = grammar({
                 $.product_expression,
                 $.ambiguous_algebra_operation,
                 $.algebra_operation,
-                prec.left(1, $._functor_declaration),
+                $._functor_declaration,
                 $._expression_ending_with_block,
                 $._prefix_expression,
                 $.hash_tag_expression,
@@ -1474,16 +1341,180 @@ module.exports = grammar({
                     field('right', optional($._expression_not_ending_with_block))
                 )
             ),
-            _expression_not_ending_with_block: $ => prec(PREC.EXPRESSION_NOT_ENDING_WITH_BLOCK, choice(
+
+            _expression_not_ending_with_block: $ => choice(
                 $._simple_expression,
-                $.range_expression,
                 $.product_expression,
+                $.range_expression,
                 $.hash_tag_expression_not_ending_with_block,
                 $.algebra_operation_not_ending_with_block,
                 $.ambiguous_algebra_operation_NOT_ending_with_block,
-            )),
+                $.functor_literal_signature,
+                $.try_call,
+            ),
 
-            _tty_not_ending_with_block: $ => seq(':', $._expression_not_ending_with_block),
+            range_expression_ending_with_ident: $ => prec.left(
+                PREC.RANGE, seq(
+                    field('from', choice($.product_expression, $._simple_expression)),
+                    field('include', choice('..', '...')),
+                    field('to', choice($.ident, $.simple_path)),
+                )
+            ),
+            hash_tag_expression_ending_with_ident: $ => prec.right(
+                PREC.HASH_TAG,
+                seq(
+                    field('left', repeat1($.decorator)),
+                    field('right', choice($.ident, $.simple_path))
+                )
+            ),
+
+            functor_binary_operation_ending_with_ident: $ => {
+
+                return choice(...functor_binary_table.map(
+                    ([precedence, operator, has_preprocessor]) =>
+                        prec.left(
+                            precedence,
+                            seq(
+                                field('left', $._functor_binary_item),
+                                field('operator',
+                                    seq(
+                                        field('symbol', operator),
+                                        field('preprocessor',
+                                            optional(
+                                                seq(
+                                                    '.',
+                                                    $.square_object,
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                field('right', $._expression_ending_with_ident),
+                            )
+                        )
+                    )
+                );
+            },
+
+            binary_operation_ending_with_ident: $ => {
+                const operators =
+                    pipe_operator_table
+                        .concat(morph_operator_table)
+                        .concat(on_operator_table)
+                        .concat(comparison_operator_table)
+                        .concat(other_binary_operators_table);
+
+
+                return choice(
+                    ...operators.map(
+                        ([precedence, operator, has_preprocessor, associativity]) => {
+                            let operator_field;
+                            if (has_preprocessor) {
+                                operator_field = seq(
+                                    field('symbol', operator),
+                                    field('preprocessor',
+                                        optional(
+                                            seq(
+                                                '.',
+                                                $.square_object,
+                                            )
+                                        )
+                                    )
+                                )
+                            } else {
+                                operator_field = field('symbol', operator);
+                            }
+                            let inner = seq(
+                                field('left', $._expression),
+                                operator_field,
+                                field('right', $._expression_ending_with_ident),
+                            );
+                            if (associativity === 'right') {
+                                return prec.right(
+                                    precedence,
+                                    inner
+                                )
+                            }
+                            return prec.left(
+                                precedence,
+                                inner
+                            )
+                        }
+                    )
+                );
+            },
+            algebra_operation_ending_with_ident: $ => choice(
+                $.binary_operation_ending_with_ident,
+                $.functor_binary_operation_ending_with_ident,
+            ),
+
+
+            ambiguous_algebra_operation_ending_with_ident: $ => prec.left(
+                PREC.AMBIGUOUS_BINARY, choice(
+                    //prefix
+                    choice(...ambiguous_unary_binary_operator_list
+                        .map(operator =>
+                            seq(
+                                field('symbol', alias(operator, $.ambiguous_operator)),
+                                field('expression', $._expression_ending_with_ident),
+                            )
+                        )
+                    ),
+                    choice(...ambiguous_unary_binary_operator_list
+                        .map(operator =>
+                            seq(
+                                field('left', $._expression),
+                                field('operator',
+                                    seq(
+                                        field('symbol', alias(operator, $.ambiguous_operator)),
+                                        field('preprocessor',
+                                            optional(
+                                                seq(
+                                                    '.',
+                                                    $.square_object,
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                field('right', $._expression_ending_with_ident),
+                            )
+                        )
+                    ),
+                )
+            ),
+
+
+            //never ends with braces
+            unary_operation_prefix_ending_with_ident: $ => prec.left(
+                PREC.PREFIX,
+                seq(
+                    field('symbol', $.unary_symbol_prefix),
+                    field('expression', choice($.ident, $.simple_path)),
+                )
+            ),
+
+            product_expression_ending_with_ident: $ => prec(PREC.PRODUCT,
+                seq(
+                    $._number,
+                    choice(
+                        $.ident,
+                        $.simple_path,
+                    )
+                )
+            ),
+            _expression_ending_with_ident: $ => choice(
+                $.ident,
+                $.simple_path,
+                $.product_expression_ending_with_ident,
+                $.range_expression_ending_with_ident,
+                $.hash_tag_expression_ending_with_ident,
+                $.algebra_operation_ending_with_ident,
+                $.ambiguous_algebra_operation_ending_with_ident,
+                $.unary_operation_prefix_ending_with_ident,
+            ),
+
+            _tty_not_ending_with_block: $ => seq(':', choice($._expression_not_ending_with_block, $._expression_ending_with_ident)),
 
             _prefix_expression: $ => prec.right(PREC.PREFIX_EXPRESSION,
                 choice(
@@ -1558,40 +1589,105 @@ module.exports = grammar({
             empty_statement: $ => ';',
 
 
-            functor_literal_expression: $ => seq(
-                field('header',
-                    choice($.ident, $.simple_path)
-                ),
-                field('name',
-                    optional(
-                        choice(
-                            $.ident,
-                            $.simple_path,
-                            $.only_export_label
-                        )
-                    )
-                ),
-                field('domain', $.bracket_object),
-                field('codomain', optional($._tty_not_ending_with_block)),
-                field('wheres', repeat($.where_expression)),
-                field('body', $.statements_block),
-            ),
-
-            where_expression: $ => prec.right(seq('where', $._expression_not_ending_with_block)),
-
-            functor_literal_signature: $ => prec.left(
-                seq(
-                    field('header', choice($.ident, $.simple_path)),
-                    field('domain', choice($.bracket_object)),
-                    choice(
-                        seq(
-                            field('codomain', $._tty_not_ending_with_block),
-                            field('wheres', repeat($.where_expression)),
-                        ),
-                        field('wheres', repeat1($.where_expression)),
+            functor_literal_expression: $ => prec.left(
+                PREC.FUNCTOR_DECLARATION,
+                choice(
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.ident),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.simple_path),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.only_export_label),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.ident),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.simple_path),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.only_export_label),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.statements_block),
                     ),
                 )
             ),
+
+            _where_expression: $ => seq('where', $._expression_not_ending_with_block),
+
+
+            functor_literal_signature: $ => prec.left(
+                PREC.FUNCTOR_DECLARATION,
+                choice(
+                    seq(
+                        field('header', $.ident),
+                        field('domain', $.bracket_object),
+                        field('wheres', repeat1($._where_expression)),
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('domain', $.bracket_object),
+                        field('codomain', $._tty_not_ending_with_block),
+                        field('wheres', repeat($._where_expression)),
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('domain', $.bracket_object),
+                        field('wheres', repeat1($._where_expression)),
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('domain', $.bracket_object),
+                        field('codomain', $._tty_not_ending_with_block),
+                        field('wheres', repeat($._where_expression)),
+                    ),
+                )
+            ),
+
 
             _functor_declaration: $ => choice(
                 $.functor_literal_signature,
@@ -1599,19 +1695,42 @@ module.exports = grammar({
                 $.functor_literal_expression
             ),
 
-            lambda_literal_expression: $ => prec.left(seq(
-                field('header',
-                    choice(
-                        field('domain', choice($.ident, $.bracket_object, $.square_object, $.braces_object)),
-                        seq(
-                            field('name', $.ident),
-                            field('domain', choice($.bracket_object)),
-                        )
-                    )),
-                field('codomain', optional($._tty_not_ending_with_block)),
-                $.arrow,
-                field('body', $._expression),
-            )),
+            lambda_literal_expression: $ => prec.left(
+                PREC.FUNCTOR_DECLARATION,
+                choice(
+                    seq(
+                        field('name', $.ident),
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        $.arrow,
+                        field('body', $._expression),
+                    ),
+                    seq(
+                        field('domain', $.ident),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        $.arrow,
+                        field('body', $._expression),
+                    ),
+                    seq(
+                        field('domain', $.bracket_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        $.arrow,
+                        field('body', $._expression),
+                    ),
+                    seq(
+                        field('domain', $.square_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        $.arrow,
+                        field('body', $._expression),
+                    ),
+                    seq(
+                        field('domain', $.braces_object),
+                        field('codomain', optional($._tty_not_ending_with_block)),
+                        $.arrow,
+                        field('body', $._expression),
+                    )
+                )
+            ),
 
             label: $ => seq($.symbol, choice(':', '::'), $.ident),
             only_export_label: $ => seq($.symbol, '::', $.ident),
@@ -1674,55 +1793,158 @@ module.exports = grammar({
              * =============================================================
              */
 
-            try_call: $ => prec.left(PREC.TRY_CALL,
+            try_call: $ => prec.left(
                 seq(
-                    'try',
+                    prec(PREC.TRY_CALL, 'try'),
                     $.bracket_object,
                 )
             ),
 
             match_expression: $ => seq(
-                'match',
-                seq(
-                    field('value', $._expression_not_ending_with_block),
-                    field('body', $.braces_object)
+                prec(10000, 'match'),
+                choice(
+                    seq(
+                        field('value', $._expression_not_ending_with_block),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('value', $._expression_ending_with_ident),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('pattern', $._pattern),
+                        prec(10000, 'of'),
+                        field('value', $._expression_not_ending_with_block),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('pattern', $._pattern),
+                        prec(10000, 'of'),
+                        field('value', $._expression_ending_with_ident),
+                        field('body', $.braces_object)
+                    )
                 )
             ),
 
-            while_expression: $ => seq(
-                'while',
-                field('condition', $._expression_not_ending_with_block),
-                field('body', $.statements_block)
-            ),
-
-            functor_without_arguments: $ => prec.left(
-                PREC.MODULE,
+            while_expression: $ => choice(
                 seq(
-                    field('header', choice($.ident, $.simple_path)),
-                    field('name', choice($.ident, $.simple_path, $.only_export_label)),
+                    prec(10000, 'while'),
+                    field('condition', $._expression_not_ending_with_block),
+                    field('body', $.statements_block)
+                ),
+                seq(
+                    prec(10000, 'while'),
+                    field('condition', $._expression_ending_with_ident),
                     field('body', $.statements_block)
                 )
             ),
 
-            object_declaration: $ => prec.left(PREC.OBJECT_DECLARATION, seq(
-                field('header', choice($.ident, $.simple_path)),
-                field('name', choice($.ident, $.simple_path, $.only_export_label)),
-                field('wheres', repeat($.where_expression)),
-                field('body', $.braces_object)
-            )),
+            functor_without_arguments: $ => prec.left(
+                PREC.MODULE,
+                choice(
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.ident),
+                        field('body', $.statements_block)
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.simple_path),
+                        field('body', $.statements_block)
+                    ), seq(
+                        field('header', $.ident),
+                        field('name', $.only_export_label),
+                        field('body', $.statements_block)
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.ident),
+                        field('body', $.statements_block)
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.simple_path),
+                        field('body', $.statements_block)
+                    ), seq(
+                        field('header', $.simple_path),
+                        field('name', $.only_export_label),
+                        field('body', $.statements_block)
+                    )
+                )
+            ),
 
-            for_expression: $ => seq(
-                'for',
-                field('pattern', $._pattern),
-                'of',
-                field('value', $._expression_not_ending_with_block),
-                field('body', $.statements_block)
+            object_declaration: $ => prec.left(
+                PREC.OBJECT_DECLARATION,
+                choice(
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.ident),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.simple_path),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('header', $.ident),
+                        field('name', $.only_export_label),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.ident),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.simple_path),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.braces_object)
+                    ),
+                    seq(
+                        field('header', $.simple_path),
+                        field('name', $.only_export_label),
+                        field('wheres', repeat($._where_expression)),
+                        field('body', $.braces_object)
+                    ),
+                )
+            ),
+
+
+            for_expression: $ => choice(
+                seq(
+                    prec(10000, 'for'),
+                    field('pattern', $._pattern),
+                    prec(10000, 'of'),
+                    field('value', $._expression_not_ending_with_block),
+                    field('body', $.statements_block)
+                ),
+                seq(
+                    prec(10000, 'for'),
+                    field('pattern', $._pattern),
+                    prec(10000, 'of'),
+                    field('value', $._expression_ending_with_ident),
+                    field('body', $.statements_block)
+                )
             ),
 
             if_expression: $ => seq(
                 'if',
-                field('condition', $._expression_not_ending_with_block),
-                field('consequence', $.statements_block),
+                choice(
+                    seq(
+                        field('condition', $._expression_not_ending_with_block),
+                        field('consequence', $.statements_block),
+                    ),
+                    seq(
+                        field('condition', $._expression_ending_with_ident),
+                        field('consequence', $.statements_block),
+                    )
+                ),
                 optional($._else_tail)
             ),
 
@@ -1735,20 +1957,26 @@ module.exports = grammar({
                 ))
             )),
 
-            try_expression: $ => prec.right(PREC.TRY_EXPRESSION, seq(
-                'try',
-                choice(
-                    seq(
-                        field('expr', $._expression_not_ending_with_block),
-                        field('catch', $.braces_object)
-                    ),
-                    seq(
-                        field('expr', $.statements_block),
-                        'catch',
-                        field('catch', $.braces_object)
-                    ),
+            try_expression: $ => prec.right(
+                seq(
+                    prec(PREC.TRY_EXPRESSION, 'try'),
+                    choice(
+                        seq(
+                            field('expr', $._expression_not_ending_with_block),
+                            field('catch', $.braces_object)
+                        ),
+                        seq(
+                            field('expr', $._expression_ending_with_ident),
+                            field('catch', $.braces_object)
+                        ),
+                        seq(
+                            field('expr', $.statements_block),
+                            'catch',
+                            field('catch', $.braces_object)
+                        ),
+                    )
                 )
-            )),
+            ),
 
             break_expression: $ => prec.right(
                 seq('break',
@@ -1760,12 +1988,15 @@ module.exports = grammar({
                     $.ident,
                     $.symbol,
                     $.simple_path,
-                    seq(choice($.ident, $.simple_path), 'as', $.ident),
+                    seq($.ident, 'as', $.ident),
+                    seq($.simple_path, 'as', $.ident),
                     seq(
-                        choice(
-                            $.ident,
-                            $.simple_path
-                        ),
+                        $.ident,
+                        '::',
+                        $._use_tree_tail
+                    ),
+                    seq(
+                        $.simple_path,
                         '::',
                         $._use_tree_tail
                     ),
@@ -1779,17 +2010,28 @@ module.exports = grammar({
                 '}'
             ),
 
-            use_expression: $ => prec.right(seq(
-                'use',
-                optional(seq($._simple_expression, '::')),
-                choice($.use_tree, $._use_tree_tail)
-            )),
+            use_expression: $ => prec.right(
+                choice(
+                    seq(
+                        'use',
+                        optional(seq($._simple_expression, '::')),
+                        $.use_tree
+                    ),
+                    seq(
+                        'use',
+                        optional(seq($._simple_expression, '::')),
+                        $._use_tree_tail,
+                    )
+                )
+            ),
 
-            use_expression_block: $ => prec.right(seq(
-                'use',
-                optional(seq($._simple_expression, '::')),
-                $._use_tree_tail,
-            )),
+            use_expression_block: $ => prec.right(
+                seq(
+                    'use',
+                    optional(seq($._simple_expression, '::')),
+                    $._use_tree_tail,
+                )
+            ),
 
             continue_expression: $ => prec.right(seq('continue', optional($._expression))),
 
@@ -1837,9 +2079,6 @@ module.exports = grammar({
                 $.spx_expression,
                 $.use_expression_block,
                 $.hash_tag_ending_with_block,
-                $.algebra_operation_ending_with_block,
-                $.ambiguous_algebra_operation_ending_with_block,
-                $.unary_operation_prefix_ending_with_block,
             ),
 
             _statement: $ => choice(

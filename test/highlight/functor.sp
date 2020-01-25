@@ -1,10 +1,20 @@
 5...5 + 5;
+//  ^ natural_number
+
 -5...5 + 5;
+//     ^ operator
+
 //curry
 const x = (x)=>(y)=>(z)=>(w)=> x + y + z + w;
+//    ^ local.definition
 //or is not, == -> in == &&
+
 x = while true { return 5; {7, 5}}
+//    ^ keyword
+
 fn (){} | { 3 + 5 }
+//      ^ keyword.operator
+
 5 + {} -3 | {-, ==, +, on};
 !3;
 3 | {};
@@ -20,20 +30,29 @@ x and d or 5;
 {c, c, m.k.j};
 5;
 (k: (+, _.root, !_.children), node:Node);
-(path: (_.root, _.children*), node:Node);
 
+(path: (_.root, _.children*), node:Node);
 
 3;
 4545;
 0b101011;
+//  ^ natural_number
+
 0xAe;
 0o44;
 454.545'e+5451;
 454'e+5451;
+//  ^ number_suffix
+
 {k, y, c}
 //functor without argument
 mod 'self::asd{}
+//  ^ symbol
+
 'self:asd @  mod 'self::asd{}
+//     ^ local.definition
+//           ^ hof
+
 mod 'self::asd{x=30}
 mod 'self::asd(){x= 30;}
 let ::x = 50;
@@ -56,6 +75,8 @@ x = `sadasdaassssssssssssssssdasd`;
 errmnmnmn::graph;
 
 #delegate yield #fre 30;
+//^ decorator
+
 #delegate return #fre 30;
 if x is Some(Result::Error{let e}) {
 
@@ -99,6 +120,7 @@ y = (5389878.45431'Gigabytes/s^2);
 
 //named functo
 //named functor
+//^ comment
 functor graph(){
 	'self;
 	return graph(x):u32{x};
@@ -110,6 +132,8 @@ graph(x)=>u32;
 [x]=>u32;
 {x}=>u32;
 x=>u32;
+//^ delimiter.special
+
 x=> x >  10 then 50
 	   | x > 5 then 30
        | 59;
@@ -121,6 +145,8 @@ mm == as | y != dasd & y > 5;
 3 + 5 | 4 + 8 | 5 * 5;
 3 & 5 | 4 & 8 | 5 & 5;
 3 ∘ 5 | 4 ∘ 8 | 5 & 5 ∘ 6;
+//^ keyword.operator
+
 3 and 5 | 4 and 8 | 5 and 5;
 3 or 5 | 4 or 8 | 5 or 5 & 30;
 3 + 5 & 4 * 8 | 4 or 8 | 5 & 45 or 5 + 32?;
@@ -148,6 +174,8 @@ let y = 90.ll;
 
 
 use sdasd::asdsa::{dsa, 'sad};
+//^ keyword
+
 #_ use tree;
 #~~!ambient?? #sadasdasd? use sdasd::asdsa::{dsa, 'sad}
 #!ambient.aasdsa::sadasd.asd.as.asd?? use sdasd()::{dsa, 'sad};
@@ -174,6 +202,8 @@ asdasd
 
 ```
 <--/>
+//^ document
+
 
 <element>
 	<ul>
@@ -184,12 +214,16 @@ asdasd
 
 //named functor
 functor graph(){
+//^ hof
+
 	'self;
 	return graph(x):u32{x};
 }
 
 //named functor
 functor graph(){
+//^ hof
+
 	'self;
 	graph(x):u32(x);
 }
@@ -232,6 +266,8 @@ sads::none;
   let @ name = `John`,
   age=30,
   cars= {
+  //^ key
+
     car1: `Ford`,
     car2: `BMW`,
     car3: `Fiat`,
@@ -240,12 +276,17 @@ sads::none;
   }
 };
 
-
+<asa k=30/>
+//   ^ key
 
 
 {
     `_id`: `5e1b453aef5a8175d3d8c61e`,
+//          ^ string
+
     `index`: 4,
+//    ^ string
+
     `guid`: `98f1bd0f-bab3-4aec-bb66-51ed273c2a00`,
     `isActive`: true,
     `balance`: 1_578.25$,
@@ -302,7 +343,8 @@ let y = str;
 
 /*
 asdasdasdasds
-*/
+   */
+//^ comment
 
 
 let x = `asd\u{454}dasd {ds = s + 5}`;
@@ -324,6 +366,8 @@ for x of  C == #nat number + sd(x, y) + 5 {
 
 
 struct Action::<C, T>
+//^ hof
+
 	where C == #nat + {} + 3
     where C == #nat nat
 	where C == #nat number + (d{k:4})
@@ -336,6 +380,8 @@ struct Action::<C, T>
 
 
 for (@index: number, @path: (_.root, _.children*), @node:Node) of graph.bfs.enumerate {
+//     ^ key
+
 
 
 }
@@ -378,3 +424,11 @@ graph?;
 return graph;
 x > 5;
 z < 65;
+//^ keyword.operator
+  <el />
+//^ delimiter
+
+g.+(50);
+//^ operator
+5btc + 3$;
+//      ^ currency

@@ -1,0 +1,83 @@
+============================================
+Element
+============================================
+
+<example></example>;
+<example x=35 y=`sad`></example>;
+<alert>hola mundo</alert>;
+<form toltip={<div/>}></form>;
+<form ...x></form>;
+<form ...x:50></form>;
+<form ...x:50=50></form>;
+<form ...x:{3}={10x}></form>;
+<form ...x:{3}={10x}>{d.c(0)}</form>;
+<ul>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+    b`sadsad`
+    {5}
+</ul>;
+
+---
+
+
+
+============================================
+Self closing element
+============================================
+
+<example::adasd::asdasd />;
+<example::adasd::asdasd.sadasdasdasdasd />;
+<example::adasd::asdasd.sadasdasdasdasd.sdasdas.asdasdasd />;
+<example.____SDD_SD_____.sdacxcxxsdas.xxccsadasd />;
+<Table   'd=4 ...'sd/>;
+
+---
+
+
+
+============================================
+Fragment
+============================================
+
+<>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+    b`sadsad`
+    {5}
+</>;
+
+---
+
+
+
+
+============================================
+Decorators
+============================================
+<#(3x) #(`x`.0:2x=30, y.`sdasd`[4].25.as=50) #(xx.zxasd.asd.sad.asd.asasd=30, y=50, +, ) #x Table/>;
+<#(3x) #(x=30, y=50) #(x=30, y=50, +, ) #x Table/>;
+<#x(...d:5, 25, kdasd, 'sd, 'ds=46) Table/>;
+<#(x|s) Table/>;
+<#`asdasdasdasdasd` Table   #sdsd ...c={1,2,3,5}/>;
+<#x(...d, 25, kdasd, 'sd, 'ds=46) Table/>;
+<#maxRows(35) #color(`blue`) Table/>;
+<#`asdasdasdasdasd` Table   #sdsd ...d/>;
+<#`asdasdasdasdasd` Table   #sdsd ...c={1,2,3,5}/>;
+<#enumerated list>
+    <li x=50 z={<as/>}>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+</ul>;
+
+---
+
+
+
+
+
+
+
+

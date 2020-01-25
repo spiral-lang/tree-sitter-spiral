@@ -1,0 +1,36 @@
+=========================================
+Document examples
+=========================================
+
+<-->
+# this is an example document
+
+1. it just use spx
+    1. because spx supports markdown natively
+
+> every feature is supported
+
+```sp
+
+console.log(`hello world`)
+
+```
+<--/>
+
+---
+(source_file (document (doc_fragment (spx_text))))
+
+=========================================
+
+Document declarative
+=========================================
+
+<-->
+<--/>
+# asdas
+# asdasd
+kdkdkd asdasd(){}
+
+---
+
+(source_file (document (doc_fragment (spx_text))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (functor_literal_expression (ident) (ident) (bracket_object) (statements_block))))))
