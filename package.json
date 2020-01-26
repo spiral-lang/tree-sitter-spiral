@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-spiral",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Spiral grammar for node-tree-sitter",
   "main": "index.js",
   "keywords": [
@@ -20,9 +20,10 @@
   },
   "tree-sitter": [
     {
-      "scope": "source.spiral",
+      "scope": "source.sp",
       "file-types": [
-        "sp"
+        "sp",
+        "spiral"
       ],
       "highlights": [
         "queries/highlights.scm"
