@@ -92,7 +92,6 @@
 
 (object_declaration header:(*) @hof)
 (functor_literal_expression header:(*) @hof)
-(functor_literal_signature header:(*) @hof)
 (functor_without_arguments header:(*) @hof)
 
 "{" @delimiter

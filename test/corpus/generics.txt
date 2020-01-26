@@ -1,0 +1,55 @@
+==================================
+    path with angles
+==================================
+
+sadsds::sdasdasd::<s=50, k, dssdg::sada=55, 'observer={c:45, y:35}, dadas::asdas={x; y},  'asad=ss::sasd::<>,'asad=ss::sasd::<x=5>, dasdasd::sdasd=[1,2,3,5]>;
+sadsds::sdasdasd::<asd::sdsd=5445.54545'e+87>;
+sadsds::sdasdasd::<asd::sdsd=`sdsadasd`>;
+sadsds::sdasdasd::<asd::sdsd={2 | 5}>;
+sadsds::sdasdasd::<'asd={2 + 5}>;
+#sdasd sadsds::sdasdasd::<asd::sdsd=`sdsadasd`>::<asd::sdsd=`sdsadasd`>::asdasd::asdsadas;
+
+---
+
+(source_file (simple_path (simple_path (ident) (ident)) (angle_object (object_key) (assign) (natural_number (arabic_natural_number)) (object_key) (object_key (ident) (ident)) (assign) (natural_number (arabic_natural_number)) (symbol) (assign) (braces_object (key_tty_value (object_key) (natural_number (arabic_natural_number))) (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (object_key (ident) (ident)) (assign) (statements_block (ident) (ident)) (symbol) (assign) (simple_path (simple_path (ident) (ident)) (angle_object)) (symbol) (assign) (simple_path (simple_path (ident) (ident)) (angle_object (object_key) (assign) (natural_number (arabic_natural_number)))) (object_key (ident) (ident)) (assign) (square_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))) (simple_path (simple_path (ident) (ident)) (angle_object (object_key (ident) (ident)) (assign) (decimal_literal (fraction_literal (arabic_natural_number) (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number))))))) (simple_path (simple_path (ident) (ident)) (angle_object (object_key (ident) (ident)) (assign) (string_literal (escaped_string_literal (string_start) (string_content))))) (simple_path (simple_path (ident) (ident)) (angle_object (object_key (ident) (ident)) (assign) (statements_block (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))))) (simple_path (simple_path (ident) (ident)) (angle_object (symbol) (assign) (statements_block (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))))) (hash_tag_expression (decorator (ident)) (simple_path (simple_path (simple_path (simple_path (simple_path (ident) (ident)) (angle_object (object_key (ident) (ident)) (assign) (string_literal (escaped_string_literal (string_start) (string_content))))) (angle_object (object_key (ident) (ident)) (assign) (string_literal (escaped_string_literal (string_start) (string_content))))) (ident)) (ident))))
+
+==================================
+   where in functor
+==================================
+fn  abc::<C, T>()
+	where C == #nat + {} + 3
+    where C == #nat nat
+	where C == #nat number + (d{k:4})
+	where C == #nat number
+	where C == #nat number
+{
+  x + int;
+
+}
+
+---
+
+(source_file (expression_block (functor_literal_expression (ident) (simple_path (ident) (angle_object (object_key) (object_key))) (bracket_object) (where_block (algebra_operation (binary_operation (ident) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ambiguous_algebra_operation (ambiguous_operator) (braces_object))) (ambiguous_operator) (natural_number (arabic_natural_number))))) (algebra_operation (binary_operation (ident) (hash_tag_expression (decorator (ident)) (ident)))) (algebra_operation (binary_operation (ident) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (bracket_object (build (ident) (braces_object (key_tty_value (object_key) (natural_number (arabic_natural_number))))))))) (algebra_operation (binary_operation (ident) (hash_tag_expression (decorator (ident)) (ident)))) (algebra_operation (binary_operation (ident) (hash_tag_expression (decorator (ident)) (ident))))) (statements_block (ambiguous_algebra_operation (ident) (ambiguous_operator) (ident))))))
+
+
+==================================
+   where in object
+==================================
+
+struct Action::<C, T>
+//^ hof
+
+	where C == #nat + {} + 3
+    where C == #nat nat
+	where C == #nat number + (d{k:4})
+	where C == #nat number
+	where C == #nat number
+{
+  x: int,
+  y: T
+}
+
+
+----
+
+(source_file (expression_block (object_declaration (ident) (simple_path (ident) (angle_object (object_key) (object_key))) (line_comment) (where_block (algebra_operation (binary_operation (ident) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ambiguous_algebra_operation (ambiguous_operator) (braces_object))) (ambiguous_operator) (natural_number (arabic_natural_number))))) (algebra_operation (binary_operation (ident) (hash_tag_expression (decorator (ident)) (ident)))) (algebra_operation (binary_operation (ident) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (bracket_object (build (ident) (braces_object (key_tty_value (object_key) (natural_number (arabic_natural_number))))))))) (algebra_operation (binary_operation (ident) (hash_tag_expression (decorator (ident)) (ident)))) (algebra_operation (binary_operation (ident) (hash_tag_expression (decorator (ident)) (ident))))) (braces_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))))))

@@ -1,11 +1,46 @@
+adas{};
+// ^ local.reference
+3xdsdsad;
+// ^ local.reference
+(sdasd(): sdsds()-> 3 );
+//         ^ local.reference
+the_ref::asda;
+// ^ local.reference
+(...dasdas);
+//   ^ local.reference
+x..x;
+// ^ local.reference
+  xsds...x;
+// ^ local.reference
+z + y;
+//  ^ local.reference
+    zzzz + y + r;
+//  ^ local.reference
+c | x;
+//  ^ local.reference
+   cool | x;
+//  ^ local.reference
+x == cxcx;
+	xdds == c;
+	sdasx.cxzcx.czxc;
+//   ^ local.reference
+!dasd;
+// ^ local.reference
+dasd?;
+// ^ local.reference
 5...5 + 5;
 //  ^ natural_number
 
 -5...5 + 5;
 //     ^ operator
 
+fn (xdd, y=5){
+//  ^ local.definition
+}
+fn (xdd, yfff=5){
+}
 //curry
-const x = (x)=>(y)=>(z)=>(w)=> x + y + z + w;
+const x = (x, x=5)=>(y)=>(z)=>(w)=> x + y + z + w;
 //    ^ local.definition
 //or is not, == -> in == &&
 
@@ -380,7 +415,6 @@ struct Action::<C, T>
 
 
 for (@index: number, @path: (_.root, _.children*), @node:Node) of graph.bfs.enumerate {
-//     ^ key
 
 
 

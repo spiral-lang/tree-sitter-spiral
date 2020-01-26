@@ -169,7 +169,6 @@ binary operator prepare
 { +.[_ ->  ABC, _ - {x, y, z}]};
 
 ---
-(source_file (braces_object (all_operators_preprocessor (square_object (algebra_operation (binary_operation (ident) (ident))) (ambiguous_algebra_operation_ending_with_block (ident) (ambiguous_operator) (braces_object (ident) (ident) (ident)))))))
 
-
+(source_file (braces_object (all_operators_preprocessor (square_object (algebra_operation (binary_operation (ident) (ident))) (ambiguous_algebra_operation (ident) (ambiguous_operator) (braces_object (ident) (ident) (ident)))))))
 
