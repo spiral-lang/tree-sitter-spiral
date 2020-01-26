@@ -1732,38 +1732,4 @@ function caseInsensitive(keyword) {
     )
 }
 
-//todo: remove custom brackets for operators
-//add bracket color
-//color operator
-//color special names
-//color functor
-//todo: end algrebras ending with block
-//todo: string ✓
-//todo: algebra ending wih block
-//todo: test then ✓
-//TODO: raw string ✓
-//TODO: hashtag expression  + algebras, test hashtag in every form *
-//todo: use tree as expression ✓
-//TODO: test ambiguity for for, while, wverything that use block or statement
-//TODO: functors (add curry test)
-//TODO: ALgebra ending with bloc
 
-//TODO: spx binding
-//TODO: doc binding
-//TODO: algebras precedence test
-//todo let zxczx[x,g,s] = sd;
-//todo add klaksdl.( + | +) test
-// maybe algebra ending with block
-
-
-//exprt cases
-//functor withiut argument
-//object declaration
-//functor declaration
-//let exp
-//binding object and spx
-//label @
-
-
-//TODO: AMbigous without block
-//tty without block for functor signure, lamda, functor definition

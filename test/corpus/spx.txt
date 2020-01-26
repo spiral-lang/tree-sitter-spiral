@@ -95,3 +95,15 @@ subcomponents
 ---
 
 (source_file (expression_block (spx_expression (spx_element (spx_opening_element (spx_element_name (object_key))) (spx_text) (spx_expression (spx_element (spx_opening_element (spx_element_name (object_key))) (spx_text) (spx_closing_element (spx_element_name (object_key))))) (spx_text) (spx_expression (spx_element (spx_opening_element (spx_element_name (object_key))) (spx_text) (spx_closing_element (spx_element_name (object_key))))) (spx_text) (spx_closing_element (spx_element_name (object_key)))))))
+
+============================================
+binding
+============================================
+<@table_ref Table>
+<::Header>`sdadasdasd`</::Header>
+<::Body>`sdadasdasd`</::Body>
+
+</Table>
+
+-----
+ (source_file (expression_block (spx_expression (spx_element (spx_opening_element (binding (ident)) (spx_element_name (object_key))) (spx_text) (spx_expression (spx_element (spx_opening_element (spx_element_name (object_key))) (spx_text) (spx_closing_element (spx_element_name (object_key))))) (spx_text) (spx_expression (spx_element (spx_opening_element (spx_element_name (object_key))) (spx_text) (spx_closing_element (spx_element_name (object_key))))) (spx_text) (spx_closing_element (spx_element_name (object_key)))))))
