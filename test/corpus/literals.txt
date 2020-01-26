@@ -1,0 +1,139 @@
+============================================
+Natural number literals
+============================================
+
+0;
+123;
+4_125_223;
+0xff;
+0o70;
+0b1111_1111_1001_0000;
+1'E;
+0b11______________'gigA;
+2_____55__'PeTa;
+
+---
+
+(source_file
+  (natural_number (arabic_natural_number))
+  (natural_number (arabic_natural_number))
+  (natural_number (arabic_natural_number))
+  (natural_number (hexadecimal_natural_number))
+  (natural_number (octal_natural_number))
+  (natural_number (binary_natural_number))
+  (natural_number (arabic_natural_number) (natural_unit_suffix))
+  (natural_number (binary_natural_number) (natural_unit_suffix))
+  (natural_number (arabic_natural_number) (natural_unit_suffix))
+)
+
+============================================
+Decimal number literals
+============================================
+
+123.123;
+200000000000.0;
+12___001_1212.32__333_5;
+12___001_1212.32__333_5'gIga;
+12___001_1212.32__333_5'E;
+0xff'nano;
+0o70'mili;
+0b1111_1111_1001_0000'μ;
+12'e+12;
+12'e+12_65;
+0o70'e+000000000000000;
+0.3141516'e-12_65;
+---
+
+(source_file
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number)))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number)))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number)))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (natural_unit_suffix)))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (natural_unit_suffix)))
+  (decimal_literal  (natural_fraction_literal (hexadecimal_natural_number) (fractional_unit_suffix)))
+  (decimal_literal  (natural_fraction_literal (octal_natural_number) (fractional_unit_suffix)))
+  (decimal_literal  (natural_fraction_literal (binary_natural_number) (fractional_unit_suffix)))
+  (decimal_literal  (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number)))))
+  (decimal_literal  (natural_fraction_literal (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number)))))
+  (decimal_literal  (natural_fraction_literal (octal_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number)))))
+  (decimal_literal  (fraction_literal (arabic_natural_number) (arabic_natural_number) (fractional_unit_suffix (exponent (arabic_natural_number)))))
+)
+
+
+============================================
+Boolean literals
+============================================
+
+true;
+false;
+
+---
+
+(source_file (boolean_literal) (boolean_literal))
+
+
+============================================
+Character literals
+============================================
+
+'a';
+'\'';
+'\c';
+'\`';
+'\"';
+'\0';
+b'x';
+'\t';
+'\xff';
+'\\';
+'\u{1}';
+'京';
+'❤';
+'\u3204';
+
+---
+
+(source_file
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+  (char_literal)
+
+  )
+
+============================================
+String literals
+============================================
+
+``;
+`abc`;
+b`foo\nbar`;
+`foo\
+    bar`;
+`\`foo\``;
+`/* foo bar */ foo bar`;
+`foo\x42\x43bar`;
+`foo \x42  \x43 bar`;
+`age: {60}`;
+`\{saw\}`;
+rb'{}`sasdasd  {#sds  lkl + kl*20}`;
+rb'()`sasdasd  (#sds  lkl + kl*2)`;
+rb'«»`sasdasd  «#sds  lkl + kl*20»`;
+rb'‹›`sasdasd  ‹#sds  lkl + kl*20›`;
+r`sasdasd  sasdasdsasdasdsasdasdsasdasdsasdasd`;
+rb`sasdasd  sasdasdsasdasdsasdasdsasdasdsasdasd`;
+`sadasdaassssssssssssssssdasd`;
+
+---
+
+ (source_file (string_literal (escaped_string_literal (string_start))) (string_literal (escaped_string_literal (string_start) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content) (escape_sequence) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content) (escape_sequence) (string_content))) (string_literal (escaped_string_literal (string_start) (escape_sequence) (string_content) (escape_sequence))) (string_literal (escaped_string_literal (string_start) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content) (escape_sequence) (escape_sequence) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content) (escape_sequence) (string_content) (escape_sequence) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content) (template_substitution (natural_number (arabic_natural_number))))) (string_literal (escaped_string_literal (string_start) (escape_sequence) (string_content) (escape_sequence))) (string_literal (raw_string_literal (string_start) (internal_string_content) (raw_template_substitution) (raw_template_substitution (ambiguous_algebra_operation (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (ident)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (raw_template_substitution))) (string_literal (raw_string_literal (string_start) (internal_string_content) (raw_template_substitution) (raw_template_substitution (ambiguous_algebra_operation (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (ident)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (raw_template_substitution))) (string_literal (raw_string_literal (string_start) (internal_string_content) (raw_template_substitution) (raw_template_substitution (ambiguous_algebra_operation (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (ident)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (raw_template_substitution))) (string_literal (raw_string_literal (string_start) (internal_string_content) (raw_template_substitution) (raw_template_substitution (ambiguous_algebra_operation (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (ident)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (raw_template_substitution))) (string_literal (raw_string_literal (string_start) (internal_string_content))) (string_literal (raw_string_literal (string_start) (internal_string_content))) (string_literal (escaped_string_literal (string_start) (string_content))))

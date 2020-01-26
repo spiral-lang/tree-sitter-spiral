@@ -1,0 +1,58 @@
+============================================================================================================
+morph is right associative  and have lowest precedence that the normal operators
+============================================================================================================
+
+z -> y -> x;
+fn()-> fn -> fn +  fn2;
+3 -> 5 == 7;
+3 + 5 -> 4 | d -> x;
+
+---
+
+(source_file (algebra_operation (binary_operation (ident) (algebra_operation (binary_operation (ident) (ident))))) (algebra_operation (binary_operation (call (ident) (bracket_object)) (algebra_operation (binary_operation (ident) (ambiguous_algebra_operation (ident) (ambiguous_operator) (ident)))))) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (algebra_operation (binary_operation (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))) (algebra_operation (binary_operation (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number))) (algebra_operation (binary_operation (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (ident))) (ident))))))
+
+
+============================================================================================================
+| precedence
+============================================================================================================
+
+3 | 5  + 4;
+3 & 5 | 4 & 8;
+-3 | 9 & 10;
+
+---
+ (source_file (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number))))) (algebra_operation (functor_binary_operation (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))) (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))) (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))))
+
+
+============================================================================================================
+Pipe precedence
+============================================================================================================
+
+3 | 5  + 4 |> dfsd |> sda->asdasd |> x becomes q |> asds == 5 |> sxad| sadasd;
+
+
+---
+(source_file (algebra_operation (binary_operation (algebra_operation (binary_operation (algebra_operation (binary_operation (algebra_operation (binary_operation (algebra_operation (binary_operation (algebra_operation (functor_binary_operation (natural_number (arabic_natural_number)) (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number))))) (ident))) (algebra_operation (binary_operation (ident) (ident))))) (algebra_operation (binary_operation (ident) (ident))))) (algebra_operation (binary_operation (ident) (natural_number (arabic_natural_number)))))) (algebra_operation (functor_binary_operation (ident) (ident))))))
+
+============================================================================================================
+return precedence
+============================================================================================================
+
+return +3 ^ 5 + 78 | d;
+return +3 ^ 5 + 78 | d;
+
+return return +3 ^ 5 + 78 | d;
+
+---
+
+(source_file (return_expression (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ident)))) (return_expression (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ident)))) (return_expression (return_expression (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ident))))))
+============================================================================================================
+decorator precedence
+============================================================================================================
+#decorated return return +3 ^ 5 + 78 | d;
+#async czxc(x, t)?;
+#async czxc{x, t}-;
+
+let x = #async::<T=as> ()?;
+---
+ (source_file (hash_tag_expression (decorator (ident)) (return_expression (return_expression (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ident)))))) (hash_tag_expression (decorator (ident)) (unary_operation_postfix (call (ident) (bracket_object (ident) (ident))) (unary_symbol_postfix))) (ambiguous_algebra_operation (hash_tag_ending_with_block (decorator (ident)) (build (ident) (braces_object (ident) (ident)))) (ambiguous_operator)) (variable_declaration (exportable_type_annotation (ident)) (assign) (hash_tag_expression (decorator (simple_path (ident) (angle_object (object_key) (assign) (ident)))) (unary_operation_postfix (bracket_object) (unary_symbol_postfix)))))

@@ -1,0 +1,486 @@
+===============================================
+IF statement/expression
+===============================================
+
+if y is Person{let age, let name}{
+    console.log(age, name)
+
+}
+
+if x == 5 { console.log(`is 5`) } else {console.log(`not five`)};
+if y is Person(let age, let name){
+    console.log(age, name)
+
+}else if y is Car(let color, owner: {let name, let age}){
+        console.log(age, name)
+}
+
+'self:dsd @ if a{
+}else{
+}
+
+#asdas #sads if as{} else if b{} else if c{} else if d==2 else{}
+
+let y = if y is Person{let age, let name}{
+            console.log(age, name)
+
+}
+
+---
+ (source_file (expression_block (if_expression (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key)) (key_tty_value (binding) (object_key)))))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (ident) (ident)))))) (expression_block (if_expression (algebra_operation (binary_operation (ident) (natural_number (arabic_natural_number)))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (empty_statement) (expression_block (if_expression (algebra_operation (binary_operation (ident) (call (ident) (bracket_object (key_tty_value (binding) (object_key)) (key_tty_value (binding) (object_key)))))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (ident) (ident)))) (if_expression (algebra_operation (binary_operation (ident) (call (ident) (bracket_object (key_tty_value (binding) (object_key)) (key_tty_value (object_key) (braces_object (key_tty_value (binding) (object_key)) (key_tty_value (binding) (object_key)))))))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (ident) (ident))))))) (expression_block (label (symbol) (ident)) (if_expression (ident) (statements_block) (statements_block))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (if_expression (ident) (statements_block) (if_expression (ident) (statements_block) (if_expression (ident) (statements_block) (if_expression (algebra_operation (binary_operation (ident) (product_expression (natural_number (arabic_natural_number)) (ident)))) (statements_block)))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (if_expression (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key)) (key_tty_value (binding) (object_key)))))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (ident) (ident)))))))
+
+
+===============================================
+While statement/expression
+===============================================
+
+while #color::<`red`> Box{x} {
+    console.log(`hi`)
+
+}
+
+let x = while true {
+        return 2;
+};
+
+let w = (3+5) + (while y is B{let j} { 5 });
+
+let x = while true {
+        2
+}
+
+---
+
+(source_file (expression_block (while_expression (hash_tag_ending_with_block (decorator (simple_path (ident) (angle_object (string_literal (escaped_string_literal (string_start) (string_content)))))) (build (ident) (braces_object (ident)))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (while_expression (boolean_literal) (statements_block (return_expression (natural_number (arabic_natural_number)))))) (empty_statement) (variable_declaration (exportable_type_annotation (ident)) (assign) (ambiguous_algebra_operation (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (ambiguous_operator) (bracket_object (while_expression (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key)))))) (statements_block (natural_number (arabic_natural_number))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (while_expression (boolean_literal) (statements_block (natural_number (arabic_natural_number))))))
+===============================================
+Loop statement/expression
+===============================================
+
+loop {
+    console.log(`hi`)
+}
+
+let x = loop {
+        return 2;
+};
+
+let w = (3+5) + (loop{ 5 });
+
+let x = loop {
+        2
+}
+
+---
+
+(source_file (expression_block (loop_statement (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (loop_statement (statements_block (return_expression (natural_number (arabic_natural_number)))))) (empty_statement) (variable_declaration (exportable_type_annotation (ident)) (assign) (ambiguous_algebra_operation (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (ambiguous_operator) (bracket_object (loop_statement (statements_block (natural_number (arabic_natural_number))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (loop_statement (statements_block (natural_number (arabic_natural_number))))))
+
+===============================================
+declare functor statement
+===============================================
+
+fn graph(){
+    return graph()
+}
+
+#asds #dasd #sasd fn graph(){
+    return graph()
+}
+
+fn 'self::box(){
+    return graph()
+}
+
+
+---
+
+(source_file (expression_block (functor_literal_expression (ident) (ident) (bracket_object) (statements_block (return_expression (call (ident) (bracket_object)))))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (functor_literal_expression (ident) (ident) (bracket_object) (statements_block (return_expression (call (ident) (bracket_object))))))))) (expression_block (functor_literal_expression (ident) (only_export_label (symbol) (ident)) (bracket_object) (statements_block (return_expression (call (ident) (bracket_object)))))))
+
+
+
+
+===============================================
+Theory
+===============================================
+
+theory asds {
+    console.log(`hola`)
+}
+
+#open #experimental theory asds {
+    console.log(`hola`);
+}
+
+theory 'self::asds {
+    console.log(`hola`)
+}
+
+---
+
+
+ (source_file (expression_block (object_declaration (ident) (ident) (braces_object (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (functor_without_arguments (ident) (ident) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))))) (expression_block (functor_without_arguments (ident) (only_export_label (symbol) (ident)) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))))
+
+
+
+===============================================
+Module
+===============================================
+
+mod asds {
+    console.log(`hola`)
+}
+
+#open #experimental mod 'self::asds {
+    console.log(`hola`);
+}
+
+
+---
+
+ (source_file (expression_block (object_declaration (ident) (ident) (braces_object (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (functor_without_arguments (ident) (only_export_label (symbol) (ident)) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))))))
+
+===============================================
+For expression/statement
+===============================================
+
+for _:(key: ident, ',' , value: ident|number) of `name, eric age, 30` {
+    console.log(`key: {key}, value: {value}`)
+}
+
+let x = for y of z {y};
+let x = for y of z {
+    y
+}
+
+---
+
+ (source_file (expression_block (for_expression (type_annotation (ident) (bracket_object (key_tty_value (object_key) (ident)) (char_literal) (key_tty_value (object_key) (algebra_operation (functor_binary_operation (ident) (ident)))))) (string_literal (escaped_string_literal (string_start) (string_content))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content) (template_substitution (ident)) (string_content) (template_substitution (ident))))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (for_expression (type_annotation (ident)) (ident) (statements_block (ident)))) (empty_statement) (variable_declaration (exportable_type_annotation (ident)) (assign) (for_expression (type_annotation (ident)) (ident) (statements_block (ident)))))
+
+
+
+===============================================
+Match expression/statement
+===============================================
+
+match x {
+ _:adasd=>x,
+ (x: w, y:q)=>x,
+ fn asas(x:35){
+ }
+}
+
+let x = match x {
+ _:adasd=>x,
+ (x: w, y:q)=>x,
+ fn asas(x:35){
+ }
+}
+
+let x = (match dfgdfgdf {});
+
+match x of y {
+ _:adasd=>x,
+ (x: w, y:q)=>x,
+ fn asas(x:35){
+ }
+}
+---
+(source_file (expression_block (match_expression (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (match_expression (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (bracket_object (match_expression (ident) (braces_object)))) (expression_block (match_expression (type_annotation (ident)) (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))))
+
+
+===============================================
+Try expression/statement
+===============================================
+try x {
+ _:adasd=>x,
+ (x: w, y:q)=>x,
+ fn asas(x:35){
+ }
+}
+
+let x = try x {
+         _:adasd=>x,
+         (x: w, y:q)=>x,
+         fn asas(x:35){
+         }
+  }
+
+let x = (try x {
+       _:adasd=>x,
+       (x: w, y:q)=>x,
+       fn asas(x:35){
+       }
+});
+
+try {
+asdasd;
+sadasd();
+} catch {
+ _:adasd=>x,
+ (x: w, y:q)=>x,
+ fn asas(x:35){
+ }
+}
+
+let x = try {
+        asdasd;
+        sadasd();
+        } catch {
+         _:adasd=>x,
+         (x: w, y:q)=>x,
+         fn asas(x:35){
+         }
+        }
+
+let x = (try {
+        asdasd;
+        sadasd();
+        } catch {
+         _:adasd=>x,
+         (x: w, y:q)=>x,
+         fn asas(x:35){
+         }
+        });
+
+//try function
+let x = try(as()) ;
+
+if try(w) is ok {
+} else{
+
+}
+
+match try(asd){
+    _:OK=> (),
+    _:Error=> sd(),
+}
+
+
+---
+
+(source_file (expression_block (try_expression (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (try_expression (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (bracket_object (try_expression (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block)))))) (expression_block (try_expression (statements_block (ident) (call (ident) (bracket_object))) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (try_expression (statements_block (ident) (call (ident) (bracket_object))) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (bracket_object (try_expression (statements_block (ident) (call (ident) (bracket_object))) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (ident))) (lambda_literal_expression (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (ident))) (arrow) (ident)) (functor_literal_expression (ident) (ident) (bracket_object (key_tty_value (object_key) (natural_number (arabic_natural_number)))) (statements_block)))))) (line_comment) (variable_declaration (exportable_type_annotation (ident)) (assign) (try_call (bracket_object (call (ident) (bracket_object))))) (expression_block (if_expression (algebra_operation (binary_operation (try_call (bracket_object (ident))) (ident))) (statements_block) (statements_block))) (expression_block (match_expression (try_call (bracket_object (ident))) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (bracket_object))) (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (call (ident) (bracket_object))))))))
+
+
+===============================================
+Continue
+===============================================
+
+s = (continue);
+continue sad;
+continue;
+
+---
+
+(source_file (assignment_statement (ident) (assign) (bracket_object (continue_expression))) (continue_expression (ident)) (continue_expression))
+===============================================
+Break
+===============================================
+
+s = (break);
+break 'sad;
+break;
+
+---
+ (source_file (assignment_statement (ident) (assign) (bracket_object (break_expression))) (break_expression (symbol)) (break_expression))
+
+===============================================
+Return
+===============================================
+
+s = (return);
+return 2+1;
+return;
+
+---
+
+(source_file (assignment_statement (ident) (assign) (bracket_object (return_expression))) (return_expression (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (return_expression))
+
+===============================================
+Throw
+===============================================
+
+s = (throw asdasd);
+throw 2+1;
+throw Ersd;
+
+---
+
+(source_file (assignment_statement (ident) (assign) (bracket_object (throw_expression (ident)))) (throw_expression (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (throw_expression (ident)))
+
+===============================================
+Show
+===============================================
+
+s = (show asdasd);
+show 2+1;
+show Ersd;
+
+---
+(source_file (assignment_statement (ident) (assign) (bracket_object (show_expression (ident)))) (show_expression (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (show_expression (ident)))
+
+=====================================
+Yield
+===============================================
+
+s = (yield asdasd);
+yield 2+1;
+yield Ersd;
+#delegated yield ssfaf  + 5;
+
+---
+
+(source_file (assignment_statement (ident) (assign) (bracket_object (yield_expression (ident)))) (yield_expression (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (yield_expression (ident)) (hash_tag_expression (decorator (ident)) (yield_expression (ambiguous_algebra_operation (ident) (ambiguous_operator) (natural_number (arabic_natural_number))))))
+
+
+
+===============================================
+Object declaration
+===============================================
+
+#dsd wrwr sf {
+    `sdad`: `asdas`,
+}
+enum Temperature{
+  Cold,
+  Heat
+};
+
+let x = enum {
+  Cold,
+  Heat
+}
+
+
+---
+(source_file (expression_block (hash_tag_ending_with_block (decorator (ident)) (object_declaration (ident) (ident) (braces_object (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content)))))))) (expression_block (object_declaration (ident) (ident) (braces_object (ident) (ident)))) (empty_statement) (variable_declaration (exportable_type_annotation (ident)) (assign) (build (ident) (braces_object (ident) (ident)))))
+
+===============================================
+Statement assigment
+===============================================
+
+let x =  {
+  if a {
+     baj();
+  }
+  j
+}
+
+---
+
+ (source_file (variable_declaration (exportable_type_annotation (ident)) (assign) (statements_block (expression_block (if_expression (ident) (statements_block (call (ident) (bracket_object))))) (ident))))
+
+===============================================
+Naked Object assigment
+===============================================
+
+let x =  {
+    {
+        `id`: 0,
+        `name`: `Tonia Brennan`
+    },
+    {
+        `id`: 1,
+        `name`: `Jennifer Gibson`
+    },
+    {
+        `id`: 2,
+        `name`: `Berger Gonzales`
+    }
+}
+
+---
+
+(source_file (variable_declaration (exportable_type_annotation (ident)) (assign) (braces_object (braces_object (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (natural_number (arabic_natural_number))) (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content))))) (braces_object (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (natural_number (arabic_natural_number))) (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content))))) (braces_object (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (natural_number (arabic_natural_number))) (key_tty_value (object_key (escaped_string_literal (string_start) (string_content))) (string_literal (escaped_string_literal (string_start) (string_content))))))))
+
+
+===============================================
+Use declaration
+===============================================
+
+use sad::asd::{foo, bar};
+#ambient use asd as pld;
+#ambient use asd::asd as pld;
+#ambient use asd::{jfkflf::{
+    dasdsa,
+    adasdas,
+    },
+    kdksdk,
+    sksajdks::{
+    dsdsad::{sdsad as _}
+    }
+};
+
+use theory(asdsdasd)::sadas;
+use file(`/usr/root/key`)::sadas;
+use file(`/usr/root/key`)::{zxc, zxc};
+
+
+---
+
+(source_file (use_expression_block (simple_path (ident) (ident)) (use_tree (ident)) (use_tree (ident))) (hash_tag_expression (decorator (ident)) (use_expression (use_tree (ident) (ident)))) (hash_tag_expression (decorator (ident)) (use_expression (use_tree (simple_path (ident) (ident)) (ident)))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (use_expression_block (ident) (use_tree (ident) (use_tree (ident)) (use_tree (ident))) (use_tree (ident)) (use_tree (ident) (use_tree (ident) (use_tree (ident) (ident))))))) (empty_statement) (use_expression (call (ident) (bracket_object (ident))) (use_tree (ident))) (use_expression (call (ident) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content))))) (use_tree (ident))) (use_expression_block (call (ident) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content))))) (use_tree (ident)) (use_tree (ident))))
+
+
+===============================================
+on declaration
+===============================================
+
+x on {
+ _:Click=> 1,
+ _:Click=> 1,
+ _:Click=> 1,
+ _:Click=> 1,
+
+}
+
+let y = x on {
+1,
+2,
+3,
+
+}
+
+---
+(source_file (expression_block (on_statement (ident) (braces_object (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (natural_number (arabic_natural_number)))) (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (natural_number (arabic_natural_number)))) (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (natural_number (arabic_natural_number)))) (key_tty_value (object_key) (lambda_literal_expression (ident) (arrow) (natural_number (arabic_natural_number))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (on_statement (ident) (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))))
+
+
+===============================================
+do expression statement
+===============================================
+
+do 5;
+do {
+1;
+2;
+
+}
+let y = do {
+1;
+2;
+3;
+
+
+}
+---
+
+(source_file (do_expression (natural_number (arabic_natural_number))) (expression_block (do_statement (statements_block (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (do_statement (statements_block (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number))))))
+
+===============================================
+then expression statement
+===============================================
+
+x > 5 then 8 | x<4 then 9 | 3;
+
+---
+
+(source_file (algebra_operation (functor_binary_operation (algebra_operation (functor_binary_operation (algebra_operation (binary_operation (algebra_operation (binary_operation (ident) (natural_number (arabic_natural_number)))) (natural_number (arabic_natural_number)))) (algebra_operation (binary_operation (algebra_operation (binary_operation (ident) (natural_number (arabic_natural_number)))) (natural_number (arabic_natural_number)))))) (natural_number (arabic_natural_number)))))
+
+
+===============================================
+declaration, assigment and compound assigment
+===============================================
+
+let x = 5;
+x += 5;
+x = 30;
+
+---
+(source_file (variable_declaration (exportable_type_annotation (ident)) (assign) (natural_number (arabic_natural_number))) (compound_assigment (ident) (compound_assigment_operator) (natural_number (arabic_natural_number))) (assignment_statement (ident) (assign) (natural_number (arabic_natural_number))))

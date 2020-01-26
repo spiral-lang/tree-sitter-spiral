@@ -3,3 +3,4 @@ build
 *.log
 tree-sitter-spiral.wasm
 log.html
+.idea

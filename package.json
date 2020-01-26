@@ -1,9 +1,13 @@
 {
   "name": "tree-sitter-spiral",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "Spiral grammar for node-tree-sitter",
   "main": "index.js",
-  "author": "",
+  "keywords": [
+    "parser",
+    "lexer"
+  ],
+  "author": "Cristian Lozano",
   "license": "MIT",
   "dependencies": {
     "nan": "^2.14.0"
@@ -17,11 +21,14 @@
   "tree-sitter": [
     {
       "scope": "source.spiral",
-      "injection-regex": "spiral",
       "file-types": [
-        "sp",
-        "spx"
-      ]
+        "sp"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "locals": "queries/locals.scm",
+      "injection-regex": "^(sp|spiral)$"
     }
   ]
 }

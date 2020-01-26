@@ -1,0 +1,29 @@
+============================================
+Braces and Block Ambiguities
+============================================
+
+
+{key=`ljklj`};
+{key=`ljklj`,};
+{key=`ljklj`, 57};
+{5};
+{let y = 5;};
+{let y = 5};
+{key:13};
+{adasd};
+{adasd:(), ads};
+{'d=4};
+{
+y=5;
+y=52;
+};
+{y=5;};
+{y = {}};
+{};
+{x = 5;};
+{1, 2 , 3 , 5, 4};
+{1; 2; 3; 5; 4}
+
+----
+
+ (source_file (braces_object (key_tty_value (object_key) (assign) (string_literal (escaped_string_literal (string_start) (string_content))))) (expression_block (braces_object (key_tty_value (object_key) (assign) (string_literal (escaped_string_literal (string_start) (string_content)))))) (empty_statement) (expression_block (braces_object (key_tty_value (object_key) (assign) (string_literal (escaped_string_literal (string_start) (string_content)))) (natural_number (arabic_natural_number)))) (empty_statement) (expression_block (braces_object (natural_number (arabic_natural_number)))) (empty_statement) (expression_block (statements_block (variable_declaration (exportable_type_annotation (ident)) (assign) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (braces_object (key_tty_value (binding) (object_key) (assign) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (braces_object (key_tty_value (object_key) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (braces_object (ident))) (empty_statement) (expression_block (braces_object (key_tty_value (object_key) (bracket_object)) (ident))) (empty_statement) (expression_block (braces_object (key_tty_value (symbol) (assign) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (statements_block (assignment_statement (ident) (assign) (natural_number (arabic_natural_number))) (assignment_statement (ident) (assign) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (statements_block (assignment_statement (ident) (assign) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (braces_object (key_tty_value (object_key) (assign) (braces_object)))) (empty_statement) (expression_block (braces_object)) (empty_statement) (expression_block (statements_block (assignment_statement (ident) (assign) (natural_number (arabic_natural_number))))) (empty_statement) (expression_block (braces_object (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))) (empty_statement) (expression_block (statements_block (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))
