@@ -29,6 +29,7 @@ const POSITIVE_PREC = [
     'AMBIGUOUS_BINARY_BLOCK',
     'AMBIGUOUS_BINARY_NOT_BLOCK',
     'AMBIGUOUS_BINARY',
+    'HASH_TAG',
     'RANGE',
     'AMBIGUOUS_UNARY_PREFIX',
     'AMBIGUOUS_UNARY_POSTFIX',
@@ -36,7 +37,6 @@ const POSITIVE_PREC = [
     'POSTFIX',
     'INDEX',
     'BUILD',
-    'HASH_TAG',
     'STATEMENT_BLOCK',
     'CALL',
     'TRY_CALL',
@@ -329,6 +329,7 @@ module.exports = grammar({
             [$._expression, $.try_call, $.on_statement],
             [$._expression, $.do_statement, $.on_statement],
             [$.decorator, $._expression, $.on_statement],
+            [$.angle_object]
 
         ],
 
@@ -772,30 +773,35 @@ module.exports = grammar({
 
             angle_object: $ => seq(
                 '<',
-                optional(seq(
-                    sepBy1(
-                        ',',
-                        seq(
+                optional(
+                    seq(
+                        sepBy1(
+                            ',',
                             choice(
-                                alias(
-                                    choice(
-                                        $.ident,
-                                        $.simple_path,
-                                    ),
-                                    $.object_key
-                                ),
-                                $.symbol
-                            ),
-                            optional(
+                                $._simple_expression,
                                 seq(
-                                    $.assign,
-                                    $._simple_expression,
+                                    choice(
+                                        alias(
+                                            choice(
+                                                $.ident,
+                                                $.simple_path,
+                                            ),
+                                            $.object_key
+                                        ),
+                                        $.symbol
+                                    ),
+                                    optional(
+                                        seq(
+                                            $.assign,
+                                            $._simple_expression,
+                                        )
+                                    ),
                                 )
-                            ),
-                        )
-                    ),
-                    optional(',')
-                )),
+                            )
+                        ),
+                        optional(',')
+                    )
+                ),
                 '>'
             ),
 
@@ -1035,27 +1041,21 @@ module.exports = grammar({
                 $.binary_operation,
                 $.functor_binary_operation,
             ),
-            _decorator_expression: $ => choice(
-                $.ident,
-                $.simple_path,
-                $.decorator_dot_expression,
-                $.call_dot_expression,
-                $.bracket_object,
-            ),
+
 
             decorator: $ => prec(
                 PREC.DECORATOR,
                 seq(
                     '#',
                     field('expression',
-                        choice($._literal,
-                            $.ident,
-                            $.simple_path,
-                            $.dot_expression,
-                            $.call,
-                            $.unary_operation_prefix,
-                            $.unary_operation_postfix,
-                            $.bracket_object,
+                        seq(
+                            field("operation_left", optional($.unary_symbol_prefix)),
+                            choice(
+                                $.ident,
+                                $.simple_path,
+                                $.bracket_object,
+                            ),
+                            field("operation_right", optional($.unary_symbol_postfix)),
                         )
                     ),
                 )
@@ -1662,7 +1662,7 @@ module.exports = grammar({
             loop_statement: $ => seq('loop', $.statements_block),
 
             hash_tag_ending_with_block: $ => prec.right(
-                PREC.HASH_TAG,
+                PREC.HASH_TAG - 1,
                 seq(
                     field('left', repeat1($.decorator)),
                     field('right', $._expression_ending_with_block)

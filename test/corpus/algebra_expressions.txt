@@ -4,7 +4,7 @@ UnaryTest operation
 -1;
 3-;
 3x-;
-hghg{}!;
+hghg{};
 *jhj()();
 x+;
 *(3+1);
@@ -17,7 +17,7 @@ xkd.sdasd?;
 -1..3;
 
 --------------------
-
+(source_file (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator)) (ambiguous_algebra_operation (product_expression (natural_number (arabic_natural_number)) (ident)) (ambiguous_operator)) (expression_block (build (ident) (braces_object))) (empty_statement) (ambiguous_algebra_operation (ambiguous_operator) (call (call (ident) (bracket_object)) (bracket_object))) (ambiguous_algebra_operation (ident) (ambiguous_operator)) (ambiguous_algebra_operation (ambiguous_operator) (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number))))) (ambiguous_algebra_operation (ambiguous_operator) (dot_expression (ident) (ident))) (unary_operation_postfix (dot_expression (ident) (ident)) (unary_symbol_postfix)) (unary_operation_prefix (unary_symbol_prefix) (simple_path (ident) (ident))) (ambiguous_algebra_operation (ambiguous_operator) (ambiguous_algebra_operation (ambiguous_operator) (ambiguous_algebra_operation (ambiguous_operator) (unary_operation_prefix (unary_symbol_prefix) (unary_operation_prefix (unary_symbol_prefix) (unary_operation_prefix (unary_symbol_prefix) (symbol))))))) (unary_operation_postfix (ambiguous_algebra_operation (bracket_object (ident) (ident) (ident)) (ambiguous_operator)) (unary_symbol_postfix)) (unary_operation_prefix (unary_symbol_prefix) (ident)) (ambiguous_algebra_operation (ambiguous_operator) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))
 
 
 ============================================
@@ -30,23 +30,15 @@ UnaryTest operation: Decorator
 #(x+) a;
 #(*(3+1)) a;
 #(*xdd.xxa) a;
-#xkd.sdasd a;
+#xkd a;
 #kjkj::ghfhf a;
-#+++!!!'self a;
+#('self) a;
 #((ld, _, sad)*?) a;
 #s a;
 
 ---
 
-
-===================================================
-UnaryTest operation: braces valid
-===================================================
-#(!hghg{}) #sdfsdf{} 5;
-
----
-
-(source_file (hash_tag_expression (decorator (bracket_object (unary_operation_prefix (unary_symbol_prefix) (build (ident) (braces_object))))) (hash_tag_expression (decorator (build (ident) (braces_object))) (natural_number (arabic_natural_number)))))
+ (source_file (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))))) (ident)) (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator)))) (ident)) (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (product_expression (natural_number (arabic_natural_number)) (ident)) (ambiguous_operator)))) (ident)) (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (ambiguous_operator) (call (call (ident) (bracket_object)) (bracket_object))))) (ident)) (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (ident) (ambiguous_operator)))) (ident)) (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (ambiguous_operator) (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number))))))) (ident)) (hash_tag_expression (decorator (bracket_object (ambiguous_algebra_operation (ambiguous_operator) (dot_expression (ident) (ident))))) (ident)) (hash_tag_expression (decorator (ident)) (ident)) (hash_tag_expression (decorator (simple_path (ident) (ident))) (ident)) (hash_tag_expression (decorator (bracket_object (symbol))) (ident)) (hash_tag_expression (decorator (bracket_object (unary_operation_postfix (ambiguous_algebra_operation (bracket_object (ident) (ident) (ident)) (ambiguous_operator)) (unary_symbol_postfix)))) (ident)) (hash_tag_expression (decorator (ident)) (ident)))
 
 
 ============================================

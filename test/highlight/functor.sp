@@ -1,3 +1,6 @@
+
+
+
 adas{};
 // ^ local.reference
 3xdsdsad;
@@ -212,18 +215,8 @@ use sdasd::asdsa::{dsa, 'sad};
 //^ keyword
 
 #_ use tree;
-#~~!ambient?? #sadasdasd? use sdasd::asdsa::{dsa, 'sad}
-#!ambient.aasdsa::sadasd.asd.as.asd?? use sdasd()::{dsa, 'sad};
-#!ambient.aasdsa::sadasd.8887.99.asd?? #ambient.asd.asd.as.asd?? use sdasd::asdsa::{dsa, 'sad};
-#!ambient.asd.asd.as.asd?? use sdasd::asdsa::{dsa, 'sad};
+#!ambient? #sadasdasd? use sdasd::asdsa::{dsa, 'sad}
 #(ambient | rule) #(sdsd asdas{ddfddf{};})? #dasdasd{} use sdasd::asdsa::{dsa, 'sad};
-#!!ambient(k, y, u:30)?? use sdasd::asdsa::{dsa, 'sad};
-#!90.90.hyff::sadasd.8887.99.asd?? #ambient.asd.asd.as.asd?? use sdasd::asdsa::{dsa, 'sad};
-#!ambient.`asdasdsadas`.sadasd.8887.99.asd::asd?? use sdasd::asdsa::{dsa, 'sad};
-#!ambient.`asdasdsadas`[45].hjk::sadasd.8887.99.asd?? use sdasd::asdsa::{dsa, 'sad};
-#!90.ll::sadasd.8887.99.asd?? #ambient.asd.asd.as.asd?? use sdasd::asdsa::{dsa, 'sad};
-#~~!ambient(x, 5,4)?? #sadasdasd? use sdasd::asdsa::{dsa, 'sad};
-
 
 x;
 
@@ -260,7 +253,7 @@ functor graph(){
 //^ hof
 
 	'self;
-	graph(x):u32(x);
+	graph(x)->u32(x);
 }
 
 
@@ -386,10 +379,9 @@ let x = `asd\u{454}dasd {ds = s + 5}`;
 let hjhkhjhdf_adasdasdjx = '\u{125}';
 let y = 'ss * 5 == 5;
 
-if C == #nat number + {} * 5 {
+if C == #nat number + s{} +  5 {
 	x;
 }
-
 while C == #nat number {
 	x;
 }
@@ -449,7 +441,7 @@ graph sdas (){
 	Edge{};
 };
 
-graph():5;
+graph()->5;
 a.d;
 a => c;
 (3 | ==, +);

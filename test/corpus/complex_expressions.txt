@@ -18,8 +18,8 @@ x .. 2;
 !{5} ... 30 + 6 + *1...4;
 
 ---
-(source_file (range_expression (ident) (natural_number (arabic_natural_number))) (range_expression (statements_block (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number))) (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (range_expression (unary_operation_prefix (unary_symbol_prefix) (statements_block (natural_number (arabic_natural_number)))) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator)) (ambiguous_operator) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))
 
+  (source_file (range_expression (ident) (natural_number (arabic_natural_number))) (range_expression (statements_block (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number))) (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (unary_operation_prefix (unary_symbol_prefix) (range_expression (statements_block (natural_number (arabic_natural_number))) (natural_number (arabic_natural_number)))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator)) (ambiguous_operator) (range_expression (natural_number (arabic_natural_number)) (natural_number (arabic_natural_number)))))
 ============================================
 Hashtag expression
 ============================================
@@ -28,7 +28,7 @@ Hashtag expression
 #sda #asds asd{};
 #sda dasd.asdsad;
 #sadsd `asdasd`;
-#asds ff + #545 ff;
+#asds ff + #sss ff;
 #asdd 5 + #sad 15;
 #!asa ?45+;
 #asds x < d < s;
@@ -36,8 +36,7 @@ Hashtag expression
 #sddf;
 
 ---
-
-(source_file (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number)))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (build (ident) (braces_object))))) (empty_statement) (hash_tag_expression (decorator (ident)) (dot_expression (ident) (ident))) (hash_tag_expression (decorator (ident)) (string_literal (escaped_string_literal (string_start) (string_content)))) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (hash_tag_expression (decorator (natural_number (arabic_natural_number))) (ident))) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number))) (ambiguous_operator) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number)))) (ambiguous_algebra_operation (hash_tag_expression (decorator (unary_operation_prefix (unary_symbol_prefix) (unary_operation_postfix (ident) (unary_symbol_postfix)))) (natural_number (arabic_natural_number))) (ambiguous_operator)) (algebra_operation (binary_operation (algebra_operation (binary_operation (hash_tag_expression (decorator (ident)) (ident)) (ident))) (ident))) (hash_tag_expression (decorator (ident)) (ident)) (hash_tag_expression (decorator (ident))))
+(source_file (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number)))) (expression_block (hash_tag_ending_with_block (decorator (ident)) (hash_tag_ending_with_block (decorator (ident)) (build (ident) (braces_object))))) (empty_statement) (hash_tag_expression (decorator (ident)) (dot_expression (ident) (ident))) (hash_tag_expression (decorator (ident)) (string_literal (escaped_string_literal (string_start) (string_content)))) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (ident)) (ambiguous_operator) (hash_tag_expression (decorator (ident)) (ident))) (ambiguous_algebra_operation (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number))) (ambiguous_operator) (hash_tag_expression (decorator (ident)) (natural_number (arabic_natural_number)))) (ambiguous_algebra_operation (hash_tag_expression (decorator (unary_symbol_prefix) (ident) (unary_symbol_postfix)) (natural_number (arabic_natural_number))) (ambiguous_operator)) (algebra_operation (binary_operation (algebra_operation (binary_operation (hash_tag_expression (decorator (ident)) (ident)) (ident))) (ident))) (hash_tag_expression (decorator (ident)) (ident)) (hash_tag_expression (decorator (ident))))
 
 
 

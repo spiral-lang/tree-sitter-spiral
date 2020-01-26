@@ -34,7 +34,7 @@ let y = if y is Person{let age, let name}{
 While statement/expression
 ===============================================
 
-while #color(`red`) Box{x} {
+while #color::<`red`> Box{x} {
     console.log(`hi`)
 
 }
@@ -51,8 +51,7 @@ let x = while true {
 
 ---
 
-(source_file (expression_block (while_expression (hash_tag_ending_with_block (decorator (call (ident) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))) (build (ident) (braces_object (ident)))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (while_expression (boolean_literal) (statements_block (return_expression (natural_number (arabic_natural_number)))))) (empty_statement) (variable_declaration (exportable_type_annotation (ident)) (assign) (ambiguous_algebra_operation (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (ambiguous_operator) (bracket_object (while_expression (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key)))))) (statements_block (natural_number (arabic_natural_number))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (while_expression (boolean_literal) (statements_block (natural_number (arabic_natural_number))))))
-
+(source_file (expression_block (while_expression (hash_tag_ending_with_block (decorator (simple_path (ident) (angle_object (string_literal (escaped_string_literal (string_start) (string_content)))))) (build (ident) (braces_object (ident)))) (statements_block (call (dot_expression (ident) (ident)) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (while_expression (boolean_literal) (statements_block (return_expression (natural_number (arabic_natural_number)))))) (empty_statement) (variable_declaration (exportable_type_annotation (ident)) (assign) (ambiguous_algebra_operation (bracket_object (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (ambiguous_operator) (bracket_object (while_expression (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key)))))) (statements_block (natural_number (arabic_natural_number))))))) (variable_declaration (exportable_type_annotation (ident)) (assign) (while_expression (boolean_literal) (statements_block (natural_number (arabic_natural_number))))))
 ===============================================
 Loop statement/expression
 ===============================================

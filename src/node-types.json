@@ -1210,19 +1210,7 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
-            "named": true
-          },
-          {
             "type": "bracket_object",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -1231,6 +1219,26 @@
           },
           {
             "type": "simple_path",
+            "named": true
+          }
+        ]
+      },
+      "operation_left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unary_symbol_prefix",
+            "named": true
+          }
+        ]
+      },
+      "operation_right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unary_symbol_postfix",
             "named": true
           }
         ]

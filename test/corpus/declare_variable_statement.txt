@@ -3,8 +3,8 @@ Valid bind statement
 ==============================================
 const Some(_, x:sads) = 25;
 const #hghg Some(_, x:sads) = 25;
-const #555 #adsdd Some(_, x:sads) = 25;
-const #`555` #adsdd Some(_, x:sads) = 25;
+const #ddd #adsdd Some(_, x:sads) = 25;
+const #ddd #adsdd Some(_, x:sads) = 25;
 const #sad::sad #adsdd Some(_, x:sads) = 25;
 const #(!asds | sad) #adsdd Some(_, x:sads) = 25;
 let x = 5;
@@ -17,7 +17,7 @@ const [y, y, ...d] = 25;
 
 ---
 
-(source_file (variable_declaration (object_pattern (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (natural_number (arabic_natural_number))) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (string_literal (escaped_string_literal (string_start) (string_content)))) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (simple_path (ident) (ident))) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (bracket_object (algebra_operation (functor_binary_operation (unary_operation_prefix (unary_symbol_prefix) (ident)) (ident))))) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (exportable_type_annotation (ident)) (assign) (natural_number (arabic_natural_number))) (variable_declaration (exportable_type_annotation (ident) (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (assign) (ident)) (variable_declaration (exportable_type_annotation (ident) (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (ident)))) (assign) (ident)) (variable_declaration (object_pattern (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (ident) (braces_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (ident) (square_object (ident) (ident))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (square_object (ident) (ident) (spread_element (ident)))) (assign) (natural_number (arabic_natural_number))))
+(source_file (variable_declaration (object_pattern (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (ident)) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (ident)) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (simple_path (ident) (ident))) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (decorator (bracket_object (algebra_operation (functor_binary_operation (unary_operation_prefix (unary_symbol_prefix) (ident)) (ident))))) (decorator (ident)) (ident) (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (exportable_type_annotation (ident)) (assign) (natural_number (arabic_natural_number))) (variable_declaration (exportable_type_annotation (ident) (ambiguous_algebra_operation (natural_number (arabic_natural_number)) (ambiguous_operator) (natural_number (arabic_natural_number)))) (assign) (ident)) (variable_declaration (exportable_type_annotation (ident) (hash_tag_expression (decorator (ident)) (hash_tag_expression (decorator (ident)) (ident)))) (assign) (ident)) (variable_declaration (object_pattern (bracket_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (ident) (braces_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (ident) (square_object (ident) (ident))) (assign) (natural_number (arabic_natural_number))) (variable_declaration (object_pattern (square_object (ident) (ident) (spread_element (ident)))) (assign) (natural_number (arabic_natural_number))))
 
 
 ==============================================
@@ -49,9 +49,7 @@ Invalid bind statement: not export on complex patterns 2
 let ::ABC{_, x:sads} = 25;
 ---
 
-(source_file (variable_declaration (ERROR (exportable_type_annotation (ident))) (object_pattern (braces_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))))
-
-
+ (source_file (variable_declaration (ERROR (exportable_type_annotation (ident))) (object_pattern (braces_object (ident) (key_tty_value (object_key) (ident)))) (assign) (natural_number (arabic_natural_number))))
 =============================================================
 Invalid bind statement: not decorators on simple pattern 1
 =============================================================
@@ -67,7 +65,7 @@ Invalid bind statement: not decorators on simple pattern 2
 const  #sd #asa {x, y} = 25;
 
 ---
-(source_file (ERROR (decorator (ident)) (decorator (build (ident) (braces_object (ident) (ident)))) (assign) (arabic_natural_number)) (empty_statement))
+(source_file (variable_declaration (object_pattern (decorator (ident)) (decorator (ident)) (ident (currency (MISSING "$"))) (braces_object (ident) (ident))) (assign) (natural_number (arabic_natural_number))))
 ==============================================
 Exportable bind variable
 ==============================================
