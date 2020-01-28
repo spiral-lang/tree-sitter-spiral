@@ -1704,7 +1704,7 @@ module.exports = grammar({
                     field('attributes', repeat($._spx_attribute)),
                     '>',
                     field('content', repeat($._spx_child)),
-                    field('close', seq('<', '--', '/', '>')),
+                    field('close', seq('<', '/', '--', '>')),
                 )
             ),
 
