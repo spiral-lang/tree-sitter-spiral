@@ -126,6 +126,10 @@
         "named": true
       },
       {
+        "type": "regex",
+        "named": true
+      },
+      {
         "type": "return_expression",
         "named": true
       },
@@ -566,6 +570,10 @@
         },
         {
           "type": "object_key",
+          "named": true
+        },
+        {
+          "type": "regex",
           "named": true
         },
         {
@@ -1020,6 +1028,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
@@ -1408,6 +1420,10 @@
           },
           {
             "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -2156,6 +2172,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
@@ -2687,6 +2707,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "simple_path",
           "named": true
         },
@@ -2974,6 +2998,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "simple_path",
             "named": true
           },
@@ -3047,6 +3075,10 @@
           },
           {
             "type": "product_expression",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -3164,6 +3196,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "regex",
+    "named": true,
+    "fields": {
+      "flags": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "regex_flags",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "regex_pattern",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -3327,6 +3385,10 @@
           },
           {
             "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -3988,6 +4050,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "simple_path",
           "named": true
         },
@@ -4052,6 +4118,10 @@
         },
         {
           "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "regex",
           "named": true
         },
         {
@@ -4681,6 +4751,14 @@
   {
     "type": "p",
     "named": false
+  },
+  {
+    "type": "regex_flags",
+    "named": true
+  },
+  {
+    "type": "regex_pattern",
+    "named": true
   },
   {
     "type": "return",

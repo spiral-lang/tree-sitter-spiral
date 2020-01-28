@@ -11,6 +11,7 @@ const NEGATIVE_PREC = [
     'OBJECT_DECLARATION',
     'BRACE_OBJECT',
     'KEY_TTY_VALUE',
+    'REGEXP',
 ];
 const POSITIVE_PREC = [
     'BECOMES',
@@ -51,6 +52,7 @@ const POSITIVE_PREC = [
 ];
 
 PREC = {
+    REGEXP: 0,
     TTY: 0,
     PREFIX_EXPRESSION: 0,
     PIPE_OPERATOR: 0,
@@ -653,12 +655,14 @@ module.exports = grammar({
                     optional('b'),
                     '\'',
                     optional(choice(
-                        seq('\\', choice(
-                            /[^xu]/,
-                            /u[0-9a-fA-F]{4}/,
-                            /u{[0-9a-fA-F]+}/,
-                            /x[0-9a-fA-F]{2}/
-                        )),
+                        seq('\\',
+                            choice(
+                                /[^xu]/,
+                                /u[0-9a-fA-F]{4}/,
+                                /u{[0-9a-fA-F]+}/,
+                                /x[0-9a-fA-F]{2}/
+                            )
+                        ),
                         /[^\\']/
                     )),
                     '\''
@@ -854,6 +858,56 @@ module.exports = grammar({
                 field('arguments', choice($.braces_object))
             )),
 
+            regex: $ => prec.dynamic(
+                PREC.REGEXP, seq(
+                    /rb?\//,
+                    field('pattern', $.regex_pattern),
+                    token.immediate('/'),
+                    optional(field('flags', $.regex_flags))
+                )
+            ),
+
+
+            regex_pattern: $ => token.immediate(
+                repeat1(
+                    choice(
+                        seq(
+                            '[',
+                            repeat(
+                                choice(
+                                    alias(token.immediate(
+                                        seq('\\',
+                                            choice(
+                                                /[^xu]/,
+                                                /u[0-9a-fA-F]{4}/,
+                                                /u{[0-9a-fA-F]+}/,
+                                                /x[0-9a-fA-F]{2}/
+                                            )
+                                        )
+                                    ), $.escape_sequence), // escaped character
+                                    /[^\]\n\\]/    // any character besides ']' or '\n' or '\'
+                                )),
+                            ']'
+                        ),              // square-bracket-delimited character class
+                        alias(
+                            token.immediate(
+                                seq('\\',
+                                    choice(
+                                        /[^xu]/,
+                                        /u[0-9a-fA-F]{4}/,
+                                        /u{[0-9a-fA-F]+}/,
+                                        /x[0-9a-fA-F]{2}/
+                                    )
+                                )
+                            ), $.escape_sequence
+                        ), // escaped character
+                        /[^/\\\[\n]/    // any character besides '[', '\', '/', '\n'
+                    )
+                )
+            ),
+
+            regex_flags: $ => token.immediate(/[a-z]+/),
+
 
             _simple_expression: $ => choice(
                 $._literal,
@@ -861,6 +915,7 @@ module.exports = grammar({
                 $.simple_path,
                 $.dot_expression,
                 $.call,
+                $.regex,
                 $.symbol,
                 $.square_object,
                 $.index_expression,
@@ -895,21 +950,26 @@ module.exports = grammar({
                 PREC.AMBIGUOUS_BINARY, choice(
                     //prefix
                     choice(...ambiguous_unary_binary_operator_list
-                        .map(operator =>
-                            seq(
-                                field('symbol', alias(operator, $.ambiguous_operator)),
-                                field('expression', $._expression),
-                            )
-                        )
+                        .map(operator => {
+                                if (operator === '/') return null;
+                                return seq(
+                                    field('symbol', alias(operator, $.ambiguous_operator)),
+                                    field('expression', $._expression),
+                                )
+
+                            }
+                        ).filter(x => x !== null)
                     ),
                     //postfix
                     choice(...ambiguous_unary_binary_operator_list
-                        .map(operator =>
-                            seq(
-                                field('expression', $._expression),
-                                field('symbol', alias(operator, $.ambiguous_operator)),
-                            )
-                        )
+                        .map(operator => {
+                                if (operator === '/') return null;
+                                return seq(
+                                    field('expression', $._expression),
+                                    field('symbol', alias(operator, $.ambiguous_operator)),
+                                )
+                            }
+                        ).filter(x => x !== null)
                     ),
                     choice(...ambiguous_unary_binary_operator_list
                         .map(operator =>
