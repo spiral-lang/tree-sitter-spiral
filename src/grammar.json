@@ -1907,7 +1907,7 @@
     },
     "_tty": {
       "type": "PREC_RIGHT",
-      "value": -110,
+      "value": -120,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2521,6 +2521,173 @@
         ]
       }
     },
+    "regex": {
+      "type": "PREC_DYNAMIC",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "rb?\\/"
+          },
+          {
+            "type": "FIELD",
+            "name": "pattern",
+            "content": {
+              "type": "SYMBOL",
+              "name": "regex_pattern"
+            }
+          },
+          {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "/"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "flags",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "regex_flags"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "regex_pattern": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "["
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": "\\"
+                              },
+                              {
+                                "type": "CHOICE",
+                                "members": [
+                                  {
+                                    "type": "PATTERN",
+                                    "value": "[^xu]"
+                                  },
+                                  {
+                                    "type": "PATTERN",
+                                    "value": "u[0-9a-fA-F]{4}"
+                                  },
+                                  {
+                                    "type": "PATTERN",
+                                    "value": "u{[0-9a-fA-F]+}"
+                                  },
+                                  {
+                                    "type": "PATTERN",
+                                    "value": "x[0-9a-fA-F]{2}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "named": true,
+                        "value": "escape_sequence"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[^\\]\\n\\\\]"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "]"
+                }
+              ]
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "\\"
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": "[^xu]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "u[0-9a-fA-F]{4}"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "u{[0-9a-fA-F]+}"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "x[0-9a-fA-F]{2}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "named": true,
+              "value": "escape_sequence"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\\/\\\\\\[\\n]"
+            }
+          ]
+        }
+      }
+    },
+    "regex_flags": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[a-z]+"
+      }
+    },
     "_simple_expression": {
       "type": "CHOICE",
       "members": [
@@ -2543,6 +2710,10 @@
         {
           "type": "SYMBOL",
           "name": "call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "regex"
         },
         {
           "type": "SYMBOL",
@@ -2668,32 +2839,6 @@
                       "content": {
                         "type": "STRING",
                         "value": "%"
-                      },
-                      "named": true,
-                      "value": "ambiguous_operator"
-                    }
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "expression",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "symbol",
-                    "content": {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "STRING",
-                        "value": "/"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -3513,32 +3658,6 @@
                       "content": {
                         "type": "STRING",
                         "value": "%"
-                      },
-                      "named": true,
-                      "value": "ambiguous_operator"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "expression",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    }
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "symbol",
-                    "content": {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "STRING",
-                        "value": "/"
                       },
                       "named": true,
                       "value": "ambiguous_operator"
@@ -6541,7 +6660,7 @@
       "members": [
         {
           "type": "PREC_LEFT",
-          "value": -90,
+          "value": -100,
           "content": {
             "type": "SEQ",
             "members": [
@@ -8234,7 +8353,7 @@
     },
     "decorator": {
       "type": "PREC",
-      "value": -60,
+      "value": -70,
       "content": {
         "type": "SEQ",
         "members": [
@@ -8913,7 +9032,7 @@
     },
     "_prefix_expression": {
       "type": "PREC_RIGHT",
-      "value": -100,
+      "value": -110,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -10572,7 +10691,7 @@
     },
     "functor_without_arguments": {
       "type": "PREC_LEFT",
-      "value": -30,
+      "value": -40,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -10755,7 +10874,7 @@
     },
     "object_declaration": {
       "type": "PREC_LEFT",
-      "value": -20,
+      "value": -30,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -11144,7 +11263,7 @@
         "members": [
           {
             "type": "PREC",
-            "value": -40,
+            "value": -50,
             "content": {
               "type": "STRING",
               "value": "try"

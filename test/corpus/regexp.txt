@@ -1,0 +1,22 @@
+==================================================
+regexp basic
+==================================================
+r/sdfsd/;
+r/d(b+)d/g;
+r/<a href="([^"]+)">/i;
+r/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
+---
+(source_file (regex (regex_pattern)) (regex (regex_pattern) (regex_flags)) (regex (regex_pattern) (regex_flags)) (regex (regex_pattern)))
+==================================================
+non unary /
+==================================================
+c /;
+---
+(source_file (ambiguous_algebra_operation (ident) (ambiguous_operator) (ident (currency (MISSING "$")))))
+
+==================================================
+non unary  / 2
+==================================================
+/ x + 5;
+---
+(source_file (ERROR (UNEXPECTED 'x')) (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))))
