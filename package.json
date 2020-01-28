@@ -5,9 +5,17 @@
   "main": "index.js",
   "keywords": [
     "parser",
-    "lexer"
+    "spiral"
   ],
-  "author": "Cristian Lozano",
+  "homepage": "https://splang.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spiral-lang/tree-sitter-spiral.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spiral-lang/tree-sitter-spiral/issues"
+  },
+  "author": "Cristian Lozano <criloz@nebtex.com>",
   "license": "MIT",
   "dependencies": {
     "nan": "^2.14.0"
@@ -20,16 +28,16 @@
   },
   "tree-sitter": [
     {
-      "scope": "source.sp",
+      "scope": "source.spr",
       "file-types": [
-        "sp",
+        "spr",
         "spiral"
       ],
       "highlights": [
         "queries/highlights.scm"
       ],
       "locals": "queries/locals.scm",
-      "injection-regex": "^(sp|spiral)$"
+      "injection-regex": "^(spr|spiral)$"
     }
   ]
 }
