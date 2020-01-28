@@ -15,7 +15,7 @@ Document examples
 console.log(`hello world`)
 
 ```
-<--/>
+</-->
 
 ---
 (source_file (document (doc_fragment (spx_text))))
@@ -26,7 +26,7 @@ Document declarative
 =========================================
 
 <-->
-<--/>
+</-->
 # asdas
 # asdasd
 kdkdkd asdasd(){}
