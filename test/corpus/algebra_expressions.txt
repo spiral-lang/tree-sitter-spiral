@@ -138,7 +138,7 @@ IS  operation
 y is z{let name:number};
 
 ---
-(source_file (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key) (ident)))))))
+(source_file (algebra_operation (binary_operation (ident) (build (ident) (braces_object (key_tty_value (binding) (object_key (ident)) (ident)))))))
 ====================================================
 IS_NOT operation
 ====================================================
@@ -189,8 +189,9 @@ ON BECOMES operation
 x on Change(_:color, _: color(`green`)) becomes Circle;
 
 ---
+(source_file (algebra_operation (binary_operation (algebra_operation (binary_operation (ident) (call (ident) (bracket_object (key_tty_value (object_key (ident)) (ident)) (key_tty_value (object_key (ident)) (call (ident) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))))) (ident))))
 
- (source_file (algebra_operation (binary_operation (algebra_operation (binary_operation (ident) (call (ident) (bracket_object (key_tty_value (object_key) (ident)) (key_tty_value (object_key) (call (ident) (bracket_object (string_literal (escaped_string_literal (string_start) (string_content)))))))))) (ident))))
+
 ====================================================
 compact range
 ====================================================
