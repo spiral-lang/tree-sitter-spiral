@@ -331,7 +331,14 @@ module.exports = grammar({
             [$._expression, $.try_call, $.on_statement],
             [$._expression, $.do_statement, $.on_statement],
             [$.decorator, $._expression, $.on_statement],
-            [$.angle_object]
+            [$.object_key, $.build],
+            [$.object_key, $.key_tty_value],
+            [$.object_key, $.key_tty_value, $._expression],
+            [$.object_key, $.key_tty_value, $.label],
+            [$.object_key, $.lambda_literal_expression],
+            [$.object_key, $._expression],
+            [$.angle_key, $.angle_object],
+            [$.angle_object],
 
         ],
 
@@ -668,6 +675,7 @@ module.exports = grammar({
                     '\''
                 )
             ),
+            object_key: $ => $._simple_expression,
 
             escape_sequence: $ => token.immediate(
                 seq('\\',
@@ -705,7 +713,7 @@ module.exports = grammar({
 
             _ktv_head_ident: $ => seq(
                 optional($.binding),
-                field('key', choice(alias($._simple_expression, $.object_key), $.spread_element))
+                field('key', choice($.object_key, $.spread_element))
             ),
 
             _ktv_head: $ => choice($._ktv_head_symbol, $._ktv_head_ident),
@@ -730,7 +738,7 @@ module.exports = grammar({
                         choice(
                             seq(
                                 $.binding,
-                                field('key', choice(alias($._simple_expression, $.object_key), $.spread_element))
+                                field('key', choice($.object_key, $.spread_element))
                             ),
                             $.spread_element
                         ),
@@ -774,7 +782,10 @@ module.exports = grammar({
                 optional($._inner_object),
                 ')'
             ),
-
+            angle_key: $ => choice(
+                $.ident,
+                $.simple_path,
+            ),
             angle_object: $ => seq(
                 '<',
                 optional(
@@ -785,13 +796,7 @@ module.exports = grammar({
                                 $._simple_expression,
                                 seq(
                                     choice(
-                                        alias(
-                                            choice(
-                                                $.ident,
-                                                $.simple_path,
-                                            ),
-                                            $.object_key
-                                        ),
+                                        $.angle_key,
                                         $.symbol
                                     ),
                                     optional(
@@ -1203,7 +1208,7 @@ module.exports = grammar({
             ),
 
 
-            spx_element_name: $ => seq(optional('::'), alias($._simple_expression, $.object_key)),
+            spx_element_name: $ => seq(optional('::'),  $.object_key),
 
 
             _spx_inner_expression: $ => choice(
@@ -1222,7 +1227,7 @@ module.exports = grammar({
             ),
 
             spx_key_tty_value: $ => prec.left(seq(
-                field('key', choice(alias($._simple_expression, $.object_key), $.spread_element)),
+                field('key', choice($.object_key, $.spread_element)),
                 field('type', optional($._spx_tty)),
                 field('value', optional($._spx_optional_value))
             )),

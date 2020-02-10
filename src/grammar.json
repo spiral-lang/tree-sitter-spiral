@@ -1512,6 +1512,10 @@
         ]
       }
     },
+    "object_key": {
+      "type": "SYMBOL",
+      "name": "_simple_expression"
+    },
     "escape_sequence": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
@@ -1715,13 +1719,8 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_simple_expression"
-                },
-                "named": true,
-                "value": "object_key"
+                "type": "SYMBOL",
+                "name": "object_key"
               },
               {
                 "type": "SYMBOL",
@@ -1845,13 +1844,8 @@
                           "type": "CHOICE",
                           "members": [
                             {
-                              "type": "ALIAS",
-                              "content": {
-                                "type": "SYMBOL",
-                                "name": "_simple_expression"
-                              },
-                              "named": true,
-                              "value": "object_key"
+                              "type": "SYMBOL",
+                              "name": "object_key"
                             },
                             {
                               "type": "SYMBOL",
@@ -2072,6 +2066,19 @@
         }
       ]
     },
+    "angle_key": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ident"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simple_path"
+        }
+      ]
+    },
     "angle_object": {
       "type": "SEQ",
       "members": [
@@ -2102,22 +2109,8 @@
                               "type": "CHOICE",
                               "members": [
                                 {
-                                  "type": "ALIAS",
-                                  "content": {
-                                    "type": "CHOICE",
-                                    "members": [
-                                      {
-                                        "type": "SYMBOL",
-                                        "name": "ident"
-                                      },
-                                      {
-                                        "type": "SYMBOL",
-                                        "name": "simple_path"
-                                      }
-                                    ]
-                                  },
-                                  "named": true,
-                                  "value": "object_key"
+                                  "type": "SYMBOL",
+                                  "name": "angle_key"
                                 },
                                 {
                                   "type": "SYMBOL",
@@ -2173,22 +2166,8 @@
                                     "type": "CHOICE",
                                     "members": [
                                       {
-                                        "type": "ALIAS",
-                                        "content": {
-                                          "type": "CHOICE",
-                                          "members": [
-                                            {
-                                              "type": "SYMBOL",
-                                              "name": "ident"
-                                            },
-                                            {
-                                              "type": "SYMBOL",
-                                              "name": "simple_path"
-                                            }
-                                          ]
-                                        },
-                                        "named": true,
-                                        "value": "object_key"
+                                        "type": "SYMBOL",
+                                        "name": "angle_key"
                                       },
                                       {
                                         "type": "SYMBOL",
@@ -8857,13 +8836,8 @@
           ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_simple_expression"
-          },
-          "named": true,
-          "value": "object_key"
+          "type": "SYMBOL",
+          "name": "object_key"
         }
       ]
     },
@@ -8927,13 +8901,8 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_simple_expression"
-                  },
-                  "named": true,
-                  "value": "object_key"
+                  "type": "SYMBOL",
+                  "name": "object_key"
                 },
                 {
                   "type": "SYMBOL",
@@ -12298,6 +12267,36 @@
       "decorator",
       "_expression",
       "on_statement"
+    ],
+    [
+      "object_key",
+      "build"
+    ],
+    [
+      "object_key",
+      "key_tty_value"
+    ],
+    [
+      "object_key",
+      "key_tty_value",
+      "_expression"
+    ],
+    [
+      "object_key",
+      "key_tty_value",
+      "label"
+    ],
+    [
+      "object_key",
+      "lambda_literal_expression"
+    ],
+    [
+      "object_key",
+      "_expression"
+    ],
+    [
+      "angle_key",
+      "angle_object"
     ],
     [
       "angle_object"
