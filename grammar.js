@@ -339,6 +339,7 @@ module.exports = grammar({
             [$.object_key, $._expression],
             [$.angle_key, $.angle_object],
             [$.angle_object],
+            [$.spread_element],
 
         ],
 
@@ -697,7 +698,7 @@ module.exports = grammar({
             spread_element: $ => seq(
                 field('decorators', repeat($.decorator)),
                 '...',
-                field('expression', $._simple_expression)
+                field('expression', optional($._simple_expression))
             ),
 
 
@@ -1208,7 +1209,7 @@ module.exports = grammar({
             ),
 
 
-            spx_element_name: $ => seq(optional('::'),  $.object_key),
+            spx_element_name: $ => seq(optional('::'), $.object_key),
 
 
             _spx_inner_expression: $ => choice(
@@ -1619,13 +1620,15 @@ module.exports = grammar({
             ),
 
 
-            _else_tail: $ => prec.right(seq(
-                'else',
-                field('alternative', choice(
-                    $.statements_block,
-                    $.if_expression,
-                ))
-            )),
+            _else_tail: $ => prec.right(
+                seq(
+                    'else',
+                    field('alternative', choice(
+                        $.statements_block,
+                        $.if_expression,
+                    ))
+                )
+            ),
 
             try_expression: $ => prec.right(
                 seq(

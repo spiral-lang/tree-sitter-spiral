@@ -1597,8 +1597,16 @@
           "type": "FIELD",
           "name": "expression",
           "content": {
-            "type": "SYMBOL",
-            "name": "_simple_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_simple_expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         }
       ]
@@ -12300,6 +12308,9 @@
     ],
     [
       "angle_object"
+    ],
+    [
+      "spread_element"
     ]
   ],
   "externals": [
