@@ -340,7 +340,6 @@ module.exports = grammar({
             [$.angle_key, $.angle_object],
             [$.angle_object],
             [$.spread_element],
-
         ],
 
         extras: $ => [/\s/, $.line_comment, $.block_comment],
