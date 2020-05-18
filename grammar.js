@@ -269,8 +269,6 @@ module.exports = grammar({
             [$.functor_literal_expression, $.lambda_literal_expression],
             [$.functor_literal_expression, $.label, $.functor_without_arguments, $.object_declaration],
             [$.build, $.functor_without_arguments],
-            [$.angle_object, $.spx_expression],
-            [$.angle_object, $.document],
             [$.algebra_operation],
             [$.hash_tag_expression, $._expression_statement],
             [$.try_expression, $.try_call],
@@ -322,7 +320,6 @@ module.exports = grammar({
             [$.object_pattern, $.match_expression],
             [$.lambda_literal_expression],
             [$._expression, $.try_call],
-            [$.binary_operation, $.where_block],
             [$.build, $.spx_element_name],
             [$.build, $._expression, $.object_pattern],
             [$.spread_element, $.build],
@@ -337,8 +334,6 @@ module.exports = grammar({
             [$.object_key, $.key_tty_value, $.label],
             [$.object_key, $.lambda_literal_expression],
             [$.object_key, $._expression],
-            [$.angle_key, $.angle_object],
-            [$.angle_object],
             [$.spread_element],
         ],
 
@@ -436,11 +431,13 @@ module.exports = grammar({
             ),
 
             infinite: $ => '∞',
+            empty: $ => choice('ø', '∅'),
 
             ident: $ => choice(
                 token(/[a-zA-Zα-ωΑ-Ωµ_°][a-zA-Zα-ωΑ-Ωµ\d_]*/),
                 $.currency,
                 $.infinite,
+                $.empty,
             ),
 
             symbol: $ => token(/'[a-zA-Z_][a-zA-Z\d_]*/),
@@ -449,7 +446,7 @@ module.exports = grammar({
                 seq(
                     field('left', choice($.ident, $.simple_path)),
                     field('path_sep', '::'),
-                    field('right', choice($.ident, $.angle_object))
+                    field('right', $.ident)
                 )
             ),
 
@@ -781,37 +778,6 @@ module.exports = grammar({
             bracket_object: $ => seq('(',
                 optional($._inner_object),
                 ')'
-            ),
-            angle_key: $ => choice(
-                $.ident,
-                $.simple_path,
-            ),
-            angle_object: $ => seq(
-                '<',
-                optional(
-                    seq(
-                        sepBy1(
-                            ',',
-                            choice(
-                                $._simple_expression,
-                                seq(
-                                    choice(
-                                        $.angle_key,
-                                        $.symbol
-                                    ),
-                                    optional(
-                                        seq(
-                                            $.assign,
-                                            $._simple_expression,
-                                        )
-                                    ),
-                                )
-                            )
-                        ),
-                        optional(',')
-                    )
-                ),
-                '>'
             ),
 
             square_object: $ => seq(
@@ -1331,7 +1297,6 @@ module.exports = grammar({
                         field('name', $.ident),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
@@ -1339,7 +1304,6 @@ module.exports = grammar({
                         field('name', $.simple_path),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
@@ -1347,7 +1311,6 @@ module.exports = grammar({
                         field('name', $.only_export_label),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
@@ -1355,7 +1318,6 @@ module.exports = grammar({
                         field('name', $.ident),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
@@ -1363,7 +1325,6 @@ module.exports = grammar({
                         field('name', $.simple_path),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
@@ -1371,27 +1332,22 @@ module.exports = grammar({
                         field('name', $.only_export_label),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
                         field('header', $.simple_path),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                     seq(
                         field('header', $.ident),
                         field('domain', $.bracket_object),
                         field('codomain', optional($._tty)),
-                        field('wheres', optional($.where_block)),
                         field('body', $.statements_block),
                     ),
                 )
             ),
-
-            where_block: $ => prec.right(PREC.PREFIX, repeat1(seq('where', $._expression))),
 
 
             _functor_declaration: $ => choice(
@@ -1512,9 +1468,7 @@ module.exports = grammar({
                         field('body', $.braces_object)
                     ),
                     seq(
-                        field('pattern', $._pattern),
-                        'of',
-                        field('value', $._expression),
+                        $.of_pattern,
                         field('body', $.braces_object)
                     ),
                 )
@@ -1566,48 +1520,44 @@ module.exports = grammar({
                     seq(
                         field('header', $.ident),
                         field('name', $.ident),
-                        field('wheres', optional($.where_block)),
                         field('body', $.braces_object)
                     ),
                     seq(
                         field('header', $.ident),
                         field('name', $.simple_path),
-                        field('wheres', optional($.where_block)),
                         field('body', $.braces_object)
                     ),
                     seq(
                         field('header', $.ident),
                         field('name', $.only_export_label),
-                        field('wheres', optional($.where_block)),
                         field('body', $.braces_object)
                     ),
                     seq(
                         field('header', $.simple_path),
                         field('name', $.ident),
-                        field('wheres', optional($.where_block)),
                         field('body', $.braces_object)
                     ),
                     seq(
                         field('header', $.simple_path),
                         field('name', $.simple_path),
-                        field('wheres', optional($.where_block)),
                         field('body', $.braces_object)
                     ),
                     seq(
                         field('header', $.simple_path),
                         field('name', $.only_export_label),
-                        field('wheres', optional($.where_block)),
                         field('body', $.braces_object)
                     ),
                 )
             ),
 
-
-            for_expression: $ => seq(
-                'for',
+            of_pattern: $ => seq(
                 field('pattern', $._pattern),
                 'of',
-                field('value', $._expression),
+                choice(field('value', $._expression), $.of_pattern),
+            ),
+            for_expression: $ => seq(
+                'for',
+                $.of_pattern,
                 field('body', $.statements_block)
             ),
 

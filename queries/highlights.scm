@@ -16,7 +16,6 @@
 "if" @keyword
 "else" @keyword
 "while" @keyword
-"where" @keyword
 "return" @keyword
 "yield" @keyword
 "use" @keyword
@@ -119,8 +118,6 @@
 (spx_fragment "<" @delimiter)
 (spx_fragment ">" @delimiter)
 (spx_fragment "/" @delimiter)
-(angle_object "<" @delimiter)
-(angle_object ">" @delimiter)
 (assign) @delimiter
 (simple_path "::" @delimiter)
 (only_export_label "::" @delimiter)

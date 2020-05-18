@@ -53,6 +53,7 @@ decorator precedence
 #async czxc(x, t)?;
 #async czxc{x, t}-;
 
-let x = #async::<T=as> ()?;
+let x = #async ()?;
 ---
-(source_file (hash_tag_expression (decorator (ident)) (return_expression (return_expression (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ident)))))) (hash_tag_expression (decorator (ident)) (unary_operation_postfix (call (ident) (bracket_object (ident) (ident))) (unary_symbol_postfix))) (ambiguous_algebra_operation (hash_tag_ending_with_block (decorator (ident)) (build (ident) (braces_object (ident) (ident)))) (ambiguous_operator)) (variable_declaration (exportable_type_annotation (ident)) (assign) (hash_tag_expression (decorator (simple_path (ident) (angle_object (angle_key (ident)) (assign) (ident)))) (unary_operation_postfix (bracket_object) (unary_symbol_postfix)))))
+(source_file (hash_tag_expression (decorator (ident)) (return_expression (return_expression (algebra_operation (functor_binary_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_algebra_operation (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ambiguous_operator) (natural_number (arabic_natural_number))) (ident)))))) (hash_tag_expression (decorator (ident)) (unary_operation_postfix (call (ident) (bracket_object (ident) (ident))) (unary_symbol_postfix))) (ambiguous_algebra_operation (hash_tag_ending_with_block (decorator (ident)) (build (ident) (braces_object (ident) (ident)))) (ambiguous_operator)) (variable_declaration (exportable_type_annotation (ident)) (assign) (hash_tag_expression (decorator (ident)) (unary_operation_postfix (bracket_object) (unary_symbol_postfix)))))
+
