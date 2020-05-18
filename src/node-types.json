@@ -525,100 +525,6 @@
     }
   },
   {
-    "type": "angle_key",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "angle_object",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "angle_key",
-          "named": true
-        },
-        {
-          "type": "assign",
-          "named": true
-        },
-        {
-          "type": "braces_object",
-          "named": true
-        },
-        {
-          "type": "bracket_object",
-          "named": true
-        },
-        {
-          "type": "build",
-          "named": true
-        },
-        {
-          "type": "call",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
-          "named": true
-        },
-        {
-          "type": "ident",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "regex",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "square_object",
-          "named": true
-        },
-        {
-          "type": "statements_block",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "try_call",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "assignment_statement",
     "named": true,
     "fields": {
@@ -1500,6 +1406,11 @@
     }
   },
   {
+    "type": "empty",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "empty_statement",
     "named": true,
     "fields": {}
@@ -1693,27 +1604,17 @@
             "named": true
           }
         ]
-      },
-      "pattern": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_pattern",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_expression",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "of_pattern",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1914,16 +1815,6 @@
             "named": true
           }
         ]
-      },
-      "wheres": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "where_block",
-            "named": true
-          }
-        ]
       }
     }
   },
@@ -2101,6 +1992,10 @@
       "types": [
         {
           "type": "currency",
+          "named": true
+        },
+        {
+          "type": "empty",
           "named": true
         },
         {
@@ -2418,19 +2313,9 @@
           }
         ]
       },
-      "pattern": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "_pattern",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "_expression",
@@ -2438,6 +2323,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "of_pattern",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2566,16 +2461,6 @@
             "named": true
           }
         ]
-      },
-      "wheres": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "where_block",
-            "named": true
-          }
-        ]
       }
     }
   },
@@ -2692,6 +2577,42 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "of_pattern",
+    "named": true,
+    "fields": {
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_pattern",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "of_pattern",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3314,10 +3235,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "angle_object",
-            "named": true
-          },
           {
             "type": "ident",
             "named": true
@@ -4329,21 +4246,6 @@
     }
   },
   {
-    "type": "where_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "while_expression",
     "named": true,
     "fields": {
@@ -4833,10 +4735,6 @@
     "named": false
   },
   {
-    "type": "where",
-    "named": false
-  },
-  {
     "type": "while",
     "named": false
   },
@@ -4974,6 +4872,10 @@
   },
   {
     "type": "÷=",
+    "named": false
+  },
+  {
+    "type": "ø",
     "named": false
   },
   {
@@ -5162,6 +5064,10 @@
   },
   {
     "type": "₿",
+    "named": false
+  },
+  {
+    "type": "∅",
     "named": false
   },
   {
